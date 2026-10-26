@@ -6,6 +6,18 @@ if [ -z "${APP_KEY:-}" ]; then
     exit 1
 fi
 
+if [ -z "${APP_URL:-}" ] && [ -n "${RAILWAY_PUBLIC_DOMAIN:-}" ]; then
+    export APP_URL="https://${RAILWAY_PUBLIC_DOMAIN}"
+fi
+
+php -r '
+$url = getenv("APP_URL");
+if (! $url || ! filter_var($url, FILTER_VALIDATE_URL) || ! in_array(parse_url($url, PHP_URL_SCHEME), ["http", "https"], true)) {
+    fwrite(STDERR, "APP_URL must be the actual site URL, such as https://your-site.up.railway.app, with no angle brackets or spaces. Set it in Railway Variables, or remove it to use RAILWAY_PUBLIC_DOMAIN after generating a public domain.\n");
+    exit(1);
+}
+'
+
 case "${PORT:-}" in
     ''|*[!0-9]*) echo 'PORT must be a numeric TCP port.' >&2; exit 1 ;;
 esac

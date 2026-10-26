@@ -86,7 +86,7 @@ Source is delivered in this repository, with locked PHP dependencies. A producti
    ```
 
    Generate an application key locally with `php artisan key:generate --show` (or a cryptographically secure 32-byte key encoded as `base64:...`). Copy it directly into Railway's secret Variables; do not commit it or post it in chat. Generate it once and retain it across deployments. Railway supplies `PORT`; do not override it unnecessarily.
-4. In **Settings → Networking**, generate a public domain. Set `APP_URL` to its exact HTTPS URL and redeploy if required. Laravel trusts the Railway proxy so assets, form actions and redirects use HTTPS. Deploy this container only behind a trusted reverse proxy; do not expose its port directly on an untrusted network.
+4. In **Settings → Networking**, generate a public domain. Set `APP_URL` to its exact HTTPS URL and redeploy if required. Replace the entire example value: never enter the literal `<your-generated-domain>` or other angle brackets. Alternatively, omit `APP_URL` after generating a public domain; startup uses Railway’s `RAILWAY_PUBLIC_DOMAIN` when available. Laravel trusts the Railway proxy so assets, form actions and redirects use HTTPS. Deploy this container only behind a trusted reverse proxy; do not expose its port directly on an untrusted network.
 5. After deployment, open `/up` (expect HTTP 200), then the home page. Submit test details in the form and retain the reference. Redeploy and verify the same test record still exists through trusted Railway shell/database access. Check logs for migration errors and verify `/data` is mounted before entering real data.
 
 The container migrates the existing database at startup and never regenerates `APP_KEY` or deletes records. Builds contain no `.env`, local database, or local vendor directory. Production Composer dependencies are installed from `composer.lock`. PHP/Apache listens on Railway's `PORT`. Railway hosting may incur charges.
@@ -94,3 +94,7 @@ The container migrates the existing database at startup and never regenerates `A
 **Before public launch:** confirm company details, privacy and retention policy, and follow-up workflow; configure contact variables described above, then change `SITE_PREVIEW=false`. The initial website stores requests but does not send emails. Hosting on Railway does not configure an email inbox or CRM.
 
 **Retention:** this web container does not run Laravel's scheduler. For the proposed 90-day policy, schedule `php artisan leads:prune` against this service and its mounted volume through your operations tooling, or run it through trusted Railway service shell access. Do not assume a separate Railway cron service can access this service's SQLite volume. Until you configure and verify cleanup, automatic deletion is not active. Consider managed PostgreSQL if multiple replicas or separate worker/scheduler services are needed.
+
+### Railway: “Invalid URI: Host is malformed”
+
+If this appears in deployment logs before Apache starts, check **Variables → APP_URL**. It must be the real public HTTPS URL, not the example placeholder, and must not contain spaces or `<` / `>` characters. Save the correction and redeploy. Do not change `APP_KEY` or remove the database volume for this error. Startup validates the URL before running Artisan so an invalid setting produces a specific configuration message.

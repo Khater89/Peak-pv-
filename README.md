@@ -62,3 +62,35 @@ vendor/bin/pint --dirty --format agent
 Feature tests cover persistence, validation, safe retries, escaping, storage failure, throttling, public data access boundaries and retention. The page works without JavaScript; CSS, artwork, and scripts are local. Form submissions always require the running PHP server and database. Static HTML or opening files with `file://` cannot save enquiries.
 
 Source is delivered in this repository, with locked PHP dependencies. A production deployment uses the source and Composer dependencies; there is no standalone static build ZIP.
+
+## Deploy to Railway
+
+1. Create a Railway project → **Deploy from GitHub repo** → `Khater89/Sun-Mode-`, branch `main`. The repository's `Dockerfile` and `railway.json` configure the PHP/Apache build and `/up` health check. Do not add a separate build/start/pre-deploy command.
+2. Attach a **Volume** to the web service, mounted at **`/data`**. Use **one replica**, not multiple replicas sharing SQLite. Keep this volume across deployments and enable backups. A deployment without the volume can run but its data will be ephemeral.
+3. Add the following service **Variables** before deploying:
+
+   ```dotenv
+   APP_NAME="Energy Mode"
+   APP_ENV=production
+   APP_DEBUG=false
+   APP_KEY=<your stable Laravel application key>
+   APP_URL=https://<your-generated-domain>.up.railway.app
+   DB_CONNECTION=sqlite
+   DB_DATABASE=/data/database.sqlite
+   SESSION_DRIVER=database
+   SESSION_SECURE_COOKIE=true
+   CACHE_STORE=database
+   LOG_CHANNEL=stderr
+   QUEUE_CONNECTION=sync
+   SITE_PREVIEW=true
+   ```
+
+   Generate an application key locally with `php artisan key:generate --show` (or a cryptographically secure 32-byte key encoded as `base64:...`). Copy it directly into Railway's secret Variables; do not commit it or post it in chat. Generate it once and retain it across deployments. Railway supplies `PORT`; do not override it unnecessarily.
+4. In **Settings → Networking**, generate a public domain. Set `APP_URL` to its exact HTTPS URL and redeploy if required. Laravel trusts the Railway proxy so assets, form actions and redirects use HTTPS. Deploy this container only behind a trusted reverse proxy; do not expose its port directly on an untrusted network.
+5. After deployment, open `/up` (expect HTTP 200), then the home page. Submit test details in the form and retain the reference. Redeploy and verify the same test record still exists through trusted Railway shell/database access. Check logs for migration errors and verify `/data` is mounted before entering real data.
+
+The container migrates the existing database at startup and never regenerates `APP_KEY` or deletes records. Builds contain no `.env`, local database, or local vendor directory. Production Composer dependencies are installed from `composer.lock`. PHP/Apache listens on Railway's `PORT`. Railway hosting may incur charges.
+
+**Before public launch:** confirm company details, privacy and retention policy, and follow-up workflow; configure contact variables described above, then change `SITE_PREVIEW=false`. The initial website stores requests but does not send emails. Hosting on Railway does not configure an email inbox or CRM.
+
+**Retention:** this web container does not run Laravel's scheduler. For the proposed 90-day policy, schedule `php artisan leads:prune` against this service and its mounted volume through your operations tooling, or run it through trusted Railway service shell access. Do not assume a separate Railway cron service can access this service's SQLite volume. Until you configure and verify cleanup, automatic deletion is not active. Consider managed PostgreSQL if multiple replicas or separate worker/scheduler services are needed.

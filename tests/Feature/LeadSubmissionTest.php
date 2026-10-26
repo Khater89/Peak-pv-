@@ -134,6 +134,18 @@ class LeadSubmissionTest extends TestCase
             ->assertSee('Our project collection is taking shape.');
     }
 
+    public function test_form_and_assets_use_https_behind_the_railway_proxy(): void
+    {
+        $this->withHeaders([
+            'X-Forwarded-Proto' => 'https',
+            'X-Forwarded-Host' => 'energy-mode.up.railway.app',
+            'X-Forwarded-Port' => '443',
+        ])->get('/')
+            ->assertOk()
+            ->assertSee('action="https://energy-mode.up.railway.app/consultation"', false)
+            ->assertSee('href="https://energy-mode.up.railway.app/site.css"', false);
+    }
+
     public function test_cleanup_removes_expired_leads_and_preserves_recent_records(): void
     {
         $expired = Lead::factory()->create(['created_at' => now()->subDays(91)]);

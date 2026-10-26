@@ -34,6 +34,11 @@ if [ "${DB_CONNECTION:-sqlite}" = 'sqlite' ]; then
     chmod 660 /data/database.sqlite
 fi
 
+# mod_php requires exactly one MPM: prefork. Normalize again at runtime.
+a2dismod -f mpm_event mpm_worker
+a2enmod mpm_prefork rewrite
+apache2ctl -t
+
 # Volumes are mounted at runtime, not during a pre-deploy command or image build.
 php artisan config:clear
 php artisan migrate --force --no-interaction

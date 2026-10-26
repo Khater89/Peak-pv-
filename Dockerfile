@@ -4,7 +4,8 @@ RUN sed -i 's|http://deb.debian.org|https://deb.debian.org|g' /etc/apt/sources.l
     && apt-get update \
     && apt-get install -y --no-install-recommends libonig-dev libsqlite3-dev libzip-dev unzip \
     && docker-php-ext-install -j2 mbstring pdo_sqlite zip opcache \
-    && a2enmod rewrite \
+    && a2dismod -f mpm_event mpm_worker \
+    && a2enmod mpm_prefork rewrite \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=composer:2 /usr/bin/composer /usr/local/bin/composer

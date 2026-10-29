@@ -1,6 +1,6 @@
-# Open Energy — company website
+# Peak PV — company website
 
-Marketing and lead-generation site for **Open Energy**, a solar PV company (supply · design · installation).
+Marketing and lead-generation site for **Peak PV**, a solar PV company (supply · design · installation).
 Built with Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4 and shadcn-style UI primitives.
 
 ## Pages
@@ -45,7 +45,7 @@ Set `INQUIRY_STORE` in the environment:
   `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` (server-only; never prefix with `NEXT_PUBLIC_`).
   RLS is enabled with no public policies, so browsers cannot read the table.
 
-The form shows success only after the store confirms the write (HTTP 201 + reference such as `OE-7K3QX9`).
+The form shows success only after the store confirms the write (HTTP 201 + reference such as `PK-7K3QX9`).
 If storage is missing or fails, the API returns 503 and the form keeps what the visitor typed.
 
 There is no email notification yet; staff read inquiries from the file or the Supabase table.

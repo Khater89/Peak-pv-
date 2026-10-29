@@ -6,7 +6,7 @@ export type Service = {
   icon: "package" | "ruler" | "wrench" | "life-buoy";
   audience: string;
   benefits: string[];
-  /** VERIFY: set to true only once the offering is confirmed by Open Energy. */
+  /** VERIFY: set to true only once the offering is confirmed by Peak PV. */
   enabled: boolean;
 };
 
@@ -87,7 +87,7 @@ export const solutions = [
   },
 ];
 
-/** Generic PV system categories. VERIFY which ones Open Energy offers. */
+/** Generic PV system categories. VERIFY which ones Peak PV offers. */
 export const systemTypes = [
   {
     title: "On-grid",
@@ -107,7 +107,7 @@ export const systemTypes = [
   },
 ];
 
-/** Standard PV engineering scope. VERIFY against Open Energy's actual capabilities. */
+/** Standard PV engineering scope. VERIFY against Peak PV's actual capabilities. */
 export const capabilities = [
   "Site survey and roof / ground assessment",
   "Shading and orientation analysis",

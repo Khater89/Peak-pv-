@@ -8,7 +8,22 @@ const ARRAY: [Pt, Pt, Pt, Pt] = [
 ];
 
 /** Decorative hero illustration: a PV array at sunrise. Purely presentational (aria-hidden). */
-export function HeroArt({ bleed = false, className = "h-auto w-full" }: { bleed?: boolean; className?: string }) {
+/** Night/dusk palette is the original; "day" is the soft, light palette used across the site. */
+const palettes = {
+  dusk: { sky: ["#0b1b33", "#1d3a66", "#c98a2a", "#f8cc6e"], hill: "#1d3a66", ground: ["#13294b", "#061227"], stars: true },
+  day: { sky: ["#cfe4f6", "#e6f1fa", "#fdf1d8", "#fde7b8"], hill: "#bcd6c0", ground: ["#a9c9a4", "#8fb38d"], stars: false },
+};
+
+export function HeroArt({
+  bleed = false,
+  className = "h-auto w-full",
+  mood = "day",
+}: {
+  bleed?: boolean;
+  className?: string;
+  mood?: keyof typeof palettes;
+}) {
+  const c = palettes[mood];
   const panels = panelGrid(ARRAY, 6, 3);
   const legs = [0.06, 0.5, 0.94].map((u) => [quadPoint(ARRAY, u, 1), quadPoint(ARRAY, u, 0.55)] as const);
 
@@ -16,10 +31,10 @@ export function HeroArt({ bleed = false, className = "h-auto w-full" }: { bleed?
     <svg viewBox="0 0 620 520" className={className} preserveAspectRatio={bleed ? "xMidYMid slice" : undefined} aria-hidden="true" focusable="false">
       <defs>
         <linearGradient id="h-sky" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#0b1b33" />
-          <stop offset="0.55" stopColor="#1d3a66" />
-          <stop offset="0.82" stopColor="#c98a2a" />
-          <stop offset="1" stopColor="#f8cc6e" />
+          <stop offset="0" stopColor={c.sky[0]} />
+          <stop offset="0.55" stopColor={c.sky[1]} />
+          <stop offset="0.82" stopColor={c.sky[2]} />
+          <stop offset="1" stopColor={c.sky[3]} />
         </linearGradient>
         <radialGradient id="h-glow" cx="0.5" cy="0.5" r="0.5">
           <stop offset="0" stopColor="#ffe7a8" stopOpacity="0.95" />
@@ -41,8 +56,8 @@ export function HeroArt({ bleed = false, className = "h-auto w-full" }: { bleed?
           <stop offset="1" stopColor="#fff" stopOpacity="0" />
         </linearGradient>
         <linearGradient id="h-ground" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#13294b" />
-          <stop offset="1" stopColor="#061227" />
+          <stop offset="0" stopColor={c.ground[0]} />
+          <stop offset="1" stopColor={c.ground[1]} />
         </linearGradient>
         <clipPath id="h-frame">
           <rect width="620" height="520" rx="28" />
@@ -54,7 +69,7 @@ export function HeroArt({ bleed = false, className = "h-auto w-full" }: { bleed?
 
       <g clipPath={bleed ? undefined : "url(#h-frame)"}>
         <rect width="620" height="520" fill="url(#h-sky)" />
-        <g fill="#fff" opacity="0.5">
+        <g fill="#fff" opacity={c.stars ? 0.5 : 0}>
           {[[60, 50], [140, 90], [250, 40], [420, 70], [560, 46], [520, 120], [90, 150], [330, 110]].map(([x, y]) => (
             <circle key={`${x}-${y}`} cx={x} cy={y} r="1.3" />
           ))}
@@ -75,7 +90,7 @@ export function HeroArt({ bleed = false, className = "h-auto w-full" }: { bleed?
             );
           })}
         </g>
-        <path d="M0 330 C120 300 220 320 320 312 S520 290 620 318 V520 H0Z" fill="#1d3a66" opacity="0.7" />
+        <path d="M0 330 C120 300 220 320 320 312 S520 290 620 318 V520 H0Z" fill={c.hill} opacity="0.7" />
         <path d="M0 372 C140 350 260 366 380 356 S560 344 620 360 V520 H0Z" fill="url(#h-ground)" />
 
         <g stroke="#7d8fae" strokeWidth="5" strokeLinecap="round">

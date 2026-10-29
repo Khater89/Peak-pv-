@@ -8,7 +8,7 @@ import { InquiryForm, type InquiryPrefill } from "@/components/inquiry-form";
 
 export const metadata: Metadata = {
   title: "Request a Solar PV Quote",
-  description: "Request a quote or consultation for a residential or commercial solar PV system from Open Energy.",
+  description: "Request a quote or consultation for a residential or commercial solar PV system from Peak PV.",
   alternates: { canonical: "/contact" },
 };
 
@@ -72,11 +72,11 @@ export default async function ContactPage({ searchParams }: { searchParams: Sear
             <AgentCard />
 
             {company.serviceArea && (
-              <div className="on-dark rounded-[1.25rem] bg-navy-900 p-6 text-white sm:p-8">
+              <div className="rounded-[1.5rem] bg-sky-50 p-6 ring-1 ring-sky-100 sm:p-8">
                 <h2 className="flex items-center gap-2 text-xl font-bold">
-                  <MapPin aria-hidden className="size-5 text-sun-400" /> Service area
+                  <MapPin aria-hidden className="size-5 text-sun-700" /> Service area
                 </h2>
-                <p className="mt-3 text-navy-200">{company.serviceArea}</p>
+                <p className="mt-3 text-muted">{company.serviceArea}</p>
               </div>
             )}
           </aside>

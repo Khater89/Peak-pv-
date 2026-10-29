@@ -4,7 +4,7 @@
  * All user-facing copy lives under content/ so an Arabic edition can be added
  * as a parallel set of files (e.g. content/ar/) without touching components.
  *
- * VERIFY: anything set to null / [] is intentionally empty until Open Energy
+ * VERIFY: anything set to null / [] is intentionally empty until Peak PV
  * supplies verified facts. Components hide those blocks instead of inventing data.
  */
 
@@ -20,17 +20,17 @@ export type ContactChannel =
   | { kind: "address"; label: string; value: string };
 
 export const company = {
-  brandName: "Open Energy",
+  brandName: "Peak PV",
   tagline: "Solar PV systems — supplied, designed and installed.",
   about:
-    "Open Energy is a solar photovoltaic company. We supply PV equipment, design systems around each site, and install them — so homeowners and businesses work with one team from first conversation to switch-on.",
+    "Peak PV is a solar photovoltaic company. We supply PV equipment, design systems around each site, and install them — so homeowners and businesses work with one team from first conversation to switch-on.",
   mission:
     "Make the move to solar clear and dependable: honest advice, engineering that fits the site, and installation done right the first time.",
   /** Inferred from the Jordanian phone numbers and projects — confirm exact cities. */
   serviceArea: "Jordan" as string | null,
   /** VERIFY: real, sourced figures only (e.g. "120+ systems installed"). Hidden while empty. */
   metrics: [] as Metric[],
-  /** VERIFY: only certifications Open Energy can evidence. Hidden while empty. */
+  /** VERIFY: only certifications Peak PV can evidence. Hidden while empty. */
   certifications: [] as Certification[],
   /** VERIFY: only manufacturers/distributors with permission to show their logo. Hidden while empty. */
   partners: [] as Partner[],
@@ -50,7 +50,7 @@ export const phones = [
 export const email = "abdelrahman.khater.elc@gmail.com";
 export const whatsapp = {
   intl: "962790619770",
-  message: "Hello Open Energy, I'd like to ask about a solar PV system.",
+  message: "Hello Peak PV, I'd like to ask about a solar PV system.",
 };
 export const whatsappHref = (text = whatsapp.message) =>
   `https://wa.me/${whatsapp.intl}?text=${encodeURIComponent(text)}`;
@@ -104,7 +104,7 @@ export const processSteps = [
 
 export const faqs = [
   {
-    q: "What does Open Energy do?",
+    q: "What does Peak PV do?",
     a: "We supply, design and install photovoltaic (PV) solar systems for homes and businesses. You can come to us for the full project or for a specific part of it.",
   },
   {

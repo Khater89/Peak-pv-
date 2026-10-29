@@ -3,16 +3,19 @@
 @theme {
   --font-sans: var(--font-body), var(--font-arabic), ui-sans-serif, system-ui, "Segoe UI", Tahoma, sans-serif;
   --font-display: var(--font-body), var(--font-arabic), ui-sans-serif, system-ui, sans-serif;
-  --font-brand: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  --font-brand: var(--font-body), ui-sans-serif, system-ui, sans-serif;
 
-  --color-ink: #0b1b33;
-  --color-navy-950: #061227;
-  --color-navy-900: #0b1b33;
-  --color-navy-800: #13294b;
-  --color-navy-700: #1d3a66;
+  --color-ink: #1f2b3d;
+  --color-navy-950: #1c2f45;
+  --color-navy-900: #24405f;
+  --color-navy-800: #2f5178;
+  --color-navy-700: #3d6591;
   --color-navy-200: #c4d2e8;
 
   /* Brand accent #f5b942. Use as a fill with ink text; for amber text on light use amber-700. */
+  --color-sky-50: #f1f7fc;
+  --color-sky-100: #e3eef8;
+  --color-sky-300: #9cc3e6;
   --color-sun-50: #fff8e8;
   --color-sun-100: #fdedc6;
   --color-sun-300: #f8cc6e;
@@ -20,10 +23,10 @@
   --color-sun-500: #e9a520;
   --color-sun-700: #8a5a00;
 
-  --color-surface: #f4f6f9;
-  --color-surface-2: #e9edf3;
-  --color-line: #d8dfe9;
-  --color-muted: #475569;
+  --color-surface: #f6f3ec;
+  --color-surface-2: #ece6da;
+  --color-line: #e7e1d6;
+  --color-muted: #5b6573;
 
   /* Semantic states — kept separate from the brand accent. */
   --color-success: #11734b;
@@ -31,9 +34,9 @@
   --color-danger: #b42318;
   --color-danger-bg: #fdecea;
 
-  --radius-card: 0.875rem;
-  --shadow-card: 0 1px 2px rgb(11 27 51 / 0.06), 0 8px 24px -12px rgb(11 27 51 / 0.18);
-  --shadow-lift: 0 2px 4px rgb(11 27 51 / 0.06), 0 18px 40px -16px rgb(11 27 51 / 0.28);
+  --radius-card: 1.5rem;
+  --shadow-card: 0 1px 2px rgb(31 43 61 / 0.04), 0 12px 32px -16px rgb(31 43 61 / 0.14);
+  --shadow-lift: 0 2px 6px rgb(31 43 61 / 0.04), 0 24px 48px -20px rgb(31 43 61 / 0.2);
 }
 
 @layer base {
@@ -42,7 +45,7 @@
     scroll-padding-top: 5.5rem;
   }
   body {
-    background: #ffffff;
+    background: #fdfcf9;
     color: var(--color-ink);
     font-family: var(--font-sans);
     font-size: 1rem;
@@ -51,9 +54,9 @@
   }
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    font-weight: 800;
-    line-height: 1.08;
-    letter-spacing: -0.03em;
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
     text-wrap: balance;
   }
   p { text-wrap: pretty; }
@@ -138,8 +141,8 @@
 
 @utility bg-grid {
   background-image:
-    linear-gradient(to right, rgb(11 27 51 / 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(11 27 51 / 0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgb(31 43 61 / 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(31 43 61 / 0.04) 1px, transparent 1px);
   background-size: 48px 48px;
 }
 

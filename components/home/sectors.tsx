@@ -28,7 +28,7 @@ export function Sectors() {
               <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-105">
                 <ProjectArt variant={s.art} label="" />
               </div>
-              <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-navy-950/85 via-navy-950/20 to-transparent" />
+              <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-navy-950/70 via-navy-950/10 to-transparent" />
               <span className="absolute inset-x-0 bottom-0 p-4 text-sm font-bold text-white sm:p-5 sm:text-lg">{s.title}</span>
             </Link>
           </li>

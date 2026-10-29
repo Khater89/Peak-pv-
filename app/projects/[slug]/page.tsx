@@ -103,7 +103,7 @@ export default async function ProjectPage({ params }: Params) {
           </ul>
         </div>
 
-        <aside aria-label="Contact Open Energy about this project" className="lg:sticky lg:top-28 lg:self-start">
+        <aside aria-label="Contact Peak PV about this project" className="lg:sticky lg:top-28 lg:self-start">
           <AgentCard context={project.title} />
         </aside>
       </section>

@@ -43,8 +43,8 @@ export function SiteHeader() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 border-b bg-white transition-shadow duration-200",
-        scrolled || open ? "border-line shadow-[0_8px_30px_-20px_rgb(11_27_51/0.45)]" : "border-line/60",
+        "sticky top-0 z-50 border-b bg-[#fdfcf9]/90 backdrop-blur-md transition-shadow duration-200",
+        scrolled || open ? "border-line shadow-[0_8px_30px_-20px_rgb(31_43_61/0.35)]" : "border-line/60",
       )}
     >
       <a
@@ -54,7 +54,7 @@ export function SiteHeader() {
         Skip to content
       </a>
       <div className="container-x flex h-[4.5rem] items-center justify-between gap-3 lg:h-24">
-        <Link href="/" aria-label="Open Energy — home" className="shrink-0 rounded-lg">
+        <Link href="/" aria-label="Peak PV — home" className="shrink-0 rounded-lg">
           <Logo />
         </Link>
 
@@ -65,7 +65,7 @@ export function SiteHeader() {
                 <Link
                   href={item.href}
                   aria-current={isActive(item.href) ? "page" : undefined}
-                  className="rounded-full px-4 py-2.5 text-[0.9375rem] font-semibold text-ink/80 transition-colors duration-150 hover:bg-surface hover:text-ink aria-[current=page]:bg-navy-900 aria-[current=page]:text-white"
+                  className="rounded-full px-4 py-2.5 text-[0.9375rem] font-semibold text-ink/80 transition-colors duration-150 hover:bg-surface hover:text-ink aria-[current=page]:bg-sun-100 aria-[current=page]:text-ink"
                 >
                   {item.label}
                 </Link>

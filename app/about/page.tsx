@@ -8,8 +8,8 @@ import { CtaBand } from "@/components/cta-band";
 import { HeroArt } from "@/components/art/hero-art";
 
 export const metadata: Metadata = {
-  title: "About Open Energy — Solar PV Specialists",
-  description: "Open Energy is a solar photovoltaic company supplying, designing and installing PV systems for homes and businesses.",
+  title: "About Peak PV — Solar PV Specialists",
+  description: "Peak PV is a solar photovoltaic company supplying, designing and installing PV systems for homes and businesses.",
   alternates: { canonical: "/about" },
 };
 
@@ -28,11 +28,11 @@ export default function AboutPage() {
       <Section labelledBy="story-title">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
-            <SectionHeading id="story-title" eyebrow="Our story" title="Why Open Energy" />
+            <SectionHeading id="story-title" eyebrow="Our story" title="Why Peak PV" />
             <div className="mt-6 space-y-4 text-lg text-muted">
               <p>
                 Going solar involves many decisions — which equipment, what size, how it is mounted and connected. We set
-                up Open Energy so property owners could get all of that from one specialist team.
+                up Peak PV so property owners could get all of that from one specialist team.
               </p>
               <p>
                 We focus on photovoltaic systems only: supplying the right components, designing around each site and
@@ -55,7 +55,7 @@ export default function AboutPage() {
         <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {values.map((v) => (
             <li key={v.title} className="rounded-[var(--radius-card)] border border-line bg-white p-6 shadow-card">
-              <span className="inline-flex size-11 items-center justify-center rounded-xl bg-navy-900 text-sun-400">
+              <span className="inline-flex size-11 items-center justify-center rounded-2xl bg-sun-100 text-sun-700">
                 <v.icon aria-hidden className="size-5" />
               </span>
               <h3 className="mt-4 text-lg font-bold">{v.title}</h3>

@@ -113,7 +113,7 @@ await page.fill('textarea[name="message"]', unique);
 await page.click('button[type="submit"]');
 await page.getByText(/request has been received/).waitFor({ timeout: 10000 });
 const ref = (await page.locator("strong.font-mono").textContent())?.trim();
-check("success shows reference", /^OE-[A-Z0-9]{6}$/.test(ref || ""), ref);
+check("success shows reference", /^PK-[A-Z0-9]{6}$/.test(ref || ""), ref);
 const file = path.join(process.env.INQUIRY_DATA_DIR || "data", "inquiries.jsonl");
 if (existsSync(file)) {
   const stored = readFileSync(file, "utf8").trim().split("\n").map((l) => JSON.parse(l));

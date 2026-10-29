@@ -1,6 +1,6 @@
 # Open decisions and assumptions
 
-Items Open Energy must confirm. Until then the site hides or labels the affected content and does not invent it.
+Items Peak PV must confirm. Until then the site hides or labels the affected content and does not invent it.
 
 | # | Decision | Current behaviour | Where to change |
 |---|---|---|---|

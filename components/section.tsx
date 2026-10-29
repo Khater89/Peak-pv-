@@ -19,8 +19,8 @@ export function Section({
       aria-labelledby={labelledBy}
       className={cn(
         "py-16 sm:py-20 lg:py-24",
-        tone === "surface" && "bg-surface",
-        tone === "dark" && "on-dark bg-navy-950 text-white",
+        tone === "surface" && "bg-surface/60",
+        tone === "dark" && "bg-sky-50",
         className,
       )}
     >
@@ -63,13 +63,13 @@ export function SectionHeading({
 
 export function PageHero({ eyebrow, title, intro, children }: { eyebrow: string; title: string; intro: string; children?: React.ReactNode }) {
   return (
-    <section className="on-dark relative isolate overflow-hidden bg-navy-950 text-white">
-      <div aria-hidden className="bg-grid-dark absolute inset-0 -z-10 [mask-image:radial-gradient(ellipse_at_top_right,black,transparent_75%)]" />
-      <div aria-hidden className="absolute -top-40 end-[-10rem] -z-10 size-[30rem] rounded-full bg-sun-400/20 blur-3xl" />
-      <div className="container-x py-16 sm:py-20 lg:py-28">
+    <section className="relative isolate overflow-hidden bg-gradient-to-b from-sky-50 to-[#fdfcf9]">
+      <div aria-hidden className="absolute -top-40 end-[-10rem] -z-10 size-[30rem] rounded-full bg-sun-300/30 blur-3xl" />
+      <div aria-hidden className="absolute -bottom-48 start-[-10rem] -z-10 size-[26rem] rounded-full bg-sky-300/25 blur-3xl" />
+      <div className="container-x py-16 sm:py-20 lg:py-24">
         <p className="eyebrow">{eyebrow}</p>
-        <h1 className="mt-4 max-w-4xl text-4xl sm:text-6xl lg:text-7xl">{title}</h1>
-        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/70">{intro}</p>
+        <h1 className="mt-4 max-w-4xl text-4xl sm:text-6xl">{title}</h1>
+        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">{intro}</p>
         {children}
       </div>
     </section>

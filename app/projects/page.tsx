@@ -5,7 +5,7 @@ import { CtaBand } from "@/components/cta-band";
 
 export const metadata: Metadata = {
   title: "Solar Projects — Residential & Commercial PV",
-  description: "Residential and commercial solar PV projects supplied, designed and installed by Open Energy.",
+  description: "Residential and commercial solar PV projects supplied, designed and installed by Peak PV.",
   alternates: { canonical: "/projects" },
 };
 
@@ -15,7 +15,7 @@ export default function ProjectsPage() {
       <PageHero
         eyebrow="Projects"
         title="Solar installations"
-        intro="Real systems designed and delivered by Open Energy — with specifications, renders and site photos."
+        intro="Real systems designed and delivered by Peak PV — with specifications, renders and site photos."
       />
       <Section>
         <ProjectsGallery />

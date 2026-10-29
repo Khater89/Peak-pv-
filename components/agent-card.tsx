@@ -6,14 +6,14 @@ import { LogoMark } from "@/components/logo";
 /** Real-estate "contact the agent" style card with direct call / WhatsApp / email actions. */
 export function AgentCard({ context }: { context?: string }) {
   const message = context
-    ? `Hello Open Energy, I saw the "${context}" project and would like a similar system.`
+    ? `Hello Peak PV, I saw the "${context}" project and would like a similar system.`
     : undefined;
   return (
     <div className="rounded-2xl bg-white p-6 shadow-lift ring-1 ring-line">
       <div className="flex items-center gap-3">
         <LogoMark tone="badge" className="size-12" />
         <div>
-          <p className="font-bold">Open Energy engineering team</p>
+          <p className="font-bold">Peak PV engineering team</p>
           <p className="text-sm text-muted">Solar PV supply · design · installation</p>
         </div>
       </div>

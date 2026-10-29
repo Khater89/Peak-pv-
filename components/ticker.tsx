@@ -13,10 +13,10 @@ const items = [
 export function Ticker() {
   const row = [...items, ...items];
   return (
-    <div aria-hidden className="overflow-hidden border-y border-white/10 bg-navy-900 py-4 text-white">
+    <div aria-hidden className="overflow-hidden border-y border-line bg-surface py-4">
       <div className="anim-marquee flex w-max gap-10 whitespace-nowrap">
         {row.map((t, i) => (
-          <span key={i} className="inline-flex items-center gap-10 text-sm font-semibold uppercase tracking-[0.18em] text-white/80">
+          <span key={i} className="inline-flex items-center gap-10 text-sm font-semibold uppercase tracking-[0.18em] text-ink/70">
             {t}
             <span className="size-1.5 rounded-full bg-sun-400" />
           </span>

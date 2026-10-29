@@ -58,7 +58,7 @@ export default function HomePage() {
 
       <Section labelledBy="projects-title">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <SectionHeading id="projects-title" eyebrow="Projects" title="Featured Work" intro="Real systems engineered by Open Energy, with full specifications." />
+          <SectionHeading id="projects-title" eyebrow="Projects" title="Featured Work" intro="Real systems engineered by Peak PV, with full specifications." />
           <Link href="/projects" className="inline-flex items-center gap-1 py-2 font-semibold underline-offset-4 hover:underline">
             View all projects <ArrowUpRight aria-hidden className="size-4 rtl:-scale-x-100" />
           </Link>

@@ -6,14 +6,14 @@ const icons = [Users, Ruler, Layers, ClipboardCheck];
 /** Four feature cards overlapping the bottom of the hero. */
 export function FeatureStrip() {
   return (
-    <section aria-label="Why Open Energy" className="relative z-10 -mt-24 lg:-mt-28">
+    <section aria-label="Why Peak PV" className="relative z-10 -mt-24 lg:-mt-28">
       <div className="container-x">
-        <ul className="grid overflow-hidden rounded-2xl border border-line bg-white shadow-lift sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="grid overflow-hidden rounded-[1.75rem] border border-line bg-white shadow-lift sm:grid-cols-2 lg:grid-cols-4">
           {pillars.map((p, i) => {
             const Icon = icons[i % icons.length];
             return (
               <li key={p.title} className="flex gap-4 border-line p-6 max-lg:[&:nth-child(-n+2)]:border-b sm:max-lg:odd:border-e lg:border-e lg:last:border-e-0">
-                <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-xl bg-navy-900 text-sun-400">
+                <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-2xl bg-sun-100 text-sun-700">
                   <Icon aria-hidden className="size-5" />
                 </span>
                 <div>

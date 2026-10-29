@@ -10,7 +10,7 @@ import { ButtonLink } from "@/components/ui/button";
 export const metadata: Metadata = {
   title: "Solar PV Services — Supply, Design & Installation",
   description:
-    "Solar PV equipment supply, system design and professional installation for residential and commercial properties from Open Energy.",
+    "Solar PV equipment supply, system design and professional installation for residential and commercial properties from Peak PV.",
   alternates: { canonical: "/services" },
 };
 
@@ -45,7 +45,7 @@ export default function ServicesPage() {
               >
                 <div>
                   <div className="flex items-center gap-4">
-                    <span className="inline-flex size-14 items-center justify-center rounded-2xl bg-navy-900 text-sun-400">
+                    <span className="inline-flex size-14 items-center justify-center rounded-2xl bg-sky-100 text-navy-800">
                       <Icon aria-hidden className="size-7" />
                     </span>
                     <span className="font-display text-sm font-bold text-sun-700">0{i + 1}</span>
@@ -127,7 +127,7 @@ export default function ServicesPage() {
         </div>
       </Section>
 
-      <Section tone="dark" labelledBy="capabilities-title">
+      <Section tone="surface" labelledBy="capabilities-title">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
           <SectionHeading
             id="capabilities-title"
@@ -137,9 +137,9 @@ export default function ServicesPage() {
           />
           <ul className="grid gap-3 sm:grid-cols-2">
             {capabilities.map((c) => (
-              <li key={c} className="flex items-start gap-3 rounded-xl border border-white/10 bg-white/5 p-4">
-                <Check aria-hidden className="mt-0.5 size-5 shrink-0 text-sun-400" strokeWidth={2.5} />
-                <span className="text-white">{c}</span>
+              <li key={c} className="flex items-start gap-3 rounded-2xl bg-white p-4 shadow-card ring-1 ring-line">
+                <Check aria-hidden className="mt-0.5 size-5 shrink-0 text-success" strokeWidth={2.5} />
+                <span>{c}</span>
               </li>
             ))}
           </ul>

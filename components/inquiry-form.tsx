@@ -297,7 +297,7 @@ export function InquiryForm({ sourcePage = "/contact", initial }: { sourcePage?:
             onChange={(e) => update("consent", e.target.checked)}
           />
           <label htmlFor={id("consent")} className="text-[0.9375rem]">
-            I agree that Open Energy may contact me about this request. <span aria-hidden className="font-semibold text-danger">*</span>
+            I agree that Peak PV may contact me about this request. <span aria-hidden className="font-semibold text-danger">*</span>
           </label>
         </div>
         <span id={`${id("consent")}-hint`} className="sr-only">Required.</span>

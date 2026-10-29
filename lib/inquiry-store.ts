@@ -9,10 +9,10 @@ export type StoredInquiry = Omit<Inquiry, "consent"> & { id: string; reference: 
 export class StoreUnavailableError extends Error {}
 
 function newReference() {
-  // e.g. OE-7K3QX9 — short enough to read over the phone.
+  // e.g. PK-7K3QX9 — short enough to read over the phone.
   const alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
   const bytes = randomBytes(6);
-  return "OE-" + Array.from(bytes, (b) => alphabet[b % alphabet.length]).join("");
+  return "PK-" + Array.from(bytes, (b) => alphabet[b % alphabet.length]).join("");
 }
 
 async function saveToFile(record: StoredInquiry) {

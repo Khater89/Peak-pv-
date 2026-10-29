@@ -25,7 +25,7 @@ export type Project = {
 };
 
 /**
- * Real projects only. Specs for Madama come from Open Energy's design report
+ * Real projects only. Specs for Madama come from Peak PV's design report
  * "Madama_V21_Short_Report" (V21).
  */
 export const projects: Project[] = [
@@ -40,7 +40,7 @@ export const projects: Project[] = [
     summary:
       "A fully off-grid PV and battery system sized to carry Madama's daytime and evening loads without a grid connection.",
     description: [
-      "Open Energy carried out the full load study and system design for Madama: every appliance was listed with its rating, load factor and operating hours to build a month-by-month consumption profile.",
+      "Peak PV carried out the full load study and system design for Madama: every appliance was listed with its rating, load factor and operating hours to build a month-by-month consumption profile.",
       "The design pairs a 68.4 kWp array with a 50 kW hybrid inverter and 184 kWh of battery storage, so evening loads are carried from solar energy stored during the day. The system was checked against a 30-year simulation that includes cloudy days.",
     ],
     capacityKwp: 68.4,

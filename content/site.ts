@@ -55,8 +55,22 @@ export const whatsapp = {
 export const whatsappHref = (text = whatsapp.message) =>
   `https://wa.me/${whatsapp.intl}?text=${encodeURIComponent(text)}`;
 
-/** Optional real photo for the home hero (put the file in public/images/). Falls back to an illustration. */
-export const heroImage = null as null | { src: string; alt: string };
+/**
+ * Photography. These are general solar photos from Unsplash (Unsplash License: free for commercial use,
+ * no attribution required). They illustrate the type of work only — they are NOT Peak PV projects.
+ * Replace them with Peak PV's own photos when available (same paths in public/images/).
+ */
+export const heroImage = {
+  src: "/images/hero-solar-array.jpg",
+  alt: "Long row of solar panels under a blue sky with clouds",
+} as null | { src: string; alt: string };
+
+export const pageImages = {
+  services: { src: "/images/page-services.jpg", alt: "Installer's gloved hands connecting a solar panel" },
+  projects: { src: "/images/page-projects.jpg", alt: "Rows of ground-mounted solar panels" },
+  about: { src: "/images/page-about.jpg", alt: "Solar array under a clear sky" },
+  contact: { src: "/images/page-contact.jpg", alt: "Close-up of solar panels in a field" },
+};
 
 export const nav = [
   { href: "/services", label: "Services" },

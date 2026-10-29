@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageImages } from "@/content/site";
 import { Check, CircuitBoard } from "lucide-react";
 import { activeServices, capabilities, comparison, systemTypes } from "@/content/services";
 import { serviceIcons } from "@/components/icons";
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   return (
     <>
-      <PageHero
+      <PageHero image={pageImages.services}
         eyebrow="Services"
         title="Solar PV, handled end to end"
         intro="Supply, design and installation — choose the full project or just the part you need."

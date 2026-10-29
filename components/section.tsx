@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 export function Section({
@@ -61,15 +62,36 @@ export function SectionHeading({
   );
 }
 
-export function PageHero({ eyebrow, title, intro, children }: { eyebrow: string; title: string; intro: string; children?: React.ReactNode }) {
+export function PageHero({
+  eyebrow,
+  title,
+  intro,
+  image,
+  children,
+}: {
+  eyebrow: string;
+  title: string;
+  intro: string;
+  image?: { src: string; alt: string };
+  children?: React.ReactNode;
+}) {
   return (
     <section className="relative isolate overflow-hidden bg-gradient-to-b from-sky-50 to-[#fdfcf9]">
-      <div aria-hidden className="absolute -top-40 end-[-10rem] -z-10 size-[30rem] rounded-full bg-sun-300/30 blur-3xl" />
-      <div aria-hidden className="absolute -bottom-48 start-[-10rem] -z-10 size-[26rem] rounded-full bg-sky-300/25 blur-3xl" />
-      <div className="container-x py-16 sm:py-20 lg:py-24">
+      {image ? (
+        <>
+          <Image src={image.src} alt={image.alt} fill priority sizes="100vw" className="-z-20 object-cover" />
+          <div aria-hidden className="absolute inset-0 -z-10 bg-[#fdfcf9]/80 md:bg-transparent md:bg-gradient-to-r md:from-[#fdfcf9] md:via-[#fdfcf9]/85 md:to-[#fdfcf9]/10 rtl:md:bg-gradient-to-l" />
+        </>
+      ) : (
+        <>
+          <div aria-hidden className="absolute -top-40 end-[-10rem] -z-10 size-[30rem] rounded-full bg-sun-300/30 blur-3xl" />
+          <div aria-hidden className="absolute -bottom-48 start-[-10rem] -z-10 size-[26rem] rounded-full bg-sky-300/25 blur-3xl" />
+        </>
+      )}
+      <div className="container-x py-16 sm:py-20 lg:py-28">
         <p className="eyebrow">{eyebrow}</p>
-        <h1 className="mt-4 max-w-4xl text-4xl sm:text-6xl">{title}</h1>
-        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">{intro}</p>
+        <h1 className="mt-4 max-w-3xl text-4xl sm:text-6xl">{title}</h1>
+        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink/75">{intro}</p>
         {children}
       </div>
     </section>

@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Compass, Handshake, ShieldCheck, Target } from "lucide-react";
-import { company } from "@/content/site";
+import { company, pageImages } from "@/content/site";
 import { PageHero, Section, SectionHeading } from "@/components/section";
 import { ProcessTimeline } from "@/components/process-timeline";
 import { CtaBand } from "@/components/cta-band";
-import { HeroArt } from "@/components/art/hero-art";
 
 export const metadata: Metadata = {
   title: "About Peak PV — Solar PV Specialists",
@@ -23,7 +22,7 @@ const values = [
 export default function AboutPage() {
   return (
     <>
-      <PageHero eyebrow="About us" title="Solar specialists, start to finish" intro={company.about} />
+      <PageHero image={pageImages.about} eyebrow="About us" title="Solar specialists, start to finish" intro={company.about} />
 
       <Section labelledBy="story-title">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
@@ -44,8 +43,8 @@ export default function AboutPage() {
               <p className="mt-2 text-xl font-semibold leading-snug">{company.mission}</p>
             </div>
           </div>
-          <div className="overflow-hidden rounded-[1.75rem] shadow-lift ring-1 ring-navy-900/10">
-            <HeroArt />
+          <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] shadow-lift">
+            <Image src="/images/sector-homes.jpg" alt="Installer placing a solar panel on a house roof" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
           </div>
         </div>
       </Section>

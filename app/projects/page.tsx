@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageImages } from "@/content/site";
 import { PageHero, Section } from "@/components/section";
 import { ProjectsGallery } from "@/components/projects-gallery";
 import { CtaBand } from "@/components/cta-band";
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
 export default function ProjectsPage() {
   return (
     <>
-      <PageHero
+      <PageHero image={pageImages.projects}
         eyebrow="Projects"
         title="Solar installations"
         intro="Real systems designed and delivered by Peak PV — with specifications, renders and site photos."

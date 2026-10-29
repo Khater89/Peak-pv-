@@ -9,7 +9,7 @@ Items Peak PV must confirm. Until then the site hides or labels the affected con
 | 3 | Verified metrics (systems installed, MW, years) | Trust band shows scope statements, not numbers | `company.metrics` (include a source) |
 | 4 | Certifications, warranties, partner logos (with permission) | Section hidden | `company.certifications`, `company.partners` |
 | 5 | Madama renders/photos and more real projects | Madama shown with real specs (V21 report) and an illustration labelled "photos coming soon" | `content/projects.ts`, `public/projects/<slug>/` |
-| 5b | Hero photo | Illustration until a real photo is supplied | `heroImage` in `content/site.ts`, `public/images/` |
+| 5b | Own photos for hero, sectors and page headers | Unsplash stock photos (licensed, not presented as Peak PV work) | `public/images/`, `content/site.ts` |
 | 5c | Madama location wording and status | "Yajouz 2 – Rusaifa, Jordan", "Design complete" (from report) | `content/projects.ts` |
 | 6 | Is maintenance / after-sales a formal service? | Defined but disabled | `enabled` in `content/services.ts` |
 | 7 | Which system types are offered (on-grid, hybrid, off-grid, pumping) | All four shown as generic categories | `systemTypes` |

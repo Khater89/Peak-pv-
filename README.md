@@ -83,6 +83,13 @@ Real project renders/photos: put them in `public/projects/<slug>/` and list them
 listing-style gallery. Cards switch from the illustration automatically. A hero photo goes in `public/images/`
 and is set via `heroImage` in `content/site.ts`.
 
+## Photography
+
+`public/images/` holds general solar photos from Unsplash (Unsplash License: free for commercial use, no
+attribution required). They illustrate the kind of work only and are not Peak PV projects. Replace them with
+Peak PV's own photos under the same file names. Project pages never use stock photos: until a project's own
+renders/photos are added, it shows a neutral "renders coming soon" panel.
+
 ## Arabic readiness
 
 `<html lang dir>` comes from `content/site.ts`. Layout uses logical properties (`ms-*`, `ps-*`,

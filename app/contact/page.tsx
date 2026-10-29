@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Clock, FileText, MapPin, PhoneCall } from "lucide-react";
 import { projectTypes, serviceInterests } from "@/lib/inquiry-schema";
 import { AgentCard } from "@/components/agent-card";
-import { company } from "@/content/site";
+import { company, pageImages } from "@/content/site";
 import { PageHero, Section } from "@/components/section";
 import { InquiryForm, type InquiryPrefill } from "@/components/inquiry-form";
 
@@ -36,7 +36,7 @@ export default async function ContactPage({ searchParams }: { searchParams: Sear
   const initial = prefill(await searchParams);
   return (
     <>
-      <PageHero
+      <PageHero image={pageImages.contact}
         eyebrow="Contact"
         title="Request a quote"
         intro="Tell us about your property and what you're looking for. It takes about two minutes."

@@ -1,10 +1,10 @@
 import { Building2, Check, Home } from "lucide-react";
 import { solutions } from "@/content/services";
-import { ArtVariant, ProjectArt } from "@/components/art/project-art";
+import Image from "next/image";
 
-const meta: Record<(typeof solutions)[number]["segment"], { icon: typeof Home; art: ArtVariant; artLabel: string }> = {
-  residential: { icon: Home, art: "roof", artLabel: "Illustration of a house with rooftop solar panels" },
-  commercial: { icon: Building2, art: "flat", artLabel: "Illustration of a commercial building with a flat-roof solar array" },
+const meta: Record<(typeof solutions)[number]["segment"], { icon: typeof Home; img: string; alt: string }> = {
+  residential: { icon: Home, img: "/images/sector-homes.jpg", alt: "Installer placing a solar panel on a house roof" },
+  commercial: { icon: Building2, img: "/images/sector-industrial.jpg", alt: "Large rooftop solar installation at sunset" },
 };
 
 export function SolutionBlocks() {
@@ -14,9 +14,9 @@ export function SolutionBlocks() {
         const m = meta[s.segment];
         const Icon = m.icon;
         return (
-          <article key={s.segment} className="overflow-hidden rounded-[1.25rem] border border-line bg-white shadow-card">
-            <div className="aspect-[16/9] border-b border-line">
-              <ProjectArt variant={m.art} label={m.artLabel} />
+          <article key={s.segment} className="overflow-hidden rounded-[var(--radius-card)] border border-line bg-white shadow-card">
+            <div className="relative aspect-[16/9]">
+              <Image src={m.img} alt={m.alt} fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
             </div>
             <div className="p-7 sm:p-8">
               <div className="flex items-center gap-3">

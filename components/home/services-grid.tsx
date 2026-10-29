@@ -22,7 +22,7 @@ export function ServicesGrid() {
                 href={`/services#${s.slug}`}
                 className="group flex h-full flex-col border border-line bg-white p-8 transition-[border-color,box-shadow] duration-300 hover:border-sun-400 hover:shadow-lift"
               >
-                <span className="inline-flex size-12 items-center justify-center border border-sun-400/60 text-sun-500">
+                <span className="inline-flex size-12 items-center justify-center bg-leaf-100 text-leaf-700">
                   <Icon aria-hidden className="size-6" strokeWidth={1.4} />
                 </span>
                 <h3 className="mt-7 font-serif text-[1.75rem] font-medium leading-none">{s.title}</h3>
@@ -37,11 +37,11 @@ export function ServicesGrid() {
         <li>
           <Link
             href="/contact?service=full-project"
-            className="on-dark group flex h-full flex-col bg-ink p-8 text-[#faf8f4] transition-colors duration-300 hover:bg-navy-800"
+            className="on-dark group flex h-full flex-col bg-navy-900 p-8 text-[#ffffff] transition-colors duration-300 hover:bg-navy-800"
           >
             <span className="text-[0.6875rem] font-semibold uppercase tracking-[0.3em] text-sun-300">Turnkey</span>
             <h3 className="mt-5 font-serif text-[1.75rem] font-medium leading-none">Complete PV Project</h3>
-            <p className="mt-2 text-[0.9375rem] leading-relaxed text-[#cfc8bb]">
+            <p className="mt-2 text-[0.9375rem] leading-relaxed text-[#c9dccd]">
               Design, supply and installation under one contract — for {systemTypes.map((t) => t.title.toLowerCase()).slice(0, 3).join(", ")} systems.
             </p>
             <span className="mt-auto inline-flex items-center gap-1 pt-7 text-[0.75rem] font-semibold uppercase tracking-[0.18em] text-sun-300">

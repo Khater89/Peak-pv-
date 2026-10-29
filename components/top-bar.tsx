@@ -3,7 +3,7 @@ import { company, email, phones, whatsappHref } from "@/content/site";
 
 export function TopBar() {
   return (
-    <div className="on-dark bg-ink text-[0.75rem] tracking-[0.04em] text-[#cfc8bb]">
+    <div className="on-dark bg-navy-950 text-[0.75rem] tracking-[0.04em] text-[#c9dccd]">
       <div className="container-x flex h-10 items-center justify-between gap-4">
         <div className="flex items-center gap-4 sm:gap-6">
           {phones.map((p, i) => (

@@ -18,27 +18,27 @@ export function ContactSection() {
           <ul className="mt-8 space-y-4">
             {phones.map((p) => (
               <li key={p.intl}>
-                <a href={`tel:${p.intl}`} className="inline-flex items-center gap-3 text-lg font-semibold hover:text-sun-700">
-                  <span className="inline-flex size-10 items-center justify-center border border-sun-400/50"><Phone aria-hidden className="size-5 text-sun-700" /></span>
+                <a href={`tel:${p.intl}`} className="inline-flex items-center gap-3 text-lg font-semibold hover:text-leaf-700">
+                  <span className="inline-flex size-10 items-center justify-center bg-leaf-100"><Phone aria-hidden className="size-5 text-leaf-700" /></span>
                   <span dir="ltr">{p.display}</span>
                 </a>
               </li>
             ))}
             <li>
-              <a href={whatsappHref()} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 text-lg font-semibold hover:text-sun-700">
-                <span className="inline-flex size-10 items-center justify-center border border-sun-400/50"><MessageCircle aria-hidden className="size-5 text-sun-500" /></span>
+              <a href={whatsappHref()} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 text-lg font-semibold hover:text-leaf-700">
+                <span className="inline-flex size-10 items-center justify-center bg-leaf-100"><MessageCircle aria-hidden className="size-5 text-leaf-700" /></span>
                 WhatsApp
               </a>
             </li>
             <li>
-              <a href={`mailto:${email}`} className="inline-flex items-center gap-3 break-all font-semibold hover:text-sun-700">
-                <span className="inline-flex size-10 shrink-0 items-center justify-center border border-sun-400/50"><Mail aria-hidden className="size-5 text-sun-700" /></span>
+              <a href={`mailto:${email}`} className="inline-flex items-center gap-3 break-all font-semibold hover:text-leaf-700">
+                <span className="inline-flex size-10 shrink-0 items-center justify-center bg-leaf-100"><Mail aria-hidden className="size-5 text-leaf-700" /></span>
                 {email}
               </a>
             </li>
             {company.serviceArea && (
               <li className="inline-flex items-center gap-3 text-muted">
-                <span className="inline-flex size-10 items-center justify-center border border-sun-400/50"><MapPin aria-hidden className="size-5 text-sun-700" /></span>
+                <span className="inline-flex size-10 items-center justify-center bg-leaf-100"><MapPin aria-hidden className="size-5 text-leaf-700" /></span>
                 Serving {company.serviceArea}
               </li>
             )}

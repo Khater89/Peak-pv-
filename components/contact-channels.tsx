@@ -24,7 +24,7 @@ export function ContactChannels({ tone = "light" }: { tone?: "light" | "dark" })
         const link = href(c);
         const body = (
           <>
-            <Icon aria-hidden className={cn("mt-0.5 size-4 shrink-0", tone === "dark" ? "text-sun-400" : "text-sun-700")} />
+            <Icon aria-hidden className={cn("mt-0.5 size-4 shrink-0", tone === "dark" ? "text-sun-400" : "text-leaf-600")} />
             <span className="min-w-0 break-all">
               <span className="sr-only">{c.label}: </span>
               <span dir={c.kind === "email" ? undefined : "ltr"}>{c.value}</span>

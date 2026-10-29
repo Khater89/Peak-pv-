@@ -76,11 +76,11 @@ export function PageHero({
   children?: React.ReactNode;
 }) {
   return (
-    <section className="relative isolate overflow-hidden bg-gradient-to-b from-sky-50 to-[#faf8f4]">
+    <section className="relative isolate overflow-hidden bg-gradient-to-b from-sky-50 to-[#ffffff]">
       {image ? (
         <>
           <Image src={image.src} alt={image.alt} fill priority sizes="100vw" className="-z-20 object-cover" />
-          <div aria-hidden className="absolute inset-0 -z-10 bg-[#faf8f4]/80 md:bg-transparent md:bg-gradient-to-r md:from-[#faf8f4] md:via-[#faf8f4]/85 md:to-[#faf8f4]/10 rtl:md:bg-gradient-to-l" />
+          <div aria-hidden className="absolute inset-0 -z-10 bg-[#ffffff]/80 md:bg-transparent md:bg-gradient-to-r md:from-[#ffffff] md:via-[#ffffff]/85 md:to-[#ffffff]/10 rtl:md:bg-gradient-to-l" />
         </>
       ) : (
         <>

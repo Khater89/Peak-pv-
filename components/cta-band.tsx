@@ -12,13 +12,13 @@ export function CtaBand({
   return (
     <section aria-labelledby="cta-title" className="py-16 sm:py-20">
       <div className="container-x">
-        <div className="on-dark relative isolate overflow-hidden bg-ink px-6 py-14 text-[#faf8f4] sm:px-14 sm:py-20">
+        <div className="on-dark relative isolate overflow-hidden bg-navy-900 px-6 py-14 text-[#ffffff] sm:px-14 sm:py-20">
                     <div aria-hidden className="absolute -end-24 -top-24 -z-10 size-80 rounded-full bg-sun-400/15 blur-3xl" />
           <div aria-hidden className="absolute -bottom-32 start-1/4 -z-10 size-72 rounded-full bg-sun-400/5 blur-3xl" />
           <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-2xl">
               <h2 id="cta-title" className="text-3xl font-bold sm:text-4xl">{title}</h2>
-              <p className="mt-4 text-lg text-[#cfc8bb]">{body}</p>
+              <p className="mt-4 text-lg text-[#c9dccd]">{body}</p>
             </div>
             <ButtonLink href={primaryCta.href} size="lg" variant="gold" className="self-start lg:self-center">
               {primaryCta.label}

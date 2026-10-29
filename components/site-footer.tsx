@@ -6,7 +6,7 @@ import { ContactChannels } from "@/components/contact-channels";
 
 export function SiteFooter() {
   return (
-    <footer className="on-dark bg-ink text-[#cfc8bb]">
+    <footer className="on-dark bg-navy-950 text-[#c9dccd]">
       <div className="container-x grid gap-10 py-16 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.3fr]">
         <div>
           <Link href="/" aria-label="Peak PV — home" className="inline-block rounded-[2px]">

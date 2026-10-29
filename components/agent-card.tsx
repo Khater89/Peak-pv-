@@ -22,7 +22,7 @@ export function AgentCard({ context }: { context?: string }) {
           href={whatsappHref(message)}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex h-12 items-center justify-center gap-2 rounded-[2px] bg-ink px-5 text-[0.75rem] font-semibold uppercase tracking-[0.16em] text-[#faf8f4] transition-colors hover:bg-sun-500"
+          className="flex h-12 items-center justify-center gap-2 rounded-[2px] bg-navy-900 px-5 text-[0.75rem] font-semibold uppercase tracking-[0.16em] text-[#ffffff] transition-colors hover:bg-navy-800"
         >
           <MessageCircle aria-hidden className="size-5" /> Chat on WhatsApp
         </a>

@@ -9,7 +9,7 @@ export function Faq({ limit }: { limit?: number }) {
         <details key={f.q} className="group">
           <summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-4 py-5 text-start font-serif text-[1.375rem] font-medium [&::-webkit-details-marker]:hidden">
             {f.q}
-            <span className="inline-flex size-8 shrink-0 items-center justify-center border border-line text-sun-500 transition-transform duration-200 group-open:rotate-45">
+            <span className="inline-flex size-8 shrink-0 items-center justify-center border border-line text-leaf-600 transition-transform duration-200 group-open:rotate-45">
               <Plus aria-hidden className="size-4" />
             </span>
           </summary>

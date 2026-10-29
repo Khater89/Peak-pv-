@@ -46,7 +46,7 @@ export default function ServicesPage() {
               >
                 <div>
                   <div className="flex items-center gap-4">
-                    <span className="inline-flex size-14 items-center justify-center rounded-[2px] border border-sun-400/60 text-sun-500">
+                    <span className="inline-flex size-14 items-center justify-center rounded-[2px] bg-leaf-100 text-leaf-700">
                       <Icon aria-hidden className="size-7" />
                     </span>
                     <span className="font-display text-sm font-bold text-sun-700">0{i + 1}</span>
@@ -85,7 +85,7 @@ export default function ServicesPage() {
         <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {systemTypes.map((t) => (
             <li key={t.title} className="rounded-[var(--radius-card)] border border-line bg-white p-6 shadow-card">
-              <span className="inline-flex size-10 items-center justify-center rounded-[2px] border border-sun-400/60 text-sun-500">
+              <span className="inline-flex size-10 items-center justify-center rounded-[2px] bg-leaf-100 text-leaf-700">
                 <CircuitBoard aria-hidden className="size-5" />
               </span>
               <h3 className="mt-4 text-lg font-bold">{t.title}</h3>

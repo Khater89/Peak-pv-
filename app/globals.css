@@ -7,28 +7,32 @@
   --font-serif: var(--font-cormorant), Georgia, "Times New Roman", serif;
   --font-arabic-display: var(--font-amiri), var(--font-arabic), serif;
 
-  --color-ink: #14171c;
-  --color-navy-950: #101215;
-  --color-navy-900: #14171c;
-  --color-navy-800: #262a31;
-  --color-navy-700: #3a3f47;
-  --color-navy-200: #cfc8bb;
+  --color-ink: #13261b;
+  --color-navy-950: #0f2318;
+  --color-navy-900: #173b27;
+  --color-navy-800: #1f4a32;
+  --color-navy-700: #2d6244;
+  --color-navy-200: #c9dccd;
 
   /* Brand accent #f5b942. Use as a fill with ink text; for amber text on light use amber-700. */
-  --color-sky-50: #f6f3ed;
-  --color-sky-100: #efe9df;
-  --color-sky-300: #d9ccb6;
-  --color-sun-50: #f8f4ec;
-  --color-sun-100: #f1e8d8;
-  --color-sun-300: #d2b88c;
-  --color-sun-400: #b8955a;
-  --color-sun-500: #a3824c;
-  --color-sun-700: #7e5f30;
+  --color-leaf-50: #f3f8f4;
+  --color-leaf-100: #e6f0e8;
+  --color-leaf-600: #2d6244;
+  --color-leaf-700: #1f4a32;
+  --color-sky-50: #f3f8f4;
+  --color-sky-100: #e6f0e8;
+  --color-sky-300: #b8d3be;
+  --color-sun-50: #fff9e6;
+  --color-sun-100: #feefc3;
+  --color-sun-300: #f7cf6a;
+  --color-sun-400: #f0b429;
+  --color-sun-500: #dc9c0e;
+  --color-sun-700: #835800;
 
-  --color-surface: #f4f0e8;
-  --color-surface-2: #e9e2d5;
-  --color-line: #e2dbce;
-  --color-muted: #5f6166;
+  --color-surface: #eef5ef;
+  --color-surface-2: #e1ece3;
+  --color-line: #dbe7dd;
+  --color-muted: #536257;
 
   /* Semantic states — kept separate from the brand accent. */
   --color-success: #11734b;
@@ -37,8 +41,8 @@
   --color-danger-bg: #fdecea;
 
   --radius-card: 2px;
-  --shadow-card: 0 1px 1px rgb(20 23 28 / 0.03), 0 14px 34px -22px rgb(20 23 28 / 0.18);
-  --shadow-lift: 0 2px 4px rgb(20 23 28 / 0.03), 0 30px 60px -30px rgb(20 23 28 / 0.25);
+  --shadow-card: 0 1px 1px rgb(19 38 27 / 0.03), 0 14px 34px -22px rgb(19 38 27 / 0.18);
+  --shadow-lift: 0 2px 4px rgb(19 38 27 / 0.03), 0 30px 60px -30px rgb(19 38 27 / 0.25);
 }
 
 @layer base {
@@ -47,7 +51,7 @@
     scroll-padding-top: 5.5rem;
   }
   body {
-    background: #faf8f4;
+    background: #ffffff;
     color: var(--color-ink);
     font-family: var(--font-sans);
     font-size: 1rem;
@@ -129,8 +133,8 @@
   .field:hover { border-color: #b5c0d0; }
   .field:focus-visible {
     outline: none;
-    border-color: var(--color-sun-400);
-    box-shadow: 0 0 0 3px rgb(184 149 90 / 0.25);
+    border-color: var(--color-navy-700);
+    box-shadow: 0 0 0 3px rgb(23 59 39 / 0.18);
   }
   .field[aria-invalid="true"] {
     border-color: var(--color-danger);
@@ -140,7 +144,7 @@
   }
   select.field {
     appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' stroke='%2314171c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 8 5 5 5-5'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' stroke='%2313261b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 8 5 5 5-5'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 0.75rem center;
     padding-inline-end: 2.5rem;
@@ -150,8 +154,8 @@
 
 @utility bg-grid {
   background-image:
-    linear-gradient(to right, rgb(20 23 28 / 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(20 23 28 / 0.035) 1px, transparent 1px);
+    linear-gradient(to right, rgb(23 59 39 / 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(23 59 39 / 0.04) 1px, transparent 1px);
   background-size: 48px 48px;
 }
 

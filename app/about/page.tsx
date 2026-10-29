@@ -54,7 +54,7 @@ export default function AboutPage() {
         <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {values.map((v) => (
             <li key={v.title} className="rounded-[var(--radius-card)] border border-line bg-white p-6 shadow-card">
-              <span className="inline-flex size-11 items-center justify-center rounded-[2px] border border-sun-400/60 text-sun-500">
+              <span className="inline-flex size-11 items-center justify-center rounded-[2px] bg-leaf-100 text-leaf-700">
                 <v.icon aria-hidden className="size-5" />
               </span>
               <h3 className="mt-4 text-lg font-bold">{v.title}</h3>

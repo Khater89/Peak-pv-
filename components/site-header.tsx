@@ -43,7 +43,7 @@ export function SiteHeader() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 border-b bg-[#faf8f4]/92 backdrop-blur-md transition-shadow duration-200",
+        "sticky top-0 z-50 border-b bg-[#ffffff]/92 backdrop-blur-md transition-shadow duration-200",
         scrolled || open ? "border-line shadow-[0_8px_30px_-20px_rgb(31_43_61/0.35)]" : "border-line/60",
       )}
     >
@@ -76,7 +76,7 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-2 lg:gap-5">
           <a href={`tel:${phones[0].intl}`} className="hidden items-center gap-2 border-s border-line ps-5 text-sm font-medium tracking-[0.06em] text-ink xl:inline-flex">
-            <Phone aria-hidden className="size-4 text-sun-400" strokeWidth={1.5} />
+            <Phone aria-hidden className="size-4 text-leaf-600" strokeWidth={1.5} />
             <span dir="ltr">{phones[0].display}</span>
           </a>
           <ButtonLink href={primaryCta.href} variant="dark" size="sm" className="px-4 lg:h-12 lg:px-6">
@@ -104,7 +104,7 @@ export function SiteHeader() {
               <Link
                 href={item.href}
                 aria-current={isActive(item.href) ? "page" : undefined}
-                className="flex min-h-12 items-center border-b border-line px-1 text-sm font-semibold uppercase tracking-[0.18em] text-ink aria-[current=page]:text-sun-500"
+                className="flex min-h-12 items-center border-b border-line px-1 text-sm font-semibold uppercase tracking-[0.18em] text-ink aria-[current=page]:text-leaf-600"
               >
                 {item.label}
               </Link>

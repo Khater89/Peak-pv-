@@ -43,7 +43,7 @@ export default async function ContactPage({ searchParams }: { searchParams: Sear
       />
       <Section className="pt-12 sm:pt-16 lg:pt-16">
         <div className="grid gap-10 lg:grid-cols-[1.5fr_1fr] lg:gap-14">
-          <div className="rounded-[1.25rem] border border-line bg-white p-6 shadow-card sm:p-10">
+          <div className="rounded-[2px] border border-line bg-white p-6 shadow-card sm:p-10">
             <h2 className="text-2xl font-bold">Project details</h2>
             <p className="mt-1 text-muted">The more you tell us, the better we can prepare.</p>
             <div className="mt-8">
@@ -52,7 +52,7 @@ export default async function ContactPage({ searchParams }: { searchParams: Sear
           </div>
 
           <aside aria-labelledby="next-title" className="space-y-6">
-            <div className="rounded-[1.25rem] bg-surface p-6 sm:p-8">
+            <div className="rounded-[2px] bg-surface p-6 sm:p-8">
               <h2 id="next-title" className="text-xl font-bold">What happens next</h2>
               <ol className="mt-6 space-y-6">
                 {nextSteps.map((s, i) => (
@@ -72,7 +72,7 @@ export default async function ContactPage({ searchParams }: { searchParams: Sear
             <AgentCard />
 
             {company.serviceArea && (
-              <div className="rounded-[1.5rem] bg-sky-50 p-6 ring-1 ring-sky-100 sm:p-8">
+              <div className="rounded-[2px] bg-sky-50 p-6 ring-1 ring-sky-100 sm:p-8">
                 <h2 className="flex items-center gap-2 text-xl font-bold">
                   <MapPin aria-hidden className="size-5 text-sun-700" /> Service area
                 </h2>

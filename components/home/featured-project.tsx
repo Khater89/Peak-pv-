@@ -5,24 +5,24 @@ import { ButtonLink } from "@/components/ui/button";
 
 export function FeaturedProject({ project }: { project: Project }) {
   return (
-    <article className="grid overflow-hidden rounded-[1.5rem] bg-white shadow-lift ring-1 ring-line lg:grid-cols-[1.25fr_1fr]">
+    <article className="grid overflow-hidden border border-line bg-white lg:grid-cols-[1.25fr_1fr]">
       <div className="relative aspect-[4/3] lg:aspect-auto lg:min-h-[28rem]">
         <ProjectMedia project={project} sizes="(min-width: 1024px) 55vw, 100vw" />
-        <span className="absolute start-4 top-4 rounded-full bg-sun-400 px-3 py-1 text-xs font-bold uppercase tracking-wider text-ink">
+        <span className="absolute start-4 top-4 bg-ink px-3 py-1.5 text-[0.625rem] font-semibold uppercase tracking-[0.28em] text-sun-300">
           Featured project
         </span>
       </div>
       <div className="flex flex-col p-7 sm:p-10">
-        <div className="flex flex-wrap gap-2 text-xs font-semibold">
-          <span className="rounded-full bg-surface px-3 py-1">{project.systemType}</span>
-          <span className="rounded-full bg-surface px-3 py-1 capitalize">{project.segment}</span>
-          <span className="rounded-full bg-surface px-3 py-1">{statusLabel[project.status]}</span>
+        <div className="flex flex-wrap gap-2 text-[0.625rem] font-semibold uppercase tracking-[0.2em]">
+          <span className="border border-line px-3 py-1">{project.systemType}</span>
+          <span className="border border-line px-3 py-1 capitalize">{project.segment}</span>
+          <span className="border border-line px-3 py-1">{statusLabel[project.status]}</span>
         </div>
-        <p className="mt-6 font-display text-5xl font-bold">
+        <p className="mt-7 font-serif text-6xl font-medium">
           {project.capacityKwp}
           <span className="ms-2 font-sans text-xl font-semibold text-muted">kWp</span>
         </p>
-        <h3 className="mt-2 text-2xl font-bold">{project.title}</h3>
+        <h3 className="mt-3 text-xl font-semibold">{project.title}</h3>
         <p className="mt-2 flex items-center gap-1.5 text-muted">
           <MapPin aria-hidden className="size-4 shrink-0 text-sun-700" /> {project.location}
         </p>

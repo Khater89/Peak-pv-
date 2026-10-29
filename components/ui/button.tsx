@@ -3,20 +3,20 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 export const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full font-semibold transition-[background-color,box-shadow,transform,color] duration-200 ease-out disabled:pointer-events-none disabled:opacity-60 [&_svg]:size-[1.125em] [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2.5 whitespace-nowrap rounded-[2px] text-[0.8125rem] font-semibold uppercase tracking-[0.16em] transition-[background-color,border-color,color] duration-200 ease-out disabled:pointer-events-none disabled:opacity-60 [&_svg]:size-[1.125em] [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        primary:
-          "bg-sun-400 text-ink shadow-[0_6px_20px_-8px_rgb(233_165_32/0.8)] hover:bg-sun-300 hover:-translate-y-px active:translate-y-0",
-        dark: "bg-navy-900 text-white hover:bg-navy-800 hover:-translate-y-px active:translate-y-0",
-        outline: "border-[1.5px] border-navy-900/20 bg-white text-ink hover:border-navy-900/50 hover:bg-surface",
+        primary: "bg-ink text-[#faf8f4] hover:bg-sun-500",
+        dark: "bg-ink text-[#faf8f4] hover:bg-sun-500",
+        gold: "bg-sun-400 text-white hover:bg-sun-500",
+        outline: "border border-ink/25 bg-transparent text-ink hover:border-ink hover:bg-ink hover:text-[#faf8f4]",
         ghostLight: "border-[1.5px] border-white/30 text-white hover:bg-white/10 hover:border-white/60",
       },
       size: {
-        sm: "h-10 px-4 text-sm",
-        md: "h-12 px-6 text-[0.9375rem]",
-        lg: "h-14 px-8 text-base",
+        sm: "h-10 px-4",
+        md: "h-12 px-7",
+        lg: "h-14 px-9",
       },
     },
     defaultVariants: { variant: "primary", size: "md" },

@@ -38,12 +38,12 @@ export default function AboutPage() {
                 installing to a high standard.
               </p>
             </div>
-            <div className="mt-8 rounded-2xl border-s-4 border-sun-400 bg-surface p-6">
+            <div className="mt-8 rounded-[2px] border-s-4 border-sun-400 bg-surface p-6">
               <h3 className="text-sm font-semibold uppercase tracking-wider text-muted">Our mission</h3>
               <p className="mt-2 text-xl font-semibold leading-snug">{company.mission}</p>
             </div>
           </div>
-          <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] shadow-lift">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-[2px] shadow-lift">
             <Image src="/images/sector-homes.jpg" alt="Installer placing a solar panel on a house roof" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
           </div>
         </div>
@@ -54,7 +54,7 @@ export default function AboutPage() {
         <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {values.map((v) => (
             <li key={v.title} className="rounded-[var(--radius-card)] border border-line bg-white p-6 shadow-card">
-              <span className="inline-flex size-11 items-center justify-center rounded-2xl bg-sun-100 text-sun-700">
+              <span className="inline-flex size-11 items-center justify-center rounded-[2px] border border-sun-400/60 text-sun-500">
                 <v.icon aria-hidden className="size-5" />
               </span>
               <h3 className="mt-4 text-lg font-bold">{v.title}</h3>
@@ -70,7 +70,7 @@ export default function AboutPage() {
           {company.certifications.length > 0 && (
             <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {company.certifications.map((c) => (
-                <li key={c.name} className="flex items-start gap-3 rounded-xl border border-line p-5">
+                <li key={c.name} className="flex items-start gap-3 rounded-[2px] border border-line p-5">
                   <ShieldCheck aria-hidden className="size-6 shrink-0 text-success" />
                   <div>
                     <p className="font-semibold">{c.name}</p>

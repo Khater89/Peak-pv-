@@ -27,7 +27,7 @@ export function ProjectMedia({
         <div aria-hidden className="bg-grid absolute inset-0 opacity-60" />
         <LogoMark className="relative size-14 lg:size-16" />
         <p className="relative text-lg font-bold text-ink">{project.capacityKwp} kWp · {project.systemType}</p>
-        <p className="relative inline-flex items-center gap-1.5 rounded-full bg-white/80 px-3 py-1 text-xs font-semibold text-muted ring-1 ring-line">
+        <p className="relative inline-flex items-center gap-1.5 rounded-[2px] bg-white/80 px-3 py-1 text-xs font-semibold text-muted ring-1 ring-line">
           <ImageIcon aria-hidden className="size-3.5" /> Project renders coming soon
         </p>
       </div>
@@ -36,7 +36,7 @@ export function ProjectMedia({
   return (
     <div className={cn("relative h-full w-full overflow-hidden bg-surface", className)}>
       <Image src={image.src} alt={image.alt} fill sizes={sizes} priority={priority} className="object-cover" />
-      <span className="absolute bottom-3 end-3 rounded-md bg-navy-950/75 px-2 py-0.5 text-[0.6875rem] font-semibold uppercase tracking-wider text-white backdrop-blur">
+      <span className="absolute bottom-3 end-3 rounded-[2px] bg-navy-950/75 px-2 py-0.5 text-[0.6875rem] font-semibold uppercase tracking-wider text-white backdrop-blur">
         {image.kind === "render" ? "3D render" : "Site photo"}
       </span>
     </div>

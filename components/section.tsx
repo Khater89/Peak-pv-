@@ -19,7 +19,7 @@ export function Section({
       id={id}
       aria-labelledby={labelledBy}
       className={cn(
-        "py-16 sm:py-20 lg:py-24",
+        "py-20 sm:py-24 lg:py-32",
         tone === "surface" && "bg-surface/60",
         tone === "dark" && "bg-sky-50",
         className,
@@ -52,7 +52,7 @@ export function SectionHeading({
         id={id}
         className={cn(
           "mt-4",
-          Tag === "h1" ? "text-4xl sm:text-6xl" : "text-3xl sm:text-[2.75rem]",
+          Tag === "h1" ? "text-5xl sm:text-7xl" : "text-4xl sm:text-[3.5rem]",
         )}
       >
         {title}
@@ -76,11 +76,11 @@ export function PageHero({
   children?: React.ReactNode;
 }) {
   return (
-    <section className="relative isolate overflow-hidden bg-gradient-to-b from-sky-50 to-[#fdfcf9]">
+    <section className="relative isolate overflow-hidden bg-gradient-to-b from-sky-50 to-[#faf8f4]">
       {image ? (
         <>
           <Image src={image.src} alt={image.alt} fill priority sizes="100vw" className="-z-20 object-cover" />
-          <div aria-hidden className="absolute inset-0 -z-10 bg-[#fdfcf9]/80 md:bg-transparent md:bg-gradient-to-r md:from-[#fdfcf9] md:via-[#fdfcf9]/85 md:to-[#fdfcf9]/10 rtl:md:bg-gradient-to-l" />
+          <div aria-hidden className="absolute inset-0 -z-10 bg-[#faf8f4]/80 md:bg-transparent md:bg-gradient-to-r md:from-[#faf8f4] md:via-[#faf8f4]/85 md:to-[#faf8f4]/10 rtl:md:bg-gradient-to-l" />
         </>
       ) : (
         <>
@@ -90,8 +90,8 @@ export function PageHero({
       )}
       <div className="container-x py-16 sm:py-20 lg:py-28">
         <p className="eyebrow">{eyebrow}</p>
-        <h1 className="mt-4 max-w-3xl text-4xl sm:text-6xl">{title}</h1>
-        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink/75">{intro}</p>
+        <h1 className="mt-5 max-w-3xl text-5xl sm:text-7xl">{title}</h1>
+        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink/70">{intro}</p>
         {children}
       </div>
     </section>

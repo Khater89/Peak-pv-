@@ -23,16 +23,16 @@ export function Sectors() {
       <ul className="mt-12 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
         {sectors.map((s) => (
           <li key={s.title}>
-            <Link href={`/contact?type=${s.type}`} className="group relative block aspect-[4/3] overflow-hidden rounded-[var(--radius-card)]">
+            <Link href={`/contact?type=${s.type}`} className="group relative block aspect-[4/3] overflow-hidden">
               <Image
                 src={`/images/${s.img}.jpg`}
                 alt={s.alt}
                 fill
                 sizes="(min-width: 1024px) 33vw, 50vw"
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-navy-950/75 via-navy-950/10 to-transparent" />
-              <span className="absolute inset-x-0 bottom-0 p-4 text-sm font-bold text-white sm:p-5 sm:text-lg">{s.title}</span>
+              <span className="absolute inset-x-0 bottom-0 p-4 font-serif text-xl font-medium text-white sm:p-6 sm:text-3xl">{s.title}</span>
             </Link>
           </li>
         ))}

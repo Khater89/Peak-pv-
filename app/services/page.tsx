@@ -25,7 +25,7 @@ export default function ServicesPage() {
       >
         <nav aria-label="Services on this page" className="mt-8 flex flex-wrap gap-2">
           {activeServices.map((s) => (
-            <a key={s.slug} href={`#${s.slug}`} className="inline-flex h-11 items-center rounded-full border border-line bg-white px-5 text-sm font-semibold hover:border-navy-900/40">
+            <a key={s.slug} href={`#${s.slug}`} className="inline-flex h-11 items-center rounded-[2px] border border-line bg-white px-5 text-sm font-semibold hover:border-navy-900/40">
               {s.title}
             </a>
           ))}
@@ -42,11 +42,11 @@ export default function ServicesPage() {
                 key={s.slug}
                 id={s.slug}
                 aria-labelledby={`${s.slug}-title`}
-                className="grid scroll-mt-28 gap-8 rounded-[1.25rem] border border-line bg-white p-7 shadow-card sm:p-10 lg:grid-cols-[1.2fr_1fr]"
+                className="grid scroll-mt-28 gap-8 rounded-[2px] border border-line bg-white p-7 shadow-card sm:p-10 lg:grid-cols-[1.2fr_1fr]"
               >
                 <div>
                   <div className="flex items-center gap-4">
-                    <span className="inline-flex size-14 items-center justify-center rounded-2xl bg-sky-100 text-navy-800">
+                    <span className="inline-flex size-14 items-center justify-center rounded-[2px] border border-sun-400/60 text-sun-500">
                       <Icon aria-hidden className="size-7" />
                     </span>
                     <span className="font-display text-sm font-bold text-sun-700">0{i + 1}</span>
@@ -58,7 +58,7 @@ export default function ServicesPage() {
                     <span className="text-muted">{s.audience}</span>
                   </p>
                 </div>
-                <div className="rounded-2xl bg-surface p-6">
+                <div className="rounded-[2px] bg-surface p-6">
                   <h4 className="text-sm font-semibold uppercase tracking-wider text-muted">What you get</h4>
                   <ul className="mt-4 space-y-3">
                     {s.benefits.map((b) => (
@@ -85,7 +85,7 @@ export default function ServicesPage() {
         <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {systemTypes.map((t) => (
             <li key={t.title} className="rounded-[var(--radius-card)] border border-line bg-white p-6 shadow-card">
-              <span className="inline-flex size-10 items-center justify-center rounded-lg bg-sun-100 text-sun-700">
+              <span className="inline-flex size-10 items-center justify-center rounded-[2px] border border-sun-400/60 text-sun-500">
                 <CircuitBoard aria-hidden className="size-5" />
               </span>
               <h3 className="mt-4 text-lg font-bold">{t.title}</h3>
@@ -138,7 +138,7 @@ export default function ServicesPage() {
           />
           <ul className="grid gap-3 sm:grid-cols-2">
             {capabilities.map((c) => (
-              <li key={c} className="flex items-start gap-3 rounded-2xl bg-white p-4 shadow-card ring-1 ring-line">
+              <li key={c} className="flex items-start gap-3 rounded-[2px] bg-white p-4 shadow-card ring-1 ring-line">
                 <Check aria-hidden className="mt-0.5 size-5 shrink-0 text-success" strokeWidth={2.5} />
                 <span>{c}</span>
               </li>

@@ -25,7 +25,7 @@ export function ProjectsGallery() {
                 aria-pressed={active}
                 onClick={() => setSegment(s.value)}
                 className={cn(
-                  "inline-flex h-11 items-center gap-2 rounded-full border-[1.5px] px-5 text-sm font-semibold transition-colors duration-150",
+                  "inline-flex h-11 items-center gap-2 rounded-[2px] border-[1.5px] px-5 text-sm font-semibold transition-colors duration-150",
                   active ? "border-navy-900 bg-navy-900 text-white" : "border-line bg-white text-ink hover:border-navy-900/40",
                 )}
               >
@@ -40,7 +40,7 @@ export function ProjectsGallery() {
         </p>
       </div>
       {visible.length === 0 ? (
-        <p className="mt-10 rounded-2xl border border-dashed border-line p-10 text-center text-muted">
+        <p className="mt-10 rounded-[2px] border border-dashed border-line p-10 text-center text-muted">
           No projects in this category yet.
         </p>
       ) : (

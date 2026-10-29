@@ -42,7 +42,7 @@ export default async function ProjectPage({ params }: Params) {
 
       {/* Listing-style gallery: one large image + up to four thumbnails. */}
       <section aria-label="Project images" className="container-x mt-3">
-        <div className={thumbs.length ? "grid gap-2 overflow-hidden rounded-2xl md:grid-cols-[2fr_1fr_1fr] md:grid-rows-2" : "overflow-hidden rounded-2xl"}>
+        <div className={thumbs.length ? "grid gap-2 overflow-hidden rounded-[2px] md:grid-cols-[2fr_1fr_1fr] md:grid-rows-2" : "overflow-hidden rounded-[2px]"}>
           <div className={thumbs.length ? "relative aspect-[16/10] md:row-span-2 md:aspect-auto" : "relative aspect-[16/9] max-h-[34rem] w-full"}>
             <ProjectMedia project={project} image={main} sizes="(min-width: 768px) 60vw, 100vw" priority />
           </div>
@@ -60,16 +60,16 @@ export default async function ProjectPage({ params }: Params) {
       <section className="container-x grid gap-10 py-10 lg:grid-cols-[1fr_22rem] lg:gap-14 lg:py-14">
         <div>
           <div className="flex flex-wrap gap-2">
-            <span className="rounded-full bg-sun-400 px-3 py-1 text-xs font-bold text-ink">{project.systemType}</span>
-            <span className="rounded-full bg-surface px-3 py-1 text-xs font-semibold capitalize">{project.segment}</span>
-            <span className="rounded-full bg-surface px-3 py-1 text-xs font-semibold">{statusLabel[project.status]}</span>
+            <span className="rounded-[2px] bg-sun-400 px-3 py-1 text-xs font-bold text-ink">{project.systemType}</span>
+            <span className="rounded-[2px] bg-surface px-3 py-1 text-xs font-semibold capitalize">{project.segment}</span>
+            <span className="rounded-[2px] bg-surface px-3 py-1 text-xs font-semibold">{statusLabel[project.status]}</span>
           </div>
           <h1 className="mt-4 text-3xl font-bold sm:text-4xl lg:text-5xl">{project.title}</h1>
           <p className="mt-3 flex items-center gap-1.5 text-muted">
             <MapPin aria-hidden className="size-5 shrink-0 text-sun-700" /> {project.location}
           </p>
 
-          <dl className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-2xl bg-line ring-1 ring-line sm:grid-cols-4">
+          <dl className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-[2px] bg-line ring-1 ring-line sm:grid-cols-4">
             <Stat label="Capacity" value={`${project.capacityKwp} kWp`} icon={Zap} />
             <Stat label="Panels" value={project.keyFacts.panels} icon={Grid3x3} />
             <Stat label="Inverter" value={project.keyFacts.inverter} icon={Zap} />
@@ -84,7 +84,7 @@ export default async function ProjectPage({ params }: Params) {
           </div>
 
           <h2 className="mt-12 text-2xl font-bold">Technical specifications</h2>
-          <dl className="mt-4 divide-y divide-line rounded-2xl ring-1 ring-line">
+          <dl className="mt-4 divide-y divide-line rounded-[2px] ring-1 ring-line">
             {project.specs.map((s) => (
               <div key={s.label} className="grid gap-1 px-5 py-4 sm:grid-cols-[14rem_1fr]">
                 <dt className="font-semibold">{s.label}</dt>
@@ -96,7 +96,7 @@ export default async function ProjectPage({ params }: Params) {
           <h2 className="mt-12 text-2xl font-bold">Our scope</h2>
           <ul className="mt-4 flex flex-wrap gap-2">
             {project.scope.map((s) => (
-              <li key={s} className="inline-flex items-center gap-1.5 rounded-full bg-surface px-4 py-2 text-sm font-semibold">
+              <li key={s} className="inline-flex items-center gap-1.5 rounded-[2px] bg-surface px-4 py-2 text-sm font-semibold">
                 <Check aria-hidden className="size-4 text-success" strokeWidth={3} /> {s}
               </li>
             ))}

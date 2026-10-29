@@ -8,9 +8,9 @@ export function WhatsAppFab() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat with Peak PV on WhatsApp"
-      className="fixed bottom-5 end-5 z-40 inline-flex size-14 items-center justify-center rounded-full bg-[#1fa855] text-white shadow-[0_10px_30px_-8px_rgb(31_168_85/0.7)] ring-4 ring-white transition-transform duration-200 hover:scale-105"
+      className="fixed bottom-5 end-5 z-40 inline-flex size-14 items-center justify-center rounded-full bg-ink text-sun-300 shadow-lift ring-1 ring-sun-400 transition-colors duration-200 hover:bg-sun-500 hover:text-white"
     >
-      <MessageCircle aria-hidden className="size-7" />
+      <MessageCircle aria-hidden className="size-6" strokeWidth={1.6} />
     </a>
   );
 }

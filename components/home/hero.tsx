@@ -17,25 +17,23 @@ export function Hero() {
           <HeroArt bleed className="h-full w-full" />
         )}
       </div>
-      <div aria-hidden className="absolute inset-0 -z-10 bg-[#fdfcf9]/80 lg:bg-transparent lg:bg-gradient-to-r lg:from-[#fdfcf9] lg:via-[#fdfcf9]/85 lg:to-[#fdfcf9]/0 rtl:lg:bg-gradient-to-l" />
-      <div aria-hidden className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-t from-[#fdfcf9] to-transparent" />
+      <div aria-hidden className="absolute inset-0 -z-10 bg-[#faf8f4]/80 lg:bg-transparent lg:bg-gradient-to-r lg:from-[#faf8f4] lg:via-[#faf8f4]/85 lg:to-[#faf8f4]/0 rtl:lg:bg-gradient-to-l" />
+      <div aria-hidden className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-t from-[#faf8f4] to-transparent" />
 
       <div className="container-x pb-40 pt-16 sm:pt-24 lg:pb-48 lg:pt-28">
         <div className="max-w-2xl">
           <p className="eyebrow">{company.brandName} · Solar PV</p>
-          <h1 id="hero-title" className="mt-5 text-[2.6rem] leading-[1.05] sm:text-6xl lg:text-[4.5rem]">
-            Clean solar power, engineered for your property.
+          <h1 id="hero-title" className="mt-6 text-[3rem] leading-[1] sm:text-7xl lg:text-[6rem]">
+            Solar power, <em className="font-medium italic text-sun-500">engineered</em> for your property.
           </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink/75 sm:text-xl">
+          <p className="mt-7 max-w-lg text-lg leading-relaxed text-ink/70">
             Supply, design and installation of photovoltaic systems for homes, businesses, farms and off-grid sites —
             one team from first survey to switch-on.
           </p>
-          <ul className="mt-7 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap sm:gap-x-6">
+          <ul className="mt-8 flex flex-col gap-2.5 border-y border-ink/10 py-4 sm:flex-row sm:flex-wrap sm:gap-x-8">
             {highlights.map((h) => (
-              <li key={h} className="inline-flex items-center gap-2 font-semibold text-ink">
-                <span className="inline-flex size-5 items-center justify-center rounded-full bg-success text-white">
-                  <Check aria-hidden className="size-3" strokeWidth={3.5} />
-                </span>
+              <li key={h} className="inline-flex items-center gap-2.5 text-[0.8125rem] font-medium uppercase tracking-[0.12em] text-ink/80">
+                <Check aria-hidden className="size-4 text-sun-500" strokeWidth={1.75} />
                 {h}
               </li>
             ))}
@@ -48,9 +46,9 @@ export function Hero() {
               href={whatsappHref()}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex h-14 items-center justify-center gap-2 rounded-full bg-white/90 px-8 font-semibold text-ink ring-1 ring-line backdrop-blur transition-shadow hover:shadow-card"
+              className="inline-flex h-14 items-center justify-center gap-2.5 rounded-[2px] border border-ink/25 bg-[#faf8f4]/70 px-9 text-[0.8125rem] font-semibold uppercase tracking-[0.16em] text-ink backdrop-blur transition-colors hover:border-ink hover:bg-ink hover:text-[#faf8f4]"
             >
-              <MessageCircle aria-hidden className="size-5 text-[#1fa855]" /> WhatsApp us
+              <MessageCircle aria-hidden className="size-4" strokeWidth={1.75} /> WhatsApp
             </a>
           </div>
         </div>

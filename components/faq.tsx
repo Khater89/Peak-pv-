@@ -4,12 +4,12 @@ import { faqs } from "@/content/site";
 export function Faq({ limit }: { limit?: number }) {
   const items = limit ? faqs.slice(0, limit) : faqs;
   return (
-    <div className="divide-y divide-line rounded-[var(--radius-card)] border border-line bg-white">
+    <div className="divide-y divide-line border-y border-line">
       {items.map((f) => (
-        <details key={f.q} className="group px-5 sm:px-7">
-          <summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-4 py-4 text-start text-lg font-semibold [&::-webkit-details-marker]:hidden">
+        <details key={f.q} className="group">
+          <summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-4 py-5 text-start font-serif text-[1.375rem] font-medium [&::-webkit-details-marker]:hidden">
             {f.q}
-            <span className="inline-flex size-8 shrink-0 items-center justify-center rounded-full bg-surface transition-transform duration-200 group-open:rotate-45">
+            <span className="inline-flex size-8 shrink-0 items-center justify-center border border-line text-sun-500 transition-transform duration-200 group-open:rotate-45">
               <Plus aria-hidden className="size-4" />
             </span>
           </summary>

@@ -6,7 +6,7 @@ import { ProjectMedia } from "@/components/project-media";
 /** Real-estate style listing card: big image, headline figure, location, icon spec row. */
 export function ProjectCard({ project }: { project: Project }) {
   return (
-    <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-card ring-1 ring-line transition-[box-shadow,transform] duration-200 hover:-translate-y-1 hover:shadow-lift">
+    <article className="group relative flex h-full flex-col overflow-hidden rounded-[2px] bg-white shadow-card ring-1 ring-line transition-[box-shadow,transform] duration-200 hover:-translate-y-1 hover:shadow-lift">
       <div className="relative aspect-[4/3]">
         <ProjectMedia
           project={project}
@@ -14,8 +14,8 @@ export function ProjectCard({ project }: { project: Project }) {
           className="transition-transform duration-500 group-hover:scale-[1.03]"
         />
         <div className="absolute start-3 top-3 flex flex-wrap gap-2">
-          <span className="rounded-full bg-sun-400 px-3 py-1 text-xs font-bold text-ink shadow-sm">{project.systemType}</span>
-          <span className="rounded-full bg-white/95 px-3 py-1 text-xs font-semibold text-ink shadow-sm">
+          <span className="rounded-[2px] bg-sun-400 px-3 py-1 text-xs font-bold text-ink shadow-sm">{project.systemType}</span>
+          <span className="rounded-[2px] bg-white/95 px-3 py-1 text-xs font-semibold text-ink shadow-sm">
             {statusLabel[project.status]}
           </span>
         </div>

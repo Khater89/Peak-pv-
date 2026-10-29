@@ -159,7 +159,7 @@ export function InquiryForm({ sourcePage = "/contact", initial }: { sourcePage?:
 
   if (status.kind === "success") {
     return (
-      <div role="status" className="rounded-[1.25rem] border border-success/30 bg-success-bg p-8 text-center sm:p-10">
+      <div role="status" className="rounded-[2px] border border-success/30 bg-success-bg p-8 text-center sm:p-10">
         <CheckCircle2 aria-hidden className="mx-auto size-12 text-success" />
         <h3 ref={successRef} tabIndex={-1} className="mt-4 text-2xl font-bold outline-none">
           Thank you — your request has been received
@@ -198,7 +198,7 @@ export function InquiryForm({ sourcePage = "/contact", initial }: { sourcePage?:
           ref={summaryRef}
           tabIndex={-1}
           role="alert"
-          className="rounded-xl border border-danger/30 bg-danger-bg p-4 text-danger outline-none focus-visible:ring-2 focus-visible:ring-danger"
+          className="rounded-[2px] border border-danger/30 bg-danger-bg p-4 text-danger outline-none focus-visible:ring-2 focus-visible:ring-danger"
         >
           <p className="flex items-center gap-2 font-semibold">
             <AlertCircle aria-hidden className="size-5" />
@@ -217,7 +217,7 @@ export function InquiryForm({ sourcePage = "/contact", initial }: { sourcePage?:
       )}
 
       {status.kind === "error" && (
-        <div role="alert" className="flex gap-3 rounded-xl border border-danger/30 bg-danger-bg p-4 text-danger">
+        <div role="alert" className="flex gap-3 rounded-[2px] border border-danger/30 bg-danger-bg p-4 text-danger">
           <AlertCircle aria-hidden className="mt-0.5 size-5 shrink-0" />
           <div>
             <p className="font-semibold">Your request was not sent</p>

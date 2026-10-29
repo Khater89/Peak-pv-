@@ -8,16 +8,16 @@ export function FeatureStrip() {
   return (
     <section aria-label="Why Peak PV" className="relative z-10 -mt-24 lg:-mt-28">
       <div className="container-x">
-        <ul className="grid overflow-hidden rounded-[1.75rem] border border-line bg-white shadow-lift sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="grid overflow-hidden border border-line bg-[#faf8f4] shadow-lift sm:grid-cols-2 lg:grid-cols-4">
           {pillars.map((p, i) => {
             const Icon = icons[i % icons.length];
             return (
               <li key={p.title} className="flex gap-4 border-line p-6 max-lg:[&:nth-child(-n+2)]:border-b sm:max-lg:odd:border-e lg:border-e lg:last:border-e-0">
-                <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-2xl bg-sun-100 text-sun-700">
-                  <Icon aria-hidden className="size-5" />
+                <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-[2px] border border-sun-400/60 text-sun-500">
+                  <Icon aria-hidden className="size-5" strokeWidth={1.5} />
                 </span>
                 <div>
-                  <h3 className="text-base font-bold tracking-tight">{p.title}</h3>
+                  <h3 className="text-[0.8125rem] font-semibold uppercase tracking-[0.14em]">{p.title}</h3>
                   <p className="mt-1 text-sm leading-relaxed text-muted">{p.body}</p>
                 </div>
               </li>

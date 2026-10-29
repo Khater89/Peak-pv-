@@ -20,7 +20,7 @@ export function SolutionBlocks() {
             </div>
             <div className="p-7 sm:p-8">
               <div className="flex items-center gap-3">
-                <span className="inline-flex size-10 items-center justify-center rounded-lg bg-sun-100 text-sun-700">
+                <span className="inline-flex size-10 items-center justify-center rounded-[2px] border border-sun-400/60 text-sun-500">
                   <Icon aria-hidden className="size-5" />
                 </span>
                 <h3 className="text-2xl font-bold">{s.title}</h3>

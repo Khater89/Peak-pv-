@@ -9,7 +9,7 @@ export function AgentCard({ context }: { context?: string }) {
     ? `Hello Peak PV, I saw the "${context}" project and would like a similar system.`
     : undefined;
   return (
-    <div className="rounded-2xl bg-white p-6 shadow-lift ring-1 ring-line">
+    <div className="border border-line bg-white p-7 shadow-lift">
       <div className="flex items-center gap-3">
         <LogoMark tone="badge" className="size-12" />
         <div>
@@ -22,7 +22,7 @@ export function AgentCard({ context }: { context?: string }) {
           href={whatsappHref(message)}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex h-12 items-center justify-center gap-2 rounded-full bg-[#1fa855] px-5 font-semibold text-white transition-colors hover:bg-[#178a45]"
+          className="flex h-12 items-center justify-center gap-2 rounded-[2px] bg-ink px-5 text-[0.75rem] font-semibold uppercase tracking-[0.16em] text-[#faf8f4] transition-colors hover:bg-sun-500"
         >
           <MessageCircle aria-hidden className="size-5" /> Chat on WhatsApp
         </a>
@@ -30,12 +30,12 @@ export function AgentCard({ context }: { context?: string }) {
           <a
             key={p.intl}
             href={`tel:${p.intl}`}
-            className="flex h-12 items-center justify-center gap-2 rounded-full border-[1.5px] border-navy-900/20 font-semibold hover:border-navy-900/50 hover:bg-surface"
+            className="flex h-12 items-center justify-center gap-2 rounded-[2px] border border-ink/20 text-sm font-medium tracking-[0.06em] hover:border-ink"
           >
             <Phone aria-hidden className="size-4" /> <span dir="ltr">{p.display}</span>
           </a>
         ))}
-        <ButtonLink href="/contact" variant="primary" className="w-full">
+        <ButtonLink href="/contact" variant="gold" className="w-full">
           Request a quote
         </ButtonLink>
       </div>

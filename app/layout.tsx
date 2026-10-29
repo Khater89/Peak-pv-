@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { IBM_Plex_Sans_Arabic, Plus_Jakarta_Sans } from "next/font/google";
+import { Cormorant_Garamond, IBM_Plex_Sans_Arabic, Inter } from "next/font/google";
 import { company, locale } from "@/content/site";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
@@ -8,8 +8,9 @@ import { WhatsAppFab } from "@/components/whatsapp-fab";
 import { siteUrl } from "@/lib/utils";
 import "./globals.css";
 
-// Plus Jakarta Sans (soft, rounded geometry) for Latin text and the wordmark; Plex Sans Arabic as the Arabic fallback.
-const body = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-body", display: "swap" });
+// Inter for text and UI; Cormorant Garamond for display headings and the wordmark; Plex Sans Arabic as Arabic fallback.
+const body = Inter({ subsets: ["latin"], variable: "--font-body", display: "swap" });
+const serif = Cormorant_Garamond({ subsets: ["latin"], weight: ["500", "600"], variable: "--font-cormorant", display: "swap" });
 const arabic = IBM_Plex_Sans_Arabic({
   subsets: ["arabic"],
   weight: ["400", "500", "600", "700"],
@@ -35,14 +36,14 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#fdfcf9",
+  themeColor: "#faf8f4",
   width: "device-width",
   initialScale: 1,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang={locale.lang} dir={locale.dir} className={`${body.variable} ${arabic.variable}`}>
+    <html lang={locale.lang} dir={locale.dir} className={`${body.variable} ${serif.variable} ${arabic.variable}`}>
       <body className="flex min-h-dvh flex-col antialiased">
         <TopBar />
         <SiteHeader />

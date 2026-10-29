@@ -11,7 +11,6 @@ import { Sectors } from "@/components/home/sectors";
 import { FeaturedProject } from "@/components/home/featured-project";
 import { ContactSection } from "@/components/home/contact-section";
 import { ProcessTimeline } from "@/components/process-timeline";
-import { Ticker } from "@/components/ticker";
 import { Faq } from "@/components/faq";
 import { Section, SectionHeading } from "@/components/section";
 import { siteUrl } from "@/lib/utils";
@@ -67,8 +66,6 @@ export default function HomePage() {
           <FeaturedProject project={featured} />
         </div>
       </Section>
-
-      <Ticker />
 
       <Section tone="surface" labelledBy="faq-title">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.5fr] lg:gap-16">

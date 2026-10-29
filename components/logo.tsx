@@ -14,7 +14,7 @@ const STAR = "M32.00 13.80L32.74 15.78L34.85 15.87L33.20 17.19L33.76 19.23L32.00
 export function LogoMark({ className, tone = "dark" }: { className?: string; tone?: "dark" | "light" | "badge" }) {
   const rays = tone === "light" ? "#f7cf6a" : "#dc9c0e";
   return (
-    <svg viewBox="0 0 64 64" aria-hidden="true" className={cn("size-12 lg:size-14", className)}>
+    <svg viewBox="0 0 64 64" aria-hidden="true" className={cn("size-10 sm:size-12 lg:size-14", className)}>
       <path d={RAYS} stroke={rays} strokeWidth="1.15" strokeLinecap="round" fill="none" />
       <circle cx="32" cy="32" r="22.2" fill="none" stroke={rays} strokeWidth="1.2" />
       <circle cx="32" cy="32" r="20" fill="#173b27" />
@@ -29,13 +29,13 @@ export function LogoMark({ className, tone = "dark" }: { className?: string; ton
 
 export function Logo({ tone = "dark" }: { tone?: "dark" | "light" }) {
   return (
-    <span className="inline-flex items-center gap-3">
+    <span className="inline-flex items-center gap-2 sm:gap-3">
       <LogoMark tone={tone} />
       <span className="flex flex-col leading-none">
-        <span className={cn("font-brand text-[1.9rem] font-semibold tracking-[0.22em]", tone === "light" ? "text-white" : "text-navy-900")}>
+        <span className={cn("font-brand text-[1.5rem] font-semibold tracking-[0.16em] sm:text-[1.9rem] sm:tracking-[0.22em]", tone === "light" ? "text-white" : "text-navy-900")}>
           PEAK
         </span>
-        <span className={cn("mt-1.5 flex items-center gap-2 border-t pt-1.5 text-[0.5625rem] font-semibold tracking-[0.42em]", tone === "light" ? "border-white/25 text-sun-300" : "border-navy-900/20 text-sun-700")}>
+        <span className={cn("mt-1.5 flex items-center gap-1.5 border-t pt-1.5 text-[0.5rem] font-semibold tracking-[0.3em] sm:gap-2 sm:text-[0.5625rem] sm:tracking-[0.42em]", tone === "light" ? "border-white/25 text-sun-300" : "border-navy-900/20 text-sun-700")}>
           SOLAR ENERGY
           <span lang="ar" className="font-arabic-display text-[0.9375rem] font-bold leading-none tracking-normal">
             بيك

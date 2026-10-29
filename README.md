@@ -1,100 +1,112 @@
-# Energy Mode
+# Open Energy — company website
 
-A responsive English solar/PV company website built with Laravel 13, Blade, plain CSS/JavaScript, and SQLite. No frontend build or external font/image service is required for the live page.
+Marketing and lead-generation site for **Open Energy**, a solar PV company (supply · design · installation).
+Built with Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4 and shadcn-style UI primitives.
+
+## Pages
+
+| Route | Purpose |
+|---|---|
+| `/` | Hero + CTA, trust band, services, residential/commercial solutions, process timeline, projects teaser, FAQ, CTA band |
+| `/services` | Supply / design / installation details, system types, comparison table, technical capabilities |
+| `/projects` | Project cards with segment filter chips |
+| `/about` | Story, mission, values, certifications/partners (shown only when data exists), process |
+| `/contact` | Quote request form with validation, loading, failure and success (reference number) states |
+| `POST /api/inquiries` | Server-side validation, rate limiting, honeypot, durable storage |
 
 ## Run locally
 
-Requirements: PHP 8.4+, Composer 2, and PHP extensions ctype, curl, dom, fileinfo, mbstring, PDO, pdo_sqlite, tokenizer, XML and zip.
+Requires **Node.js 20.9+**.
 
-```sh
-composer install
-cp .env.example .env
-php artisan key:generate
-php artisan migrate --force
-php artisan serve
+```bash
+cp .env.example .env.local   # adjust if needed
+npm install
+npm run dev                   # http://localhost:3000
 ```
 
-On the prepared cloud machine, PHP and Composer also exist under `/workspace/runtime`:
+Production:
 
-```sh
-export PATH="/workspace/runtime/bin:$PATH"
-export PHPRC=/workspace/runtime/php.ini
-php /workspace/runtime/composer.phar install --prefer-source --no-interaction
-# .env, APP_KEY and the SQLite database are already prepared; preserve them.
-cd public
-php -S 0.0.0.0:8000 -t . ../vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php
+```bash
+npm run build
+npm start
 ```
 
-Use an available port if 8000 is occupied. The cloud PHP installation uses a wrapper for its private shared libraries; the direct PHP server command above preserves that setup.
+This is a server app. Opening a built `index.html` directly will not work, and a static export would
+remove the inquiry endpoint.
 
-## What works
+## Where quote requests go
 
-- Sticky navigation and consultation CTA, services, process and system education, responsive layout and native keyboard-accessible FAQ accordions.
-- Server-validated consultation form, CSRF protection, honeypot, five submissions/minute/client, immutable records, and UUID submission tokens for safe retries.
-- Real SQLite persistence and a saved-record reference; no mail delivery or appointment is implied.
-- Specific validation feedback with retained input, duplicate prevention, storage-failure handling, loading state, and retry feedback.
-- A verified-project empty state. The solar artwork is an original concept illustration, not installation photography.
+Set `INQUIRY_STORE` in the environment:
 
-## Content and launch settings
+- `file` (default): each request is appended as a JSON line to `data/inquiries.jsonl` on the server
+  (`INQUIRY_DATA_DIR` overrides the folder). Needs a persistent disk (VPS, Docker with a volume).
+  **Do not use on serverless hosts** (e.g. Vercel), where the filesystem is temporary.
+- `supabase`: inserts into the `inquiries` table. Run `supabase/inquiries.sql` once, then set
+  `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` (server-only; never prefix with `NEXT_PUBLIC_`).
+  RLS is enabled with no public policies, so browsers cannot read the table.
 
-Edit `config/site.php` for services and FAQs; edit `resources/views/home.blade.php` for page copy and `public/site.css` for design. Content editing is file-based; there is no public admin or login.
+The form shows success only after the store confirms the write (HTTP 201 + reference such as `OE-7K3QX9`).
+If storage is missing or fails, the API returns 503 and the form keeps what the visitor typed.
 
-`.env.example` documents `SITE_PREVIEW`, `SITE_CONTACT_EMAIL`, `SITE_CONTACT_PHONE`, and `SITE_SERVICE_AREA`. The preview banner is enabled by default. Confirm the company identity, actual service offerings, contact details, privacy contact, service area, and follow-up process before setting `SITE_PREVIEW=false`.
+There is no email notification yet; staff read inquiries from the file or the Supabase table.
+See `OPEN_DECISIONS.md`.
 
-No testimonials, certifications, savings claims, or completed installations are fabricated. Add approved proof and project photography when available. The initial request workflow saves to the operator’s database; email/CRM integration is not configured. Never put real enquiries into this development environment.
+## Deploy on Railway
 
-## Data and operations
+The repo includes `railway.json` (build: `npm run build`, start: `npm start`, health check on `/`)
+and `.nvmrc` (Node 22). `next start` listens on Railway's `PORT` automatically.
 
-The SQLite file is `database/database.sqlite`, ignored by Git. Back up the database securely and mount persistent writable storage in production. There is no public route to browse, edit, or delete leads. Operators must use trusted server/database access with appropriate access control. See `docs/acceptance.md` for the data contract and launch decisions.
+1. Railway → **New Project → Deploy from GitHub repo** → select this repo.
+2. **Add a Volume** to the service, mount path `/data` (keeps quote requests across redeploys).
+3. Service **Variables**:
+   - `INQUIRY_STORE=file`
+   - `INQUIRY_DATA_DIR=/data`
+   - `SITE_URL=https://<your-domain>` (set after step 4)
+4. **Settings → Networking → Generate Domain** (or add your own domain), then update `SITE_URL` and redeploy.
 
-The scheduled `php artisan leads:prune` command deletes leads older than 90 days. Approve the retention policy before launch, then run Laravel's scheduler every minute (`php artisan schedule:run`) through the hosting platform. Backups need equivalent retention/access rules.
+Read stored requests from the service shell: `cat /data/inquiries.jsonl`.
+To use Supabase instead, set `INQUIRY_STORE=supabase`, `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` (no volume needed).
 
-Production requires a PHP web server with document root `public/`, HTTPS, `APP_ENV=production`, `APP_DEBUG=false`, a unique retained `APP_KEY`, writable `storage/` and `bootstrap/cache/`, persistent database storage, migrations, backups, and a scheduler. Install dependencies using `composer install --no-dev --optimize-autoloader`. Run `php artisan optimize` after configuring the environment. GitHub Pages cannot host this PHP backend.
+## Editing content
 
-## Validation
+All copy and company facts live in `content/`:
 
-```sh
-php artisan test --compact
-php artisan view:cache
-vendor/bin/pint --dirty --format agent
+- `content/site.ts`: company profile, metrics, certifications, partners, contact channels, process, FAQ
+- `content/services.ts`: services (the `enabled` flag), solutions, system types, capabilities
+- `content/projects.ts`: real projects (currently Madama). Each has a detail page at `/projects/<slug>`
+
+Empty fields (`metrics`, `certifications`, `partners`, `contactChannels`, `serviceArea`) hide their
+blocks. Nothing is invented. Add verified data and the blocks appear.
+
+Real project renders/photos: put them in `public/projects/<slug>/` and list them in the project's `images`
+(`kind: "render"` or `"photo"`, with descriptive `alt`). The first image is the cover; up to five show in the
+listing-style gallery. Cards switch from the illustration automatically. A hero photo goes in `public/images/`
+and is set via `heroImage` in `content/site.ts`.
+
+## Arabic readiness
+
+`<html lang dir>` comes from `content/site.ts`. Layout uses logical properties (`ms-*`, `ps-*`,
+`start-*`, `border-s`), directional icons flip under `rtl`, and the body font (IBM Plex Sans Arabic)
+covers Arabic. To add Arabic, add a parallel content set and an `[locale]` route segment.
+
+## Checks
+
+```bash
+npm run typecheck
+npm run build && npm start &
+BASE_URL=http://localhost:3000 npm run test:e2e   # needs Playwright (npm i -D playwright && npx playwright install chromium)
 ```
 
-Feature tests cover persistence, validation, safe retries, escaping, storage failure, throttling, public data access boundaries and retention. The page works without JavaScript; CSS, artwork, and scripts are local. Form submissions always require the running PHP server and database. Static HTML or opening files with `file://` cannot save enquiries.
+`scripts/e2e.mjs` covers: a unique title, one h1 and a meta description on every page; alt text;
+no horizontal scroll at 360/768/1440px; the sticky header CTA; header and footer navigation;
+inline validation with input preservation; keyboard focus; service and network failure states;
+a real stored submission with a reference; and server-side 422 validation.
 
-Source is delivered in this repository, with locked PHP dependencies. A production deployment uses the source and Composer dependencies; there is no standalone static build ZIP.
+The in-memory rate limit is 5 submissions per IP per 10 minutes. Repeated local test runs may hit it,
+so restart the server to reset it.
 
-## Deploy to Railway
+## Source ZIP vs build
 
-1. Create a Railway project → **Deploy from GitHub repo** → `Khater89/Sun-Mode-`, branch `main`. The repository's `Dockerfile` and `railway.json` configure the PHP/Apache build and `/up` health check. Do not add a separate build/start/pre-deploy command.
-2. Attach a **Volume** to the web service, mounted at **`/data`**. Use **one replica**, not multiple replicas sharing SQLite. Keep this volume across deployments and enable backups. A deployment without the volume can run but its data will be ephemeral.
-3. Add the following service **Variables** before deploying:
-
-   ```dotenv
-   APP_NAME="Energy Mode"
-   APP_ENV=production
-   APP_DEBUG=false
-   APP_KEY=<your stable Laravel application key>
-   APP_URL=https://<your-generated-domain>.up.railway.app
-   DB_CONNECTION=sqlite
-   DB_DATABASE=/data/database.sqlite
-   SESSION_DRIVER=database
-   SESSION_SECURE_COOKIE=true
-   CACHE_STORE=database
-   LOG_CHANNEL=stderr
-   QUEUE_CONNECTION=sync
-   SITE_PREVIEW=true
-   ```
-
-   Generate an application key locally with `php artisan key:generate --show` (or a cryptographically secure 32-byte key encoded as `base64:...`). Copy it directly into Railway's secret Variables; do not commit it or post it in chat. Generate it once and retain it across deployments. Railway supplies `PORT`; do not override it unnecessarily.
-4. In **Settings → Networking**, generate a public domain. Set `APP_URL` to its exact HTTPS URL and redeploy if required. Replace the entire example value: never enter the literal `<your-generated-domain>` or other angle brackets. Alternatively, omit `APP_URL` after generating a public domain; startup uses Railway’s `RAILWAY_PUBLIC_DOMAIN` when available. Laravel trusts the Railway proxy so assets, form actions and redirects use HTTPS. Deploy this container only behind a trusted reverse proxy; do not expose its port directly on an untrusted network.
-5. After deployment, open `/up` (expect HTTP 200), then the home page. Submit test details in the form and retain the reference. Redeploy and verify the same test record still exists through trusted Railway shell/database access. Check logs for migration errors and verify `/data` is mounted before entering real data.
-
-The container migrates the existing database at startup and never regenerates `APP_KEY` or deletes records. Builds contain no `.env`, local database, or local vendor directory. Production Composer dependencies are installed from `composer.lock`. PHP/Apache listens on Railway's `PORT`. Railway hosting may incur charges.
-
-**Before public launch:** confirm company details, privacy and retention policy, and follow-up workflow; configure contact variables described above, then change `SITE_PREVIEW=false`. The initial website stores requests but does not send emails. Hosting on Railway does not configure an email inbox or CRM.
-
-**Retention:** this web container does not run Laravel's scheduler. For the proposed 90-day policy, schedule `php artisan leads:prune` against this service and its mounted volume through your operations tooling, or run it through trusted Railway service shell access. Do not assume a separate Railway cron service can access this service's SQLite volume. Until you configure and verify cleanup, automatic deletion is not active. Consider managed PostgreSQL if multiple replicas or separate worker/scheduler services are needed.
-
-### Railway: “Invalid URI: Host is malformed”
-
-If this appears in deployment logs before Apache starts, check **Variables → APP_URL**. It must be the real public HTTPS URL, not the example placeholder, and must not contain spaces or `<` / `>` characters. Save the correction and redeploy. Do not change `APP_KEY` or remove the database volume for this error. Startup validates the URL before running Artisan so an invalid setting produces a specific configuration message.
+- **Source ZIP**: this folder without `node_modules/`, `.next/` and `data/`.
+- **Build**: run `npm ci && npm run build` on the target server, then `npm start`. Deploy with
+  `node_modules`, `.next`, `public`, `package.json` and `next.config.ts`.

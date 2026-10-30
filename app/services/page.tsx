@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Fragment } from "react";
 import { pageImages } from "@/content/site";
 import { Check, CircuitBoard } from "lucide-react";
 import { activeServices, capabilities, comparison, systemTypes } from "@/content/services";
@@ -6,6 +7,7 @@ import { serviceIcons } from "@/components/icons";
 import { PageHero, Section, SectionHeading } from "@/components/section";
 import { SolutionBlocks } from "@/components/solution-blocks";
 import { CtaBand } from "@/components/cta-band";
+import { EvChargingGrid } from "@/components/ev-charging";
 import { ButtonLink } from "@/components/ui/button";
 
 export const metadata: Metadata = {
@@ -38,8 +40,8 @@ export default function ServicesPage() {
           {activeServices.map((s, i) => {
             const Icon = serviceIcons[s.icon];
             return (
+              <Fragment key={s.slug}>
               <article
-                key={s.slug}
                 id={s.slug}
                 aria-labelledby={`${s.slug}-title`}
                 className="grid scroll-mt-28 gap-8 rounded-[2px] border border-line bg-white p-7 shadow-card sm:p-10 lg:grid-cols-[1.2fr_1fr]"
@@ -75,6 +77,12 @@ export default function ServicesPage() {
                   </ButtonLink>
                 </div>
               </article>
+              {s.slug === "ev-charging" && (
+                <div className="pt-2">
+                  <EvChargingGrid />
+                </div>
+              )}
+              </Fragment>
             );
           })}
         </div>

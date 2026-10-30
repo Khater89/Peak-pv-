@@ -12,6 +12,7 @@ import { FeaturedProject } from "@/components/home/featured-project";
 import { ContactSection } from "@/components/home/contact-section";
 import { ProcessTimeline } from "@/components/process-timeline";
 import { Faq } from "@/components/faq";
+import { EvChargingGrid } from "@/components/ev-charging";
 import { Section, SectionHeading } from "@/components/section";
 import { siteUrl } from "@/lib/utils";
 
@@ -38,6 +39,18 @@ export default function HomePage() {
       <Hero />
       <FeatureStrip />
       <ServicesGrid />
+
+      <Section tone="surface" labelledBy="ev-title">
+        <SectionHeading
+          id="ev-title"
+          eyebrow="EV charging"
+          title="Charging Points, Installed Right"
+          intro="We install electric-vehicle charging points for homes, charging stations and car parks — and can power them from your solar system."
+        />
+        <div className="mt-12">
+          <EvChargingGrid />
+        </div>
+      </Section>
       <FactsBand />
 
       <Section labelledBy="process-title">

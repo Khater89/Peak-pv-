@@ -87,6 +87,31 @@ export const services: Service[] = [
 
 export const activeServices = services.filter((s) => s.enabled);
 
+/** EV charging by setting. Photos are Unsplash stock (illustrative, not Peak PV installations). */
+export const evSettings = [
+  {
+    title: "Homes & Villas",
+    body: "A wall-mounted charger in your garage or driveway, wired safely to your home — and charging from your rooftop solar where possible.",
+    type: "residential",
+    img: "/images/ev-home.jpg",
+    alt: "Electric car plugged into a charging cable at home",
+  },
+  {
+    title: "Charging Stations",
+    body: "Pedestal and public charging points for petrol stations, hotels, malls and roadside sites, with the supply and protection they need.",
+    type: "commercial",
+    img: "/images/ev-station.jpg",
+    alt: "Public EV charging station next to a parked car",
+  },
+  {
+    title: "Car Parks & Parking",
+    body: "Multiple charging bays for office buildings, residential towers and car parks — planned around the available electrical capacity.",
+    type: "commercial",
+    img: "/images/ev-parking.jpg",
+    alt: "Electric cars charging in a parking garage",
+  },
+];
+
 export const solutions = [
   {
     segment: "residential" as const,

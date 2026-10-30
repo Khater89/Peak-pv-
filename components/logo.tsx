@@ -1,13 +1,13 @@
 import { cn } from "@/lib/utils";
 
-/** Sun rays fanning out of the summit. */
-const RAYS = "M32.00 15.00L32.00 6.00M36.00 16.07L39.75 9.58M28.00 16.07L24.25 9.58M38.93 19.00L43.69 16.25M25.07 19.00L20.31 16.25";
+/** Lightning bolt (electric charge); three of them radiate from the sun like rays. */
+const ZAP = "M13 2 3 14h9l-1 8 10-12h-9l1-8z";
 /** PV cell lines inside each panel. */
 const CELLS = "M28.5 23V31M32.0 23V31M35.5 23V31M25 27.0H39M20.5 33V41M24.0 33V41M27.5 33V41M17 37.0H31M36.5 33V41M40.0 33V41M43.5 33V41M33 37.0H47M12.5 43V51M16.0 43V51M19.5 43V51M9 47.0H23M28.5 43V51M32.0 43V51M35.5 43V51M25 47.0H39M44.5 43V51M48.0 43V51M51.5 43V51M41 47.0H55";
 
 /**
  * Peak PV mark: solar panels stacked in steps to form a summit (no triangles), with sun rays rising
- * from the top panel and a sun arc behind it.
+ * from the top panel as lightning bolts (electric charges), with a sun arc behind it.
  * tone="dark" draws for light backgrounds, tone="light" for dark ones; "badge" is kept for callers.
  */
 export function LogoMark({ className, tone = "dark" }: { className?: string; tone?: "dark" | "light" | "badge" }) {
@@ -16,7 +16,11 @@ export function LogoMark({ className, tone = "dark" }: { className?: string; ton
   return (
     <svg viewBox="0 0 64 64" aria-hidden="true" className={cn("size-12 sm:size-14", className)}>
       <path d="M26.5 23a5.5 5.5 0 0 1 11 0" fill="#f0b429" />
-      <path d={RAYS} stroke="#f0b429" strokeWidth="2.2" strokeLinecap="round" fill="none" />
+      <g fill="#f0b429">
+        <path transform="translate(32.00 10.00) rotate(0) scale(0.52) translate(-12 -12)" d={ZAP} />
+        <path transform="translate(43.92 16.66) rotate(24) scale(0.44) translate(-12 -12)" d={ZAP} />
+        <path transform="translate(20.08 16.66) rotate(-24) scale(0.44) translate(-12 -12)" d={ZAP} />
+      </g>
       <g fill={panel}><rect x="25" y="23" width="14" height="8" rx="0.6" /><rect x="17" y="33" width="14" height="8" rx="0.6" /><rect x="33" y="33" width="14" height="8" rx="0.6" /><rect x="9" y="43" width="14" height="8" rx="0.6" /><rect x="25" y="43" width="14" height="8" rx="0.6" /><rect x="41" y="43" width="14" height="8" rx="0.6" /></g>
       <path d={CELLS} stroke={cell} strokeOpacity="0.8" strokeWidth="0.7" fill="none" />
       <path d="M6 55h52" stroke="#f0b429" strokeWidth="1.6" />

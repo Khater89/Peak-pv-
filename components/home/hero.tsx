@@ -4,7 +4,7 @@ import { company, heroImage, primaryCta, whatsappHref } from "@/content/site";
 import { ButtonLink } from "@/components/ui/button";
 import { HeroArt } from "@/components/art/hero-art";
 
-const highlights = ["Supply, design & installation", "On-grid, hybrid & off-grid", `Serving ${company.serviceArea ?? "your area"}`];
+const highlights = ["Supply, design & installation", "On-grid, hybrid & off-grid", "EV charging points", `Serving ${company.serviceArea ?? "your area"}`];
 
 /** Full-bleed photo hero with a soft light wash on the text side, so the page stays light. */
 export function Hero() {
@@ -30,8 +30,8 @@ export function Hero() {
             Solar power, <em className="not-italic text-leaf-600">engineered</em> for your property.
           </h1>
           <p className="mt-7 max-w-lg text-lg leading-relaxed text-ink/70">
-            Supply, design and installation of photovoltaic systems for homes, businesses, farms and off-grid sites —
-            one team from first survey to switch-on.
+            Supply, design and installation of photovoltaic systems and EV charging points for homes, businesses, farms
+            and off-grid sites — one team from first survey to switch-on.
           </p>
           <ul className="mt-8 flex flex-col gap-2.5 border-y border-ink/10 py-4 sm:flex-row sm:flex-wrap sm:gap-x-8">
             {highlights.map((h) => (

@@ -134,6 +134,10 @@ export const faqs = [
     a: "Our team reviews your details and contacts you to arrange a consultation. Your request is stored securely and only used to respond to you.",
   },
   {
+    q: "Do you install EV charging points?",
+    a: "Yes. We supply and install electric-vehicle charging points for homes, businesses and car parks, including the cabling and protection they need — and we can connect them to your solar system so you charge from your own solar power.",
+  },
+  {
     q: "Do you work on commercial projects?",
     a: "Yes. We handle commercial and industrial rooftops and facilities as well as residential properties.",
   },

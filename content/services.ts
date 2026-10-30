@@ -3,7 +3,7 @@ export type Service = {
   title: string;
   summary: string;
   description: string;
-  icon: "package" | "ruler" | "wrench" | "life-buoy";
+  icon: "package" | "ruler" | "wrench" | "ev-charger" | "life-buoy";
   audience: string;
   benefits: string[];
   /** VERIFY: set to true only once the offering is confirmed by Peak PV. */
@@ -53,6 +53,21 @@ export const services: Service[] = [
       "Installed to the approved design",
       "Tested and commissioned before handover",
       "Tidy, safe work on site",
+    ],
+    enabled: true,
+  },
+  {
+    slug: "ev-charging",
+    title: "EV Charging Points",
+    summary: "Supply and installation of electric-vehicle charging points for homes, businesses and car parks.",
+    description:
+      "We install EV charging points — wall-mounted units at home or pedestal chargers for workplaces and car parks — including the cabling and protection they need. Paired with a solar system, your vehicles can charge from your own solar power.",
+    icon: "ev-charger",
+    audience: "EV owners, businesses, hotels, residential buildings and car-park operators.",
+    benefits: [
+      "Site check of the electrical supply before installation",
+      "Dedicated cabling and protection for the charger",
+      "Can be integrated with your solar PV system",
     ],
     enabled: true,
   },
@@ -117,6 +132,7 @@ export const capabilities = [
   "Electrical protection and single-line diagrams",
   "Installation and cable management",
   "Testing, commissioning and handover",
+  "EV charging point installation",
 ];
 
 export const comparison = {

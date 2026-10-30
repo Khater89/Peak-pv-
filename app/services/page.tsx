@@ -51,7 +51,7 @@ export default function ServicesPage() {
                     </span>
                     <span className="font-display text-sm font-bold text-sun-700">0{i + 1}</span>
                   </div>
-                  <h3 id={`${s.slug}-title`} className="mt-5 text-3xl font-bold">{s.title}</h3>
+                  <h3 id={`${s.slug}-title`} className="mt-5 font-serif text-4xl font-bold uppercase">{s.title}</h3>
                   <p className="mt-3 text-lg text-muted">{s.description}</p>
                   <p className="mt-4 text-[0.9375rem]">
                     <span className="font-semibold">Who it&apos;s for: </span>
@@ -70,8 +70,8 @@ export default function ServicesPage() {
                       </li>
                     ))}
                   </ul>
-                  <ButtonLink href="/contact" variant="dark" size="sm" className="mt-6">
-                    Request {s.title.toLowerCase()}
+                  <ButtonLink href={`/contact?service=${s.slug}`} variant="dark" size="sm" className="mt-6 h-auto min-h-10 whitespace-normal py-2.5 text-center sm:whitespace-nowrap">
+                    Request {s.title}
                   </ButtonLink>
                 </div>
               </article>

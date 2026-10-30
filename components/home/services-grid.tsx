@@ -13,7 +13,7 @@ export function ServicesGrid() {
         title="Our Core Services"
         intro="Complete solar PV delivery by qualified engineers and installers — or just the part you need."
       />
-      <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {activeServices.map((s) => {
           const Icon = serviceIcons[s.icon];
           return (
@@ -34,7 +34,7 @@ export function ServicesGrid() {
             </li>
           );
         })}
-        <li>
+        <li className="lg:col-span-2">
           <Link
             href="/contact?service=full-project"
             className="on-dark group flex h-full flex-col bg-navy-900 p-8 text-[#ffffff] transition-colors duration-300 hover:bg-navy-800"

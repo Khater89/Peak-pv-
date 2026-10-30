@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Amiri, Cormorant_Garamond, IBM_Plex_Sans_Arabic, Inter } from "next/font/google";
+import { Barlow_Condensed, IBM_Plex_Mono, IBM_Plex_Sans_Arabic, Inter } from "next/font/google";
 import { company, locale } from "@/content/site";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
@@ -8,11 +8,10 @@ import { WhatsAppFab } from "@/components/whatsapp-fab";
 import { siteUrl } from "@/lib/utils";
 import "./globals.css";
 
-// Inter for text and UI; Cormorant Garamond for display headings and the wordmark; Plex Sans Arabic as Arabic fallback.
+// Inter for text; Barlow Condensed for display headings and the wordmark; Plex Mono for small "field labels".
 const body = Inter({ subsets: ["latin"], variable: "--font-body", display: "swap" });
-// Amiri for the Arabic "بيك" in the wordmark.
-const arabicDisplay = Amiri({ subsets: ["arabic"], weight: ["700"], variable: "--font-amiri", display: "swap" });
-const serif = Cormorant_Garamond({ subsets: ["latin"], weight: ["500", "600"], variable: "--font-cormorant", display: "swap" });
+const display = Barlow_Condensed({ subsets: ["latin"], weight: ["600", "700"], variable: "--font-condensed", display: "swap" });
+const mono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["500"], variable: "--font-plex-mono", display: "swap" });
 const arabic = IBM_Plex_Sans_Arabic({
   subsets: ["arabic"],
   weight: ["400", "500", "600", "700"],
@@ -45,7 +44,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang={locale.lang} dir={locale.dir} className={`${body.variable} ${serif.variable} ${arabic.variable} ${arabicDisplay.variable}`}>
+    <html lang={locale.lang} dir={locale.dir} className={`${body.variable} ${display.variable} ${mono.variable} ${arabic.variable}`}>
       <body className="flex min-h-dvh flex-col antialiased">
         <TopBar />
         <SiteHeader />

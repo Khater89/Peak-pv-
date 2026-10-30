@@ -5,7 +5,7 @@ import { ButtonLink } from "@/components/ui/button";
 
 export function FeaturedProject({ project }: { project: Project }) {
   return (
-    <article className="grid overflow-hidden border border-line bg-white lg:grid-cols-[1.25fr_1fr]">
+    <article className="corner-brackets grid overflow-hidden border border-line bg-white lg:grid-cols-[1.25fr_1fr]">
       <div className="relative aspect-[4/3] lg:aspect-auto lg:min-h-[28rem]">
         <ProjectMedia project={project} sizes="(min-width: 1024px) 55vw, 100vw" />
         <span className="absolute start-4 top-4 bg-ink px-3 py-1.5 text-[0.625rem] font-semibold uppercase tracking-[0.28em] text-sun-300">
@@ -13,12 +13,12 @@ export function FeaturedProject({ project }: { project: Project }) {
         </span>
       </div>
       <div className="flex flex-col p-7 sm:p-10">
-        <div className="flex flex-wrap gap-2 text-[0.625rem] font-semibold uppercase tracking-[0.2em]">
-          <span className="border border-line px-3 py-1">{project.systemType}</span>
-          <span className="border border-line px-3 py-1 capitalize">{project.segment}</span>
-          <span className="border border-line px-3 py-1">{statusLabel[project.status]}</span>
+        <div className="flex flex-wrap gap-2">
+          <span className="tag text-leaf-700">{project.systemType}</span>
+          <span className="tag text-leaf-700">{project.segment}</span>
+          <span className="tag text-leaf-700">{statusLabel[project.status]}</span>
         </div>
-        <p className="mt-7 font-serif text-6xl font-medium">
+        <p className="mt-7 font-serif text-6xl font-semibold">
           {project.capacityKwp}
           <span className="ms-2 font-sans text-xl font-semibold text-muted">kWp</span>
         </p>

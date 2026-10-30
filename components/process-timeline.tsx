@@ -5,12 +5,12 @@ export function ProcessTimeline() {
   return (
     <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {processSteps.map((step, i) => (
-        <li key={step.title} className="relative overflow-hidden border border-line bg-white p-8">
-          <span aria-hidden className="absolute top-4 end-6 select-none font-serif text-6xl font-medium leading-none text-sun-300/70">
+        <li key={step.title} className="corner-brackets relative overflow-hidden border border-line bg-white p-8">
+          <span aria-hidden className="absolute top-4 end-6 select-none font-mono text-4xl leading-none text-sun-400">
             {String(i + 1).padStart(2, "0")}
           </span>
           <span className="sr-only">Step {i + 1}: </span>
-          <h3 className="relative mt-8 font-serif text-2xl font-medium">{step.title}</h3>
+          <h3 className="relative mt-8 font-serif text-2xl font-semibold uppercase">{step.title}</h3>
           <p className="relative mt-2 text-[0.9375rem] leading-relaxed text-muted">{step.body}</p>
           <span aria-hidden className="relative mt-6 block h-px w-12 bg-sun-400" />
         </li>

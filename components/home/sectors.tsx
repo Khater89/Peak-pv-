@@ -32,7 +32,7 @@ export function Sectors() {
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-navy-950/75 via-navy-950/10 to-transparent" />
-              <span className="absolute inset-x-0 bottom-0 p-4 font-serif text-xl font-medium text-white sm:p-6 sm:text-3xl">{s.title}</span>
+              <span className="absolute inset-x-0 bottom-0 p-4 font-serif text-xl font-semibold uppercase tracking-[0.02em] text-white sm:p-6 sm:text-3xl">{s.title}</span>
             </Link>
           </li>
         ))}

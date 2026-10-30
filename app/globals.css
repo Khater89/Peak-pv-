@@ -3,25 +3,25 @@
 @theme {
   --font-sans: var(--font-body), var(--font-arabic), ui-sans-serif, system-ui, "Segoe UI", Tahoma, sans-serif;
   --font-display: var(--font-body), var(--font-arabic), ui-sans-serif, system-ui, sans-serif;
-  --font-brand: var(--font-cormorant), Georgia, serif;
-  --font-serif: var(--font-cormorant), Georgia, "Times New Roman", serif;
-  --font-arabic-display: var(--font-amiri), var(--font-arabic), serif;
+  --font-brand: var(--font-condensed), var(--font-body), sans-serif;
+  --font-serif: var(--font-condensed), var(--font-body), sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  --color-ink: #13261b;
-  --color-navy-950: #0f2318;
-  --color-navy-900: #173b27;
-  --color-navy-800: #1f4a32;
-  --color-navy-700: #2d6244;
+  --color-ink: #1b2416;
+  --color-navy-950: #1c2614;
+  --color-navy-900: #2f3d24;
+  --color-navy-800: #3b4c2d;
+  --color-navy-700: #4d6239;
   --color-navy-200: #c9dccd;
 
   /* Brand accent #f5b942. Use as a fill with ink text; for amber text on light use amber-700. */
-  --color-leaf-50: #f3f8f4;
-  --color-leaf-100: #e6f0e8;
-  --color-leaf-600: #2d6244;
-  --color-leaf-700: #1f4a32;
-  --color-sky-50: #f3f8f4;
-  --color-sky-100: #e6f0e8;
-  --color-sky-300: #b8d3be;
+  --color-leaf-50: #f4f7ef;
+  --color-leaf-100: #e7eedd;
+  --color-leaf-600: #4a6530;
+  --color-leaf-700: #3b4f27;
+  --color-sky-50: #f4f7ef;
+  --color-sky-100: #e7eedd;
+  --color-sky-300: #bfd0a8;
   --color-sun-50: #fff9e6;
   --color-sun-100: #feefc3;
   --color-sun-300: #f7cf6a;
@@ -29,10 +29,10 @@
   --color-sun-500: #dc9c0e;
   --color-sun-700: #835800;
 
-  --color-surface: #eef5ef;
-  --color-surface-2: #e1ece3;
-  --color-line: #dbe7dd;
-  --color-muted: #536257;
+  --color-surface: #f0f4ea;
+  --color-surface-2: #e2e9d6;
+  --color-line: #d9e2cc;
+  --color-muted: #56604c;
 
   /* Semantic states — kept separate from the brand accent. */
   --color-success: #11734b;
@@ -60,9 +60,10 @@
   }
   h1, h2 {
     font-family: var(--font-serif);
-    font-weight: 500;
-    line-height: 1.04;
-    letter-spacing: -0.015em;
+    font-weight: 700;
+    line-height: 0.98;
+    letter-spacing: 0.005em;
+    text-transform: uppercase;
     text-wrap: balance;
   }
   h3, h4 {
@@ -102,10 +103,11 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 0.6875rem;
-    font-weight: 600;
-    letter-spacing: 0.32em;
-    gap: 0.875rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    gap: 0.75rem;
     text-transform: uppercase;
     color: var(--color-sun-700);
   }
@@ -113,9 +115,11 @@
   .on-dark h1, .on-dark h2 { color: #faf8f4; }
   .eyebrow::before {
     content: "";
-    width: 2.25rem;
-    height: 1px;
+    width: 1rem;
+    height: 2px;
+    margin-block: 4px;
     background: var(--color-sun-400);
+    box-shadow: 0 -4px 0 var(--color-sun-400), 0 4px 0 var(--color-sun-400);
   }
 
   .field {
@@ -144,7 +148,7 @@
   }
   select.field {
     appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' stroke='%2313261b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 8 5 5 5-5'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' stroke='%231b2416' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 8 5 5 5-5'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 0.75rem center;
     padding-inline-end: 2.5rem;
@@ -152,10 +156,33 @@
   [dir="rtl"] select.field { background-position: left 0.75rem center; }
 }
 
+/* Corner brackets, like a field-map frame. Sits on top of the element's own background colour. */
+@utility corner-brackets {
+  --bk: var(--color-navy-700);
+  background-image:
+    linear-gradient(var(--bk), var(--bk)), linear-gradient(var(--bk), var(--bk)),
+    linear-gradient(var(--bk), var(--bk)), linear-gradient(var(--bk), var(--bk)),
+    linear-gradient(var(--bk), var(--bk)), linear-gradient(var(--bk), var(--bk)),
+    linear-gradient(var(--bk), var(--bk)), linear-gradient(var(--bk), var(--bk));
+  background-repeat: no-repeat;
+  background-size: 14px 2px, 2px 14px, 14px 2px, 2px 14px, 14px 2px, 2px 14px, 14px 2px, 2px 14px;
+  background-position: left top, left top, right top, right top, left bottom, left bottom, right bottom, right bottom;
+}
+
+@utility tag {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border: 1px dashed currentColor;
+  padding: 0.25rem 0.6rem;
+}
+
 @utility bg-grid {
   background-image:
-    linear-gradient(to right, rgb(23 59 39 / 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(23 59 39 / 0.04) 1px, transparent 1px);
+    linear-gradient(to right, rgb(47 61 36 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(47 61 36 / 0.05) 1px, transparent 1px);
   background-size: 48px 48px;
 }
 

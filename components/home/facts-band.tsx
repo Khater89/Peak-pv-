@@ -40,7 +40,7 @@ export function FactsBand() {
           <dl className="mt-4 grid grid-cols-2 border-s border-t border-white/10">
             {facts.map((f) => (
               <div key={f.label} className="border-b border-e border-white/10 p-7">
-                <dd className="font-serif text-4xl font-medium text-sun-300 sm:text-5xl">{f.value}</dd>
+                <dd className="font-serif text-4xl font-semibold text-sun-300 sm:text-5xl">{f.value}</dd>
                 <dt className="mt-2 text-[0.75rem] uppercase tracking-[0.16em] text-[#c9dccd]">{f.label}</dt>
               </div>
             ))}

@@ -22,9 +22,12 @@ export function Hero() {
 
       <div className="container-x pb-40 pt-16 sm:pt-24 lg:pb-48 lg:pt-28">
         <div className="max-w-2xl">
-          <p className="eyebrow">{company.brandName} · Solar PV</p>
-          <h1 id="hero-title" className="mt-6 text-[3rem] leading-[1] sm:text-7xl lg:text-[6rem]">
-            Solar power, <em className="font-medium italic text-leaf-600">engineered</em> for your property.
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+            <p className="eyebrow">{company.brandName} · Solar Energy</p>
+            <p className="font-mono text-[0.6875rem] uppercase tracking-[0.16em] text-muted">Jordan · 31.95°N 35.91°E</p>
+          </div>
+          <h1 id="hero-title" className="mt-6 text-[3.25rem] leading-[0.95] sm:text-7xl lg:text-[6.5rem]">
+            Solar power, <em className="not-italic text-leaf-600">engineered</em> for your property.
           </h1>
           <p className="mt-7 max-w-lg text-lg leading-relaxed text-ink/70">
             Supply, design and installation of photovoltaic systems for homes, businesses, farms and off-grid sites —

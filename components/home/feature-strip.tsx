@@ -17,7 +17,7 @@ export function FeatureStrip() {
                   <Icon aria-hidden className="size-5" strokeWidth={1.5} />
                 </span>
                 <div>
-                  <h3 className="text-[0.8125rem] font-semibold uppercase tracking-[0.14em]">{p.title}</h3>
+                  <h3 className="font-serif text-lg font-semibold uppercase tracking-[0.03em]">{p.title}</h3>
                   <p className="mt-1 text-sm leading-relaxed text-muted">{p.body}</p>
                 </div>
               </li>

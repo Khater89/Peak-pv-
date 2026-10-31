@@ -1,5 +1,5 @@
 import { EvCharger, LifeBuoy, Package, Ruler, Wrench } from "lucide-react";
-import type { Service } from "@/content/services";
+import type { Service } from "@/content/shared";
 
 export const serviceIcons: Record<Service["icon"], typeof Package> = {
   package: Package,

@@ -1,15 +1,16 @@
 import { ClipboardCheck, Layers, Ruler, Users } from "lucide-react";
-import { pillars } from "@/content/site";
+import { getContent } from "@/lib/i18n";
 
 const icons = [Users, Ruler, Layers, ClipboardCheck];
 
 /** Four feature cards overlapping the bottom of the hero. */
-export function FeatureStrip() {
+export async function FeatureStrip() {
+  const c = await getContent();
   return (
-    <section aria-label="Why Peak PV" className="relative z-10 -mt-24 lg:-mt-28">
+    <section aria-label={c.pillarsAria} className="relative z-10 -mt-24 lg:-mt-28">
       <div className="container-x">
         <ul className="grid overflow-hidden border border-line bg-[#ffffff] shadow-lift sm:grid-cols-2 lg:grid-cols-4">
-          {pillars.map((p, i) => {
+          {c.pillars.map((p, i) => {
             const Icon = icons[i % icons.length];
             return (
               <li key={p.title} className="flex gap-4 border-line p-6 max-lg:[&:nth-child(-n+2)]:border-b sm:max-lg:odd:border-e lg:border-e lg:last:border-e-0">

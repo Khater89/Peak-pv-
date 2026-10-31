@@ -1,31 +1,28 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Section, SectionHeading } from "@/components/section";
+import { images } from "@/content/shared";
+import { getContent, getLang } from "@/lib/i18n";
+import { lp } from "@/lib/locales";
 
-const sectors = [
-  { title: "Homes & Villas", type: "residential", img: "sector-homes", alt: "Installer placing a solar panel on a house roof" },
-  { title: "Commercial Buildings", type: "commercial", img: "sector-commercial", alt: "Solar array in front of a commercial building at dusk" },
-  { title: "Factories & Warehouses", type: "industrial", img: "sector-industrial", alt: "Large rooftop solar installation at sunset" },
-  { title: "Farms & Agriculture", type: "agricultural", img: "sector-farms", alt: "Solar panels in a field surrounded by trees" },
-  { title: "Solar Farms", type: "commercial", img: "sector-solar-farms", alt: "Aerial view of rows of solar panels" },
-  { title: "Off-grid Sites", type: "other", img: "sector-off-grid", alt: "Ground-mounted solar panels on open grassland" },
-];
-
-export function Sectors() {
+export async function Sectors() {
+  const c = await getContent();
+  const lang = await getLang();
+  const t = c.sectorsSection;
   return (
     <Section tone="surface" labelledBy="sectors-title">
       <SectionHeading
         id="sectors-title"
-        eyebrow="Who we work with"
-        title="Sectors We Serve"
-        intro="Solar PV solutions designed for a wide range of property types."
+        eyebrow={t.eyebrow}
+        title={t.title}
+        intro={t.intro}
       />
       <ul className="mt-12 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
-        {sectors.map((s) => (
+        {c.sectors.map((s) => (
           <li key={s.title}>
-            <Link href={`/contact?type=${s.type}`} className="group relative block aspect-[4/3] overflow-hidden">
+            <Link href={lp(lang, `/contact?type=${s.type}`)} className="group relative block aspect-[4/3] overflow-hidden">
               <Image
-                src={`/images/${s.img}.jpg`}
+                src={images[s.img as keyof typeof images]}
                 alt={s.alt}
                 fill
                 sizes="(min-width: 1024px) 33vw, 50vw"

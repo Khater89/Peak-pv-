@@ -12,7 +12,9 @@ import path from "node:path";
 const { chromium } = createRequire(import.meta.url)("playwright");
 
 const BASE = process.env.BASE_URL || "http://localhost:3000";
-const PAGES = ["/", "/services", "/projects", "/about", "/contact", "/projects/madama"];
+const PATHS = ["", "/services", "/projects", "/about", "/contact", "/projects/madama"];
+const LOCALES = ["en", "ar"];
+const PAGES = LOCALES.flatMap((l) => PATHS.map((p) => `/${l}${p}`));
 let failed = 0;
 const check = (name, ok, detail = "") => {
   console.log(`${ok ? "PASS" : "FAIL"}  ${name}${detail ? " — " + detail : ""}`);
@@ -23,6 +25,7 @@ const browser = await chromium.launch();
 
 // Page structure: unique titles, one h1, descriptions, alt text, no horizontal overflow, nav links.
 const titles = new Set();
+// Each language must have its own unique titles; both together are checked below.
 for (const width of [360, 768, 1440]) {
   const page = await browser.newPage({ viewport: { width, height: 900 } });
   for (const p of PAGES) {
@@ -40,14 +43,17 @@ for (const width of [360, 768, 1440]) {
       check(`${p} has exactly one h1`, info.h1 === 1, `found ${info.h1}`);
       check(`${p} has a meta description`, info.desc.length > 50);
       check(`${p} images have alt text`, info.imgNoAlt === 0 && info.svgUnlabelled === 0);
-      for (const target of ["/services", "/projects", "/about", "/contact"]) {
+      const loc = p.split("/")[1];
+      const dir = await page.evaluate(() => document.documentElement.dir);
+      check(`${p} has dir=${loc === "ar" ? "rtl" : "ltr"}`, dir === (loc === "ar" ? "rtl" : "ltr"), dir);
+      for (const target of ["/services", "/projects", "/about", "/contact"].map((t) => `/${loc}${t}`)) {
         const inHeader = await page.locator(`header a[href="${target}"]`).count();
         const inFooter = await page.locator(`footer a[href="${target}"]`).count();
         if (!inHeader || !inFooter) check(`${p} links to ${target} in header+footer`, false);
       }
     }
     check(`${p} @${width}px has no horizontal scroll`, info.overflow <= 0, `overflow ${info.overflow}px`);
-    check(`${p} @${width}px header CTA visible`, (await page.locator('header a[href="/contact"]:visible').count()) > 0);
+    check(`${p} @${width}px header CTA visible`, (await page.locator(`header a[href="/${p.split("/")[1]}/contact"]:visible`).count()) > 0);
   }
   await page.close();
 }
@@ -56,7 +62,7 @@ check("page titles are unique", titles.size === PAGES.length);
 // Home sections.
 {
   const page = await browser.newPage();
-  await page.goto(BASE + "/", { waitUntil: "networkidle" });
+  await page.goto(BASE + "/en", { waitUntil: "networkidle" });
   for (const id of ["hero-title", "services-title", "facts-title", "process-title", "sectors-title", "projects-title", "faq-title", "contact-title"]) {
     check(`home has section #${id}`, (await page.locator(`#${id}`).count()) === 1);
   }
@@ -65,7 +71,7 @@ check("page titles are unique", titles.size === PAGES.length);
 
 // Form: validation, keyboard, failure, success.
 const page = await browser.newPage({ viewport: { width: 360, height: 800 } });
-await page.goto(BASE + "/contact", { waitUntil: "networkidle" });
+await page.goto(BASE + "/en/contact", { waitUntil: "networkidle" });
 
 // Keyboard: tab to the first field and confirm a visible focus indicator.
 await page.locator("form[data-ready]").waitFor();
@@ -123,6 +129,27 @@ if (existsSync(file)) {
 }
 await browser.close();
 
+// Arabic form: validation messages and summary are in Arabic.
+{
+  const b2 = await chromium.launch();
+  const ar = await b2.newPage({ viewport: { width: 390, height: 800 } });
+  await ar.goto(BASE + "/ar/contact", { waitUntil: "networkidle" });
+  await ar.locator("form[data-ready]").waitFor();
+  await ar.click('button[type="submit"]');
+  check("Arabic form shows Arabic validation", await ar.getByText("يرجى إدخال اسمك الكامل.", { exact: true }).isVisible());
+  const sw = await ar.locator('a[hreflang="en"]').first().getAttribute("href");
+  check("language switch links to the same page", sw === "/en/contact", sw);
+  await b2.close();
+}
+
+// Redirects: paths without a locale go to /en (or /ar for Arabic browsers).
+{
+  const r1 = await fetch(BASE + "/services", { redirect: "manual", headers: { "Accept-Language": "en-US" } });
+  check("/services redirects to /en/services", r1.status === 307 && r1.headers.get("location")?.endsWith("/en/services"));
+  const r2 = await fetch(BASE + "/", { redirect: "manual", headers: { "Accept-Language": "ar-JO,ar;q=0.9" } });
+  check("/ redirects Arabic browsers to /ar", r2.status === 307 && r2.headers.get("location")?.endsWith("/ar"));
+}
+
 // API: server-side validation independent of the UI.
 const bad = await fetch(BASE + "/api/inquiries", {
   method: "POST",
@@ -130,7 +157,7 @@ const bad = await fetch(BASE + "/api/inquiries", {
   body: JSON.stringify({ name: "A", email: "x" }),
 });
 const badBody = await bad.json();
-check("API rejects invalid payload with 422 + field errors", bad.status === 422 && !!badBody.fieldErrors?.phone);
+check("API rejects invalid payload with 422 + field error keys", bad.status === 422 && badBody.fieldErrors?.phone === "phone_required" && badBody.error === "invalid");
 
 console.log(failed ? `\n${failed} check(s) failed` : "\nAll checks passed");
 process.exit(failed ? 1 : 0);

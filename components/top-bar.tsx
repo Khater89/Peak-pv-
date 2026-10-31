@@ -1,7 +1,9 @@
 import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
-import { company, email, phones, whatsappHref } from "@/content/site";
+import { email, phones, whatsappHref } from "@/content/shared";
+import { getContent } from "@/lib/i18n";
 
-export function TopBar() {
+export async function TopBar() {
+  const c = await getContent();
   return (
     <div className="on-dark bg-navy-950 text-[0.75rem] tracking-[0.04em] text-[#c9dccd]">
       <div className="container-x flex h-10 items-center justify-between gap-4">
@@ -9,7 +11,7 @@ export function TopBar() {
           {phones.map((p, i) => (
             <a key={p.intl} href={`tel:${p.intl}`} className={i > 0 ? "hidden items-center gap-1.5 hover:text-white sm:inline-flex" : "inline-flex items-center gap-1.5 hover:text-white"}>
               <Phone aria-hidden className="size-3.5 text-sun-400" />
-              <span className="sr-only">Call </span>
+              <span className="sr-only">{c.topBar.call} </span>
               <span dir="ltr">{p.display}</span>
             </a>
           ))}
@@ -18,13 +20,13 @@ export function TopBar() {
           </a>
         </div>
         <div className="flex items-center gap-4 sm:gap-6">
-          {company.serviceArea && (
+          {c.company.serviceArea && (
             <span className="hidden items-center gap-1.5 md:inline-flex">
-              <MapPin aria-hidden className="size-3.5 text-sun-400" /> Serving {company.serviceArea}
+              <MapPin aria-hidden className="size-3.5 text-sun-400" /> {c.topBar.serving(c.company.serviceArea)}
             </span>
           )}
-          <a href={whatsappHref()} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 font-semibold text-white hover:text-sun-300">
-            <MessageCircle aria-hidden className="size-3.5 text-sun-400" /> WhatsApp
+          <a href={whatsappHref(c.whatsappMessage)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 font-semibold text-white hover:text-sun-300">
+            <MessageCircle aria-hidden className="size-3.5 text-sun-400" /> {c.topBar.whatsapp}
           </a>
         </div>
       </div>

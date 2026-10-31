@@ -28,16 +28,17 @@ export function LogoMark({ className, tone = "dark" }: { className?: string; ton
   );
 }
 
-export function Logo({ tone = "dark" }: { tone?: "dark" | "light" }) {
+export function Logo({ tone = "dark", tagline = "Solar Energy" }: { tone?: "dark" | "light"; tagline?: string }) {
   return (
     <span className="inline-flex items-center gap-2 sm:gap-2.5">
       <LogoMark tone={tone} />
-      <span className="flex flex-col leading-none">
+      {/* The wordmark is always Latin, so it keeps its own typography inside Arabic pages. */}
+      <span lang="en" dir="ltr" className="flex flex-col items-start leading-none">
         <span className={cn("font-serif text-[1.65rem] font-bold uppercase tracking-[0.06em] sm:text-[1.9rem]", tone === "light" ? "text-white" : "text-navy-900")}>
           Peak <span className="text-sun-500">PV</span>
         </span>
         <span className={cn("mt-1 font-mono text-[0.5625rem] font-medium uppercase tracking-[0.28em]", tone === "light" ? "text-white/70" : "text-muted")}>
-          Solar Energy
+          {tagline}
         </span>
       </span>
     </span>

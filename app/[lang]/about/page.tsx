@@ -1,56 +1,55 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Compass, Handshake, ShieldCheck, Target } from "lucide-react";
-import { company, pageImages } from "@/content/site";
+import { images } from "@/content/shared";
+import { getContent, getLang } from "@/lib/i18n";
+import { lp } from "@/lib/locales";
 import { PageHero, Section, SectionHeading } from "@/components/section";
 import { ProcessTimeline } from "@/components/process-timeline";
 import { CtaBand } from "@/components/cta-band";
 
-export const metadata: Metadata = {
-  title: "About Peak PV — Solar PV Specialists",
-  description: "Peak PV is a solar photovoltaic company supplying, designing and installing PV systems for homes and businesses.",
-  alternates: { canonical: "/about" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const c = await getContent();
+  const lang = await getLang();
+  return {
+    title: c.meta.about.title,
+    description: c.meta.about.description,
+    alternates: { canonical: lp(lang, "/about"), languages: { en: "/en/about", ar: "/ar/about" } },
+  };
+}
 
-const values = [
-  { icon: Compass, title: "Honest advice", body: "We recommend what fits your site and goals — and say so when solar isn't the right fit." },
-  { icon: Target, title: "Engineered to fit", body: "Systems designed from real measurements, not a one-size-fits-all package." },
-  { icon: ShieldCheck, title: "Safety and quality", body: "Careful installation practice and testing before every handover." },
-  { icon: Handshake, title: "One accountable team", body: "The same team takes your project from consultation to commissioning." },
-];
+const valueIcons = [Compass, Target, ShieldCheck, Handshake];
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const c = await getContent();
+  const t = c.aboutPage;
+  const company = c.company;
+  const values = t.values.map((v, i) => ({ ...v, icon: valueIcons[i % valueIcons.length] }));
   return (
     <>
-      <PageHero image={pageImages.about} eyebrow="About us" title="Solar specialists, start to finish" intro={company.about} />
+      <PageHero image={{ src: images.pageAbout, alt: t.imageAlt }} eyebrow={t.eyebrow} title={t.title} intro={company.about} />
 
       <Section labelledBy="story-title">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
-            <SectionHeading id="story-title" eyebrow="Our story" title="Why Peak PV" />
+            <SectionHeading id="story-title" eyebrow={t.storyEyebrow} title={t.storyTitle} />
             <div className="mt-6 space-y-4 text-lg text-muted">
-              <p>
-                Going solar involves many decisions — which equipment, what size, how it is mounted and connected. We set
-                up Peak PV so property owners could get all of that from one specialist team.
-              </p>
-              <p>
-                We focus on photovoltaic systems only: supplying the right components, designing around each site and
-                installing to a high standard.
-              </p>
+              <p>{t.storyP1}</p>
+              <p>{t.storyP2}</p>
             </div>
             <div className="mt-8 rounded-[2px] border-s-4 border-sun-400 bg-surface p-6">
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-muted">Our mission</h3>
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-muted">{t.mission}</h3>
               <p className="mt-2 text-xl font-semibold leading-snug">{company.mission}</p>
             </div>
           </div>
           <div className="relative aspect-[4/3] overflow-hidden rounded-[2px] shadow-lift">
-            <Image src="/images/sector-homes.jpg" alt="Installer placing a solar panel on a house roof" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
+            <Image src={images.homes} alt={t.storyImageAlt} fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
           </div>
         </div>
       </Section>
 
       <Section tone="surface" labelledBy="values-title">
-        <SectionHeading id="values-title" eyebrow="What we stand for" title="Our values" align="center" />
+        <SectionHeading id="values-title" eyebrow={t.valuesEyebrow} title={t.valuesTitle} align="center" />
         <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {values.map((v) => (
             <li key={v.title} className="rounded-[var(--radius-card)] border border-line bg-white p-6 shadow-card">
@@ -66,7 +65,7 @@ export default function AboutPage() {
 
       {(company.certifications.length > 0 || company.partners.length > 0) && (
         <Section labelledBy="trust-title">
-          <SectionHeading id="trust-title" eyebrow="Quality & partners" title="Certifications and partners" />
+          <SectionHeading id="trust-title" eyebrow={t.trustEyebrow} title={t.trustTitle} />
           {company.certifications.length > 0 && (
             <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {company.certifications.map((c) => (
@@ -77,7 +76,7 @@ export default function AboutPage() {
                     <p className="text-sm text-muted">{c.issuer}</p>
                     {c.evidenceUrl && (
                       <a href={c.evidenceUrl} className="text-sm font-medium underline" rel="noopener noreferrer" target="_blank">
-                        View certificate
+                        {t.viewCertificate}
                       </a>
                     )}
                   </div>
@@ -98,7 +97,7 @@ export default function AboutPage() {
       )}
 
       <Section labelledBy="about-process-title">
-        <SectionHeading id="about-process-title" eyebrow="How we work" title="A process built on clarity" />
+        <SectionHeading id="about-process-title" eyebrow={t.processEyebrow} title={t.processTitle} />
         <div className="mt-12">
           <ProcessTimeline />
         </div>

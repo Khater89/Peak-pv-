@@ -1,49 +1,45 @@
 import { z } from "zod";
-import { activeServices } from "@/content/services";
+import { en } from "@/content/en";
+import { projectTypeValues } from "@/content/shared";
 
-/** Shared by the form (client) and the API route (server). The server is authoritative. */
+/**
+ * Shared by the form (client) and the API route (server). The server is authoritative.
+ * Messages are message keys (see content/<lang>.form.errors), so each language renders its own text.
+ */
 
-export const projectTypes = [
-  { value: "residential", label: "Residential (home, villa, apartment)" },
-  { value: "commercial", label: "Commercial (office, shop, hotel)" },
-  { value: "industrial", label: "Industrial (factory, warehouse)" },
-  { value: "agricultural", label: "Agricultural (farm, water pumping)" },
-  { value: "other", label: "Other" },
-] as const;
+export { projectTypeValues };
+export const serviceValues = [
+  "full-project",
+  ...en.services.filter((s) => s.enabled).map((s) => s.slug),
+  "not-sure",
+] as [string, ...string[]];
 
-export const serviceInterests = [
-  { value: "full-project", label: "Full project — design, supply & installation" },
-  ...activeServices.map((s) => ({ value: s.slug, label: s.title })),
-  { value: "not-sure", label: "Not sure yet" },
-];
-
-const projectTypeValues = projectTypes.map((p) => p.value) as [string, ...string[]];
-const serviceValues = serviceInterests.map((s) => s.value) as [string, ...string[]];
-
-const trimmed = (max: number) => z.string().trim().max(max, `Please keep this under ${max} characters.`);
+/** `missing` is the message key used when the field is absent or not a string. */
+const trimmed = (max: number, missing = "too_long") => z.string({ error: missing }).trim().max(max, "too_long");
 const optional = (max: number) =>
   trimmed(max)
     .optional()
     .transform((v) => (v ? v : undefined));
 
 export const inquirySchema = z.object({
-  name: trimmed(120).min(2, "Please enter your full name."),
-  phone: trimmed(32)
-    .min(1, "Please enter a phone number.")
-    .regex(/^\+?[0-9\s\-().]{7,}$/, "Enter a valid phone number, e.g. 079 000 0000.")
-    .refine((v) => v.replace(/\D/g, "").length >= 7, "Enter a valid phone number, e.g. 079 000 0000."),
-  email: trimmed(200).min(1, "Please enter your email address.").pipe(z.email("Enter a valid email address, e.g. name@company.com.")),
+  name: trimmed(120, "name").min(2, "name"),
+  phone: trimmed(32, "phone_required")
+    .min(1, "phone_required")
+    .regex(/^\+?[0-9\s\-().]{7,}$/, "phone_invalid")
+    .refine((v) => v.replace(/\D/g, "").length >= 7, "phone_invalid"),
+  email: trimmed(200, "email_required").min(1, "email_required").pipe(z.email("email_invalid")),
   company: optional(160),
-  projectType: z.enum(projectTypeValues, { error: "Choose the type of property." }),
-  serviceInterest: z.enum(serviceValues, { error: "Choose the service you need." }),
+  projectType: z.enum(projectTypeValues, { error: "projectType" }),
+  serviceInterest: z.enum(serviceValues, { error: "serviceInterest" }),
   location: optional(160),
   message: optional(2000),
-  consent: z.literal(true, { error: "Please confirm we may contact you about this request." }),
+  consent: z.literal(true, { error: "consent" }),
   sourcePage: optional(200),
 });
 
 export type InquiryInput = z.input<typeof inquirySchema>;
 export type Inquiry = z.output<typeof inquirySchema>;
+/** Field -> message key. */
 export type FieldErrors = Partial<Record<keyof InquiryInput, string>>;
 
 export function fieldErrors(error: z.ZodError): FieldErrors {
@@ -55,6 +51,9 @@ export function fieldErrors(error: z.ZodError): FieldErrors {
   return out;
 }
 
+/** API error codes, translated by the form (content/<lang>.form.api). */
+export type InquiryErrorCode = "invalid" | "rate_limited" | "too_large" | "bad_request" | "rejected" | "unsupported" | "store_failed";
+
 export type InquiryResponse =
   | { ok: true; reference: string }
-  | { ok: false; error: string; fieldErrors?: FieldErrors };
+  | { ok: false; error: InquiryErrorCode; fieldErrors?: FieldErrors };

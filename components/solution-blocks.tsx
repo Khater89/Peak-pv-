@@ -1,13 +1,15 @@
 import { Building2, Check, Home } from "lucide-react";
-import { solutions } from "@/content/services";
 import Image from "next/image";
+import { images } from "@/content/shared";
+import { getContent } from "@/lib/i18n";
 
-const meta: Record<(typeof solutions)[number]["segment"], { icon: typeof Home; img: string; alt: string }> = {
-  residential: { icon: Home, img: "/images/sector-homes.jpg", alt: "Installer placing a solar panel on a house roof" },
-  commercial: { icon: Building2, img: "/images/sector-industrial.jpg", alt: "Large rooftop solar installation at sunset" },
+const meta = {
+  residential: { icon: Home, img: images.homes },
+  commercial: { icon: Building2, img: images.industrial },
 };
 
-export function SolutionBlocks() {
+export async function SolutionBlocks() {
+  const { solutions } = await getContent();
   return (
     <div className="grid gap-6 lg:grid-cols-2">
       {solutions.map((s) => {
@@ -16,7 +18,7 @@ export function SolutionBlocks() {
         return (
           <article key={s.segment} className="overflow-hidden rounded-[var(--radius-card)] border border-line bg-white shadow-card">
             <div className="relative aspect-[16/9]">
-              <Image src={m.img} alt={m.alt} fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
+              <Image src={m.img} alt={s.alt} fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
             </div>
             <div className="p-7 sm:p-8">
               <div className="flex items-center gap-3">

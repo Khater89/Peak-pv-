@@ -213,3 +213,21 @@
   .anim-sun { animation: sun-pulse 6s ease-in-out infinite; transform-origin: center; transform-box: fill-box; }
   .anim-sheen { animation: sheen 7s ease-in-out infinite; }
 }
+
+/*
+ * Arabic pages. Unlayered on purpose so it wins over Tailwind utilities (font-serif, font-mono, tracking-*):
+ * Latin display/mono faces have no Arabic glyphs, and letter-spacing breaks Arabic letter joining.
+ * The logo wordmark is marked lang="en", so :lang(ar) does not touch it.
+ */
+:lang(ar) {
+  font-family: var(--font-arabic), var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: 0 !important;
+}
+:lang(ar) h1,
+:lang(ar) h2 {
+  line-height: 1.3;
+  text-transform: none;
+}
+:lang(ar) body {
+  line-height: 1.8;
+}

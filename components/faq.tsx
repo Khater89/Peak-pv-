@@ -1,7 +1,8 @@
 import { Plus } from "lucide-react";
-import { faqs } from "@/content/site";
+import { getContent } from "@/lib/i18n";
 
-export function Faq({ limit }: { limit?: number }) {
+export async function Faq({ limit }: { limit?: number }) {
+  const { faqs } = await getContent();
   const items = limit ? faqs.slice(0, limit) : faqs;
   return (
     <div className="divide-y divide-line border-y border-line">

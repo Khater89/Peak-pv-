@@ -1,11 +1,14 @@
 import type { MetadataRoute } from "next";
+import { contents } from "@/content";
+import { locales } from "@/lib/locales";
 import { siteUrl } from "@/lib/utils";
-import { projects } from "@/content/projects";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return ["", "/services", "/projects", "/about", "/contact", ...projects.map((p) => `/projects/${p.slug}`)].map((path) => ({
-    url: `${siteUrl()}${path}`,
+  const paths = ["", "/services", "/projects", "/about", "/contact", ...contents.en.projects.map((p) => `/projects/${p.slug}`)];
+  return paths.map((path) => ({
+    url: `${siteUrl()}/en${path}`,
     changeFrequency: "monthly",
     priority: path === "" ? 1 : 0.8,
+    alternates: { languages: Object.fromEntries(locales.map((l) => [l, `${siteUrl()}/${l}${path}`])) },
   }));
 }

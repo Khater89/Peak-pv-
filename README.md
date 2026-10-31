@@ -69,7 +69,7 @@ To use Supabase instead, set `INQUIRY_STORE=supabase`, `SUPABASE_URL` and `SUPAB
 
 ## Editing content
 
-All copy and company facts live in `content/`:
+All copy lives in `content/en` and `content/ar`; shared facts in `content/shared.ts`:
 
 - `content/site.ts`: company profile, metrics, certifications, partners, contact channels, process, FAQ
 - `content/services.ts`: services (the `enabled` flag), solutions, system types, capabilities
@@ -90,11 +90,17 @@ attribution required). They illustrate the kind of work only and are not Peak PV
 Peak PV's own photos under the same file names. Project pages never use stock photos: until a project's own
 renders/photos are added, it shows a neutral "renders coming soon" panel.
 
-## Arabic readiness
+## Languages (English / Arabic)
 
-`<html lang dir>` comes from `content/site.ts`. Layout uses logical properties (`ms-*`, `ps-*`,
-`start-*`, `border-s`), directional icons flip under `rtl`, and the body font (IBM Plex Sans Arabic)
-covers Arabic. To add Arabic, add a parallel content set and an `[locale]` route segment.
+- Every page exists at `/en/...` and `/ar/...` (`app/[lang]/`). `proxy.ts` redirects paths without a locale:
+  `/` goes to `/ar` for browsers that prefer Arabic, otherwise `/en`.
+- `<html lang dir>` is set per locale; Arabic pages are right-to-left with IBM Plex Sans Arabic and no
+  letter-spacing (see the end of `app/[lang]/globals.css`). The PEAK PV wordmark stays Latin in both.
+- All text lives in `content/en/index.ts` and `content/ar/index.ts` (same shape, type-checked). Facts that do not
+  change with language (phones, email, images, option values) are in `content/shared.ts`.
+- Server components read the current language with `getLang()` / `getContent()` (`lib/i18n.ts`).
+- Form validation returns message keys (`lib/inquiry-schema.ts`); the form renders them in the page language.
+- The header has a language switch that keeps you on the same page.
 
 ## Checks
 

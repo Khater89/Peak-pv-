@@ -3,16 +3,33 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { Menu, Phone, X } from "lucide-react";
-import { nav, phones, primaryCta } from "@/content/site";
+import { Languages, Menu, Phone, X } from "lucide-react";
+import type { Content } from "@/content";
 import { Logo } from "@/components/logo";
+import { lp, switchLocalePath, type Locale } from "@/lib/locales";
 import { ButtonLink } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-const links = [{ href: "/", label: "Home" }, ...nav];
+type Props = {
+  lang: Locale;
+  phone: { display: string; intl: string };
+  nav: Content["nav"];
+  t: Content["header"];
+  brandTagline: string;
+};
 
-export function SiteHeader() {
+export function SiteHeader({ lang, phone, nav, t, brandTagline }: Props) {
   const pathname = usePathname();
+  const links = [
+    { href: lp(lang, "/"), label: nav.home },
+    { href: lp(lang, "/services"), label: nav.services },
+    { href: lp(lang, "/projects"), label: nav.projects },
+    { href: lp(lang, "/about"), label: nav.about },
+    { href: lp(lang, "/contact"), label: nav.contact },
+  ];
+  const quoteHref = lp(lang, "/contact");
+  const otherLang: Locale = lang === "ar" ? "en" : "ar";
+  const switchHref = switchLocalePath(pathname, otherLang);
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const toggleRef = useRef<HTMLButtonElement>(null);
@@ -38,7 +55,8 @@ export function SiteHeader() {
     return () => document.removeEventListener("keydown", onKey);
   }, [open]);
 
-  const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(href + "/"));
+  const home = lp(lang, "/");
+  const isActive = (href: string) => (href === home ? pathname === home : pathname === href || pathname.startsWith(href + "/"));
 
   return (
     <header
@@ -51,14 +69,14 @@ export function SiteHeader() {
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:start-4 focus:top-3 focus:z-50 focus:rounded-[2px] focus:bg-navy-900 focus:px-4 focus:py-2 focus:text-white"
       >
-        Skip to content
+        {t.skip}
       </a>
       <div className="container-x flex h-[4.5rem] items-center justify-between gap-3 lg:h-24">
-        <Link href="/" aria-label="Peak PV — home" className="shrink-0 rounded-[2px]">
-          <Logo />
+        <Link href={home} aria-label={t.homeAria} className="shrink-0 rounded-[2px]">
+          <Logo tagline={brandTagline} />
         </Link>
 
-        <nav aria-label="Main" className="hidden lg:block">
+        <nav aria-label={t.mainNav} className="hidden lg:block">
           <ul className="flex items-center gap-1">
             {links.map((item) => (
               <li key={item.href}>
@@ -75,13 +93,23 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-2 lg:gap-5">
-          <a href={`tel:${phones[0].intl}`} className="hidden items-center gap-2 border-s border-line ps-5 text-sm font-medium tracking-[0.06em] text-ink xl:inline-flex">
+          <Link
+            href={switchHref}
+            hrefLang={otherLang}
+            lang={otherLang}
+            aria-label={t.switchToAria}
+            className="hidden h-10 items-center gap-1.5 rounded-[2px] border border-line px-3 text-sm font-semibold text-ink transition-colors hover:border-navy-900 sm:inline-flex lg:h-12"
+          >
+            <Languages aria-hidden className="size-4 text-leaf-600" strokeWidth={1.75} />
+            <span className={otherLang === "ar" ? "font-arabic" : undefined}>{t.switchTo}</span>
+          </Link>
+          <a href={`tel:${phone.intl}`} className="hidden items-center gap-2 border-s border-line ps-5 text-sm font-medium tracking-[0.06em] text-ink xl:inline-flex">
             <Phone aria-hidden className="size-4 text-leaf-600" strokeWidth={1.5} />
-            <span dir="ltr">{phones[0].display}</span>
+            <span dir="ltr">{phone.display}</span>
           </a>
-          <ButtonLink href={primaryCta.href} variant="dark" size="sm" className="px-4 lg:h-12 lg:px-6">
-            <span className="min-[400px]:hidden">Quote</span>
-            <span className="hidden min-[400px]:inline">Request a Quote</span>
+          <ButtonLink href={quoteHref} variant="dark" size="sm" className="px-4 lg:h-12 lg:px-6">
+            <span className="min-[400px]:hidden">{t.quoteShort}</span>
+            <span className="hidden min-[400px]:inline">{t.requestQuote}</span>
           </ButtonLink>
           <button
             ref={toggleRef}
@@ -91,13 +119,13 @@ export function SiteHeader() {
             aria-controls="mobile-nav"
             onClick={() => setOpen((v) => !v)}
           >
-            <span className="sr-only">{open ? "Close menu" : "Open menu"}</span>
+            <span className="sr-only">{open ? t.closeMenu : t.openMenu}</span>
             {open ? <X aria-hidden className="size-5" /> : <Menu aria-hidden className="size-5" />}
           </button>
         </div>
       </div>
 
-      <nav id="mobile-nav" aria-label="Mobile" hidden={!open} className="border-t border-line bg-white lg:hidden">
+      <nav id="mobile-nav" aria-label={t.mobileNav} hidden={!open} className="border-t border-line bg-white lg:hidden">
         <ul className="container-x flex flex-col py-3">
           {links.map((item) => (
             <li key={item.href}>
@@ -111,11 +139,20 @@ export function SiteHeader() {
             </li>
           ))}
           <li className="mt-2 grid gap-2 pb-2">
-            <a href={`tel:${phones[0].intl}`} className="flex h-12 items-center justify-center gap-2 rounded-[2px] border border-line font-semibold">
-              <Phone aria-hidden className="size-4" /> <span dir="ltr">{phones[0].display}</span>
+            <Link
+              href={switchHref}
+              hrefLang={otherLang}
+              lang={otherLang}
+              aria-label={t.switchToAria}
+              className="flex h-12 items-center justify-center gap-2 rounded-[2px] border border-line font-semibold"
+            >
+              <Languages aria-hidden className="size-4 text-leaf-600" strokeWidth={1.75} /> {t.switchTo}
+            </Link>
+            <a href={`tel:${phone.intl}`} className="flex h-12 items-center justify-center gap-2 rounded-[2px] border border-line font-semibold">
+              <Phone aria-hidden className="size-4" /> <span dir="ltr">{phone.display}</span>
             </a>
-            <ButtonLink href={primaryCta.href} className="w-full">
-              {primaryCta.label}
+            <ButtonLink href={quoteHref} className="w-full">
+              {t.requestQuote}
             </ButtonLink>
           </li>
         </ul>

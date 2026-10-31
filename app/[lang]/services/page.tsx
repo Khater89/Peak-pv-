@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Fragment } from "react";
-import { pageImages } from "@/content/site";
 import { Check, CircuitBoard } from "lucide-react";
-import { activeServices, capabilities, comparison, systemTypes } from "@/content/services";
+import { images } from "@/content/shared";
+import { getContent, getLang } from "@/lib/i18n";
+import { lp } from "@/lib/locales";
 import { serviceIcons } from "@/components/icons";
 import { PageHero, Section, SectionHeading } from "@/components/section";
 import { SolutionBlocks } from "@/components/solution-blocks";
@@ -10,22 +11,25 @@ import { CtaBand } from "@/components/cta-band";
 import { EvChargingGrid } from "@/components/ev-charging";
 import { ButtonLink } from "@/components/ui/button";
 
-export const metadata: Metadata = {
-  title: "Solar PV Services — Supply, Design & Installation",
-  description:
-    "Solar PV equipment supply, system design and professional installation for residential and commercial properties from Peak PV.",
-  alternates: { canonical: "/services" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const c = await getContent();
+  const lang = await getLang();
+  return {
+    title: c.meta.services.title,
+    description: c.meta.services.description,
+    alternates: { canonical: lp(lang, "/services"), languages: { en: "/en/services", ar: "/ar/services" } },
+  };
+}
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const c = await getContent();
+  const lang = await getLang();
+  const t = c.servicesPage;
+  const activeServices = c.services.filter((s) => s.enabled);
   return (
     <>
-      <PageHero image={pageImages.services}
-        eyebrow="Services"
-        title="Solar PV, handled end to end"
-        intro="Supply, design and installation — choose the full project or just the part you need."
-      >
-        <nav aria-label="Services on this page" className="mt-8 flex flex-wrap gap-2">
+      <PageHero image={{ src: images.pageServices, alt: t.imageAlt }} eyebrow={t.eyebrow} title={t.title} intro={t.intro}>
+        <nav aria-label={t.onThisPage} className="mt-8 flex flex-wrap gap-2">
           {activeServices.map((s) => (
             <a key={s.slug} href={`#${s.slug}`} className="inline-flex h-11 items-center rounded-[2px] border border-line bg-white px-5 text-sm font-semibold hover:border-navy-900/40">
               {s.title}
@@ -35,7 +39,7 @@ export default function ServicesPage() {
       </PageHero>
 
       <Section labelledBy="service-detail-title">
-        <h2 id="service-detail-title" className="sr-only">Service details</h2>
+        <h2 id="service-detail-title" className="sr-only">{t.detailsSr}</h2>
         <div className="space-y-6">
           {activeServices.map((s, i) => {
             const Icon = serviceIcons[s.icon];
@@ -56,12 +60,12 @@ export default function ServicesPage() {
                   <h3 id={`${s.slug}-title`} className="mt-5 font-serif text-4xl font-bold uppercase">{s.title}</h3>
                   <p className="mt-3 text-lg text-muted">{s.description}</p>
                   <p className="mt-4 text-[0.9375rem]">
-                    <span className="font-semibold">Who it&apos;s for: </span>
+                    <span className="font-semibold">{t.whoFor}</span>
                     <span className="text-muted">{s.audience}</span>
                   </p>
                 </div>
                 <div className="rounded-[2px] bg-surface p-6">
-                  <h4 className="text-sm font-semibold uppercase tracking-wider text-muted">What you get</h4>
+                  <h4 className="text-sm font-semibold uppercase tracking-wider text-muted">{t.whatYouGet}</h4>
                   <ul className="mt-4 space-y-3">
                     {s.benefits.map((b) => (
                       <li key={b} className="flex gap-3">
@@ -72,8 +76,8 @@ export default function ServicesPage() {
                       </li>
                     ))}
                   </ul>
-                  <ButtonLink href={`/contact?service=${s.slug}`} variant="dark" size="sm" className="mt-6 h-auto min-h-10 whitespace-normal py-2.5 text-center sm:whitespace-nowrap">
-                    Request {s.title}
+                  <ButtonLink href={lp(lang, `/contact?service=${s.slug}`)} variant="dark" size="sm" className="mt-6 h-auto min-h-10 whitespace-normal py-2.5 text-center sm:whitespace-nowrap">
+                    {t.request(s.title)}
                   </ButtonLink>
                 </div>
               </article>
@@ -89,15 +93,15 @@ export default function ServicesPage() {
       </Section>
 
       <Section tone="surface" labelledBy="types-title">
-        <SectionHeading id="types-title" eyebrow="System types" title="The right system for the site" intro="The main types of PV system, and when each one fits." />
+        <SectionHeading id="types-title" eyebrow={t.typesEyebrow} title={t.typesTitle} intro={t.typesIntro} />
         <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {systemTypes.map((t) => (
-            <li key={t.title} className="rounded-[var(--radius-card)] border border-line bg-white p-6 shadow-card">
+          {c.systemTypes.map((st) => (
+            <li key={st.title} className="rounded-[var(--radius-card)] border border-line bg-white p-6 shadow-card">
               <span className="inline-flex size-10 items-center justify-center rounded-[2px] bg-leaf-100 text-leaf-700">
                 <CircuitBoard aria-hidden className="size-5" />
               </span>
-              <h3 className="mt-4 text-lg font-bold">{t.title}</h3>
-              <p className="mt-2 text-[0.9375rem] text-muted">{t.body}</p>
+              <h3 className="mt-4 text-lg font-bold">{st.title}</h3>
+              <p className="mt-2 text-[0.9375rem] text-muted">{st.body}</p>
             </li>
           ))}
         </ul>
@@ -105,17 +109,17 @@ export default function ServicesPage() {
         <div className="mt-12 overflow-hidden rounded-[var(--radius-card)] border border-line bg-white shadow-card">
           <div className="overflow-x-auto">
             <table className="w-full min-w-[36rem] text-start text-[0.9375rem]">
-              <caption className="border-b border-line px-6 py-4 text-start text-lg font-bold">Comparing system types</caption>
+              <caption className="border-b border-line px-6 py-4 text-start text-lg font-bold">{t.compareCaption}</caption>
               <thead className="bg-surface">
                 <tr>
-                  <th scope="col" className="px-6 py-3 text-start font-semibold text-muted">Feature</th>
-                  {comparison.columns.map((c) => (
-                    <th key={c} scope="col" className="px-6 py-3 text-start font-semibold">{c}</th>
+                  <th scope="col" className="px-6 py-3 text-start font-semibold text-muted">{t.feature}</th>
+                  {c.comparison.columns.map((col) => (
+                    <th key={col} scope="col" className="px-6 py-3 text-start font-semibold">{col}</th>
                   ))}
                 </tr>
               </thead>
               <tbody className="divide-y divide-line">
-                {comparison.rows.map((r) => (
+                {c.comparison.rows.map((r) => (
                   <tr key={r.label}>
                     <th scope="row" className="px-6 py-4 text-start font-semibold">{r.label}</th>
                     {r.values.map((v, i) => (
@@ -130,7 +134,7 @@ export default function ServicesPage() {
       </Section>
 
       <Section labelledBy="segments-title">
-        <SectionHeading id="segments-title" eyebrow="Solutions" title="Residential and commercial" />
+        <SectionHeading id="segments-title" eyebrow={t.segmentsEyebrow} title={t.segmentsTitle} />
         <div className="mt-12">
           <SolutionBlocks />
         </div>
@@ -140,22 +144,22 @@ export default function ServicesPage() {
         <div className="grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
           <SectionHeading
             id="capabilities-title"
-            eyebrow="Technical capabilities"
-            title="Engineering behind every system"
-            intro="The design and installation work that goes into a dependable PV system."
+            eyebrow={t.capabilitiesEyebrow}
+            title={t.capabilitiesTitle}
+            intro={t.capabilitiesIntro}
           />
           <ul className="grid gap-3 sm:grid-cols-2">
-            {capabilities.map((c) => (
-              <li key={c} className="flex items-start gap-3 rounded-[2px] bg-white p-4 shadow-card ring-1 ring-line">
+            {c.capabilities.map((cap) => (
+              <li key={cap} className="flex items-start gap-3 rounded-[2px] bg-white p-4 shadow-card ring-1 ring-line">
                 <Check aria-hidden className="mt-0.5 size-5 shrink-0 text-success" strokeWidth={2.5} />
-                <span>{c}</span>
+                <span>{cap}</span>
               </li>
             ))}
           </ul>
         </div>
       </Section>
 
-      <CtaBand title="Not sure which service you need?" body="Describe your property and goals — we'll recommend the right approach during a consultation." />
+      <CtaBand title={t.ctaTitle} body={t.ctaBody} />
     </>
   );
 }

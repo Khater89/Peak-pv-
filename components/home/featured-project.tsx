@@ -1,24 +1,29 @@
 import { ArrowRight, BatteryCharging, Grid3x3, MapPin, Zap } from "lucide-react";
-import { statusLabel, type Project } from "@/content/projects";
+import type { Project } from "@/content/shared";
+import { getContent, getLang } from "@/lib/i18n";
+import { lp } from "@/lib/locales";
 import { ProjectMedia } from "@/components/project-media";
 import { ButtonLink } from "@/components/ui/button";
 
-export function FeaturedProject({ project }: { project: Project }) {
+export async function FeaturedProject({ project }: { project: Project }) {
+  const c = await getContent();
+  const lang = await getLang();
+  const t = c.project;
   return (
     <article className="corner-brackets grid overflow-hidden border border-line bg-white lg:grid-cols-[1.25fr_1fr]">
       <div className="relative aspect-[4/3] lg:aspect-auto lg:min-h-[28rem]">
-        <ProjectMedia project={project} sizes="(min-width: 1024px) 55vw, 100vw" />
+        <ProjectMedia project={project} labels={t} sizes="(min-width: 1024px) 55vw, 100vw" />
         <span className="absolute start-4 top-4 bg-ink px-3 py-1.5 text-[0.625rem] font-semibold uppercase tracking-[0.28em] text-sun-300">
-          Featured project
+          {t.featuredBadge}
         </span>
       </div>
       <div className="flex flex-col p-7 sm:p-10">
         <div className="flex flex-wrap gap-2">
           <span className="tag text-leaf-700">{project.systemType}</span>
-          <span className="tag text-leaf-700">{project.segment}</span>
-          <span className="tag text-leaf-700">{statusLabel[project.status]}</span>
+          <span className="tag text-leaf-700">{t.segments[project.segment]}</span>
+          <span className="tag text-leaf-700">{t.status[project.status]}</span>
         </div>
-        <p className="mt-7 font-serif text-6xl font-semibold">
+        <p dir="ltr" className="mt-7 self-start font-serif text-6xl font-semibold">
           {project.capacityKwp}
           <span className="ms-2 font-sans text-xl font-semibold text-muted">kWp</span>
         </p>
@@ -29,24 +34,24 @@ export function FeaturedProject({ project }: { project: Project }) {
         <p className="mt-5 text-muted">{project.summary}</p>
         <dl className="mt-6 grid grid-cols-3 gap-3 border-y border-line py-5">
           {[
-            { icon: Grid3x3, label: "Panels", value: project.keyFacts.panels },
-            { icon: Zap, label: "Inverter", value: project.keyFacts.inverter },
-            ...(project.keyFacts.storage ? [{ icon: BatteryCharging, label: "Storage", value: project.keyFacts.storage }] : []),
+            { icon: Grid3x3, label: t.panels, value: project.keyFacts.panels },
+            { icon: Zap, label: t.inverter, value: project.keyFacts.inverter },
+            ...(project.keyFacts.storage ? [{ icon: BatteryCharging, label: t.storage, value: project.keyFacts.storage }] : []),
           ].map((f) => (
             <div key={f.label}>
               <dt className="flex items-center gap-1 text-xs text-muted">
                 <f.icon aria-hidden className="size-3.5" /> {f.label}
               </dt>
-              <dd className="mt-1 font-semibold">{f.value}</dd>
+              <dd dir="ltr" className="mt-1 text-start font-semibold">{f.value}</dd>
             </div>
           ))}
         </dl>
         <div className="mt-auto flex flex-col gap-3 pt-7 sm:flex-row">
-          <ButtonLink href={`/projects/${project.slug}`} variant="dark">
-            View project <ArrowRight aria-hidden className="rtl:-scale-x-100" />
+          <ButtonLink href={lp(lang, `/projects/${project.slug}`)} variant="dark">
+            {t.viewProject} <ArrowRight aria-hidden className="rtl:-scale-x-100" />
           </ButtonLink>
-          <ButtonLink href="/contact" variant="outline">
-            Get a similar system
+          <ButtonLink href={lp(lang, "/contact")} variant="outline">
+            {t.similar}
           </ButtonLink>
         </div>
       </div>

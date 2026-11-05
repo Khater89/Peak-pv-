@@ -9,6 +9,7 @@ import { PageHero, Section, SectionHeading } from "@/components/section";
 import { SolutionBlocks } from "@/components/solution-blocks";
 import { CtaBand } from "@/components/cta-band";
 import { EvChargingGrid } from "@/components/ev-charging";
+import { OffGrid } from "@/components/off-grid";
 import { ButtonLink } from "@/components/ui/button";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -81,6 +82,11 @@ export default async function ServicesPage() {
                   </ButtonLink>
                 </div>
               </article>
+              {s.slug === "off-grid" && (
+                <div className="pt-2">
+                  <OffGrid variant="details" />
+                </div>
+              )}
               {s.slug === "ev-charging" && (
                 <div className="pt-2">
                   <EvChargingGrid />

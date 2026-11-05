@@ -11,6 +11,7 @@ import { ContactSection } from "@/components/home/contact-section";
 import { ProcessTimeline } from "@/components/process-timeline";
 import { Faq } from "@/components/faq";
 import { EvChargingGrid } from "@/components/ev-charging";
+import { OffGrid } from "@/components/off-grid";
 import { Section, SectionHeading } from "@/components/section";
 import { getContent, getLang } from "@/lib/i18n";
 import { lp } from "@/lib/locales";
@@ -50,6 +51,7 @@ export default async function HomePage() {
           <EvChargingGrid />
         </div>
       </Section>
+      <OffGrid />
       <FactsBand />
 
       <Section labelledBy="process-title">

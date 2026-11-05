@@ -37,7 +37,7 @@ export const images = {
 export const projectTypeValues = ["residential", "commercial", "industrial", "agricultural", "other"] as const;
 export type ProjectTypeValue = (typeof projectTypeValues)[number];
 
-export type ServiceIcon = "package" | "ruler" | "wrench" | "ev-charger" | "life-buoy";
+export type ServiceIcon = "package" | "ruler" | "wrench" | "battery" | "ev-charger" | "life-buoy";
 export type Segment = "residential" | "commercial";
 export type ProjectStatus = "completed" | "in-progress" | "designed";
 

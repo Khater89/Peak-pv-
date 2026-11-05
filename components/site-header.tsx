@@ -103,7 +103,7 @@ export function SiteHeader({ lang, phone, nav, t, brandTagline }: Props) {
             <Languages aria-hidden className="size-4 text-leaf-600" strokeWidth={1.75} />
             <span className={otherLang === "ar" ? "font-arabic" : undefined}>{t.switchTo}</span>
           </Link>
-          <a href={`tel:${phone.intl}`} className="hidden items-center gap-2 border-s border-line ps-5 text-sm font-medium tracking-[0.06em] text-ink xl:inline-flex">
+          <a href={`tel:${phone.intl}`} className="hidden items-center gap-2 whitespace-nowrap border-s border-line ps-5 text-sm font-medium tracking-[0.06em] text-ink 2xl:inline-flex">
             <Phone aria-hidden className="size-4 text-leaf-600" strokeWidth={1.5} />
             <span dir="ltr">{phone.display}</span>
           </a>

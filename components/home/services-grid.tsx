@@ -38,7 +38,7 @@ export async function ServicesGrid() {
             </li>
           );
         })}
-        <li className="lg:col-span-2">
+        <li>
           <Link
             href={lp(lang, "/contact?service=full-project")}
             className="on-dark group flex h-full flex-col bg-navy-900 p-8 text-[#ffffff] transition-colors duration-300 hover:bg-navy-800"

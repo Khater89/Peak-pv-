@@ -164,6 +164,21 @@ export const en = {
       enabled: true,
     },
     {
+      slug: "off-grid",
+      title: "Off-grid Systems",
+      summary: "Standalone solar and battery systems for sites without a reliable grid connection.",
+      description:
+        "We design and install complete off-grid systems — PV array, off-grid or hybrid inverter and battery bank, with optional generator backup — sized from a load study so the batteries carry the night and cloudy days.",
+      icon: "battery",
+      audience: "Farms, remote homes and villas, rest houses, water pumping and any site where the grid is unavailable or unreliable.",
+      benefits: [
+        "Sizing based on a full load study, hour by hour",
+        "Battery bank sized for night-time load and the autonomy you need",
+        "Optional generator integration as a backup source",
+      ],
+      enabled: true,
+    },
+    {
       slug: "ev-charging",
       title: "EV Charging Points",
       summary: "Supply and installation of electric-vehicle charging points for homes, businesses and car parks.",
@@ -190,6 +205,32 @@ export const en = {
       enabled: false,
     },
   ] as Service[],
+
+  offGrid: {
+    eyebrow: "Off-grid solar",
+    title: "Power Where the Grid Can't Reach",
+    intro:
+      "A complete standalone system — panels, inverter and batteries — that runs your site day and night without depending on the utility grid.",
+    imageAlt: "Ground-mounted solar panels on open land",
+    componentsTitle: "What's in an off-grid system",
+    components: [
+      { title: "PV array", body: "Solar panels sized to cover the daytime load and recharge the batteries." },
+      { title: "Off-grid inverter", body: "Turns stored DC energy into stable AC power for your appliances." },
+      { title: "Battery bank", body: "Stores daytime energy for the night and for cloudy days." },
+      { title: "Generator backup", body: "Optional: a generator that starts only when the batteries run low." },
+    ],
+    sizingTitle: "How we size it",
+    sizing: [
+      "Load study: every appliance, its power and its operating hours",
+      "Night-time load and the days of autonomy you need",
+      "Battery capacity, then the array and inverter to match",
+      "Check against seasonal sun and cloudy periods",
+    ],
+    useCasesTitle: "Ideal for",
+    useCases: ["Farms & water pumping", "Remote homes & villas", "Rest houses & chalets", "Sites with frequent outages"],
+    cta: "Request an off-grid quote",
+    projectLink: "See an off-grid project: Madama",
+  },
 
   evSection: {
     eyebrow: "EV charging",
@@ -326,6 +367,10 @@ export const en = {
     {
       q: "Do you install EV charging points?",
       a: "Yes. We supply and install electric-vehicle charging points for homes, businesses and car parks, including the cabling and protection they need — and we can connect them to your solar system so you charge from your own solar power.",
+    },
+    {
+      q: "Can you build a system that works without the grid?",
+      a: "Yes. Off-grid systems combine solar panels, an off-grid inverter and a battery bank — with an optional generator as backup. We size them from a detailed load study so the batteries cover your night-time use.",
     },
     {
       q: "Do you work on commercial projects?",

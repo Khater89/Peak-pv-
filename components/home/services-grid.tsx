@@ -18,15 +18,15 @@ export async function ServicesGrid() {
         intro={t.intro}
       />
       <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {c.services.filter((s) => s.enabled).map((s) => {
+        {c.services.filter((s) => s.enabled).map((s, i) => {
           const Icon = serviceIcons[s.icon];
           return (
-            <li key={s.slug}>
+            <li key={s.slug} data-reveal style={{ "--d": i } as React.CSSProperties}>
               <Link
                 href={lp(lang, `/services#${s.slug}`)}
-                className="corner-brackets group flex h-full flex-col border border-line bg-white p-8 transition-[border-color,box-shadow] duration-300 hover:border-sun-400 hover:shadow-lift"
+                className="corner-brackets sun-glow card-sun group flex h-full flex-col border border-line bg-white p-8 hover:border-sun-400"
               >
-                <span className="inline-flex size-12 items-center justify-center bg-leaf-100 text-leaf-700">
+                <span className="card-sun__icon inline-flex size-12 items-center justify-center bg-leaf-100 text-leaf-700">
                   <Icon aria-hidden className="size-6" strokeWidth={1.4} />
                 </span>
                 <h3 className="mt-7 font-serif text-[1.75rem] font-semibold uppercase leading-none">{s.title}</h3>
@@ -38,7 +38,7 @@ export async function ServicesGrid() {
             </li>
           );
         })}
-        <li>
+        <li data-reveal style={{ "--d": 5 } as React.CSSProperties}>
           <Link
             href={lp(lang, "/contact?service=full-project")}
             className="on-dark group flex h-full flex-col bg-navy-900 p-8 text-[#ffffff] transition-colors duration-300 hover:bg-navy-800"

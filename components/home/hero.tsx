@@ -12,15 +12,22 @@ export async function Hero() {
   const lang = await getLang();
   const t = c.hero;
   return (
-    <section aria-labelledby="hero-title" className="relative isolate overflow-hidden">
+    <section aria-labelledby="hero-title" className="sun-glow hero-glow relative isolate overflow-hidden">
       <div className="absolute inset-0 -z-20">
-        <Image src={images.hero} alt={t.imageAlt} fill priority sizes="100vw" className="object-cover object-[center_65%]" />
+        <Image src={images.hero} alt={t.imageAlt} fill priority sizes="100vw" className="object-cover object-[center_65%] brightness-[1.08] saturate-[1.15]" />
       </div>
       <div aria-hidden className="absolute inset-0 -z-10 bg-[#ffffff]/80 lg:bg-transparent lg:bg-gradient-to-r lg:from-[#ffffff] lg:via-[#ffffff]/85 lg:to-[#ffffff]/0 rtl:lg:bg-gradient-to-l" />
       <div aria-hidden className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-t from-[#ffffff] to-transparent" />
+      <div aria-hidden className="hero-light" />
+      <div aria-hidden className="hero-sweep" />
+      <div aria-hidden className="hero-sun">
+        <div className="hero-sun__corona" />
+        <div className="hero-sun__rays" />
+        <div className="hero-sun__disc" />
+      </div>
 
       <div className="container-x pb-40 pt-16 sm:pt-24 lg:pb-48 lg:pt-28">
-        <div className="max-w-2xl">
+        <div className="hero-in max-w-2xl">
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
             <p className="eyebrow">{t.eyebrow}</p>
             <p className="font-mono text-[0.6875rem] uppercase tracking-[0.16em] text-muted">

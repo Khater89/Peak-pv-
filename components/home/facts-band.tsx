@@ -21,7 +21,7 @@ export async function FactsBand() {
   return (
     <section aria-labelledby="facts-title" className="on-dark relative isolate overflow-hidden bg-navy-900 py-24 text-[#ffffff] lg:py-32">
       <div aria-hidden className="bg-grid-dark absolute inset-0 -z-10 opacity-60 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" />
-      <div aria-hidden className="absolute -end-40 top-0 -z-10 size-[30rem] rounded-full bg-sun-400/10 blur-3xl" />
+      <div aria-hidden className="anim-sun absolute -end-40 top-0 -z-10 size-[34rem] rounded-full bg-sun-400/25 blur-3xl" />
       <div className="container-x grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-20">
         <div>
           <p className="eyebrow">{t.eyebrow}</p>
@@ -39,8 +39,8 @@ export async function FactsBand() {
           <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.3em] text-sun-300">{p.title}</p>
           <dl className="mt-4 grid grid-cols-2 border-s border-t border-white/10">
             {facts.map((f) => (
-              <div key={f.label} className="border-b border-e border-white/10 p-7">
-                <dd dir="ltr" className="whitespace-nowrap text-start font-serif text-3xl font-semibold text-sun-300 sm:text-5xl">{f.value}</dd>
+              <div key={f.label} className="sun-glow border-b border-e border-white/10 p-7 transition-colors hover:bg-white/5">
+                <dd dir="ltr" data-count className="whitespace-nowrap text-start font-serif text-3xl font-semibold text-sun-300 sm:text-5xl">{f.value}</dd>
                 <dt className="mt-2 text-[0.75rem] uppercase tracking-[0.16em] text-[#c9dccd]">{f.label}</dt>
               </div>
             ))}

@@ -4,6 +4,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { TopBar } from "@/components/top-bar";
 import { WhatsAppFab } from "@/components/whatsapp-fab";
+import { Interactions } from "@/components/interactions";
 import { getContent, getLang } from "@/lib/i18n";
 import { dirOf, locales } from "@/lib/locales";
 import { siteUrl } from "@/lib/utils";
@@ -65,6 +66,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         </main>
         <SiteFooter />
         <WhatsAppFab />
+        <Interactions />
       </body>
     </html>
   );

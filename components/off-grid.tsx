@@ -26,7 +26,7 @@ export async function OffGrid({ variant = "full" }: { variant?: "full" | "detail
         {t.components.map((item, i) => {
           const Icon = componentIcons[i % componentIcons.length];
           return (
-            <li key={item.title} className="corner-brackets flex gap-4 border border-line bg-white p-5">
+            <li key={item.title} data-reveal style={{ "--d": i } as React.CSSProperties} className="corner-brackets sun-glow card-sun flex gap-4 border border-line bg-white p-5 hover:border-sun-400">
               <span className="inline-flex size-11 shrink-0 items-center justify-center bg-leaf-100 text-leaf-700">
                 <Icon aria-hidden className="size-5" strokeWidth={1.5} />
               </span>

@@ -46,7 +46,7 @@ export function SectionHeading({
   as?: "h1" | "h2";
 }) {
   return (
-    <div className={cn("max-w-2xl", align === "center" && "mx-auto text-center")}>
+    <div data-reveal className={cn("max-w-2xl", align === "center" && "mx-auto text-center")}>
       {eyebrow && <p className="eyebrow">{eyebrow}</p>}
       <Tag
         id={id}

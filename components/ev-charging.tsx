@@ -11,8 +11,8 @@ export async function EvChargingGrid() {
   const lang = await getLang();
   return (
     <ul className="grid gap-4 md:grid-cols-3">
-      {c.evSettings.map((e) => (
-        <li key={e.title}>
+      {c.evSettings.map((e, i) => (
+        <li key={e.title} data-reveal style={{ "--d": i } as React.CSSProperties}>
           <article className="corner-brackets group flex h-full flex-col border border-line bg-white">
             <div className="relative aspect-[4/3] overflow-hidden">
               <Image

@@ -6,7 +6,7 @@ export async function ProcessTimeline() {
   return (
     <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {c.processSteps.map((step, i) => (
-        <li key={step.title} className="corner-brackets relative overflow-hidden border border-line bg-white p-8">
+        <li key={step.title} data-reveal style={{ "--d": i % 3 } as React.CSSProperties} className="corner-brackets sun-glow card-sun relative overflow-hidden border border-line bg-white p-8 hover:border-sun-400">
           <span aria-hidden className="absolute top-4 end-6 select-none font-mono text-4xl leading-none text-sun-400">
             {String(i + 1).padStart(2, "0")}
           </span>

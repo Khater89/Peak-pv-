@@ -18,8 +18,8 @@ export async function Sectors() {
         intro={t.intro}
       />
       <ul className="mt-12 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
-        {c.sectors.map((s) => (
-          <li key={s.title}>
+        {c.sectors.map((s, i) => (
+          <li key={s.title} data-reveal style={{ "--d": i % 3 } as React.CSSProperties}>
             <Link href={lp(lang, `/contact?type=${s.type}`)} className="group relative block aspect-[4/3] overflow-hidden">
               <Image
                 src={images[s.img as keyof typeof images]}

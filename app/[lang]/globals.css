@@ -231,3 +231,148 @@
 :lang(ar) body {
   line-height: 1.8;
 }
+
+/* ------------------------------------------------------------------ */
+/* Sunlight and motion                                                 */
+/* ------------------------------------------------------------------ */
+
+/* The hero sun: a bright disc with a soft corona, slowly turning rays and a warm wash
+   that spills across the photo. Top corner on the image side (flips in RTL). */
+.hero-sun {
+  position: absolute;
+  inset-block-start: -18rem;
+  inset-inline-end: -14rem;
+  width: 56rem;
+  aspect-ratio: 1;
+  pointer-events: none;
+  z-index: -10;
+}
+.hero-sun__rays {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: repeating-conic-gradient(from 0deg,
+      rgb(255 236 170 / 0.55) 0deg 3deg,
+      transparent 3deg 15deg);
+  -webkit-mask-image: radial-gradient(circle, transparent 13%, #000 15%, rgb(0 0 0 / 0.35) 38%, transparent 66%);
+          mask-image: radial-gradient(circle, transparent 13%, #000 15%, rgb(0 0 0 / 0.35) 38%, transparent 66%);
+  mix-blend-mode: screen;
+}
+.hero-sun__corona {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: radial-gradient(circle,
+      #fffdf2 0%, #fff6d1 8%, rgb(255 222 128 / 0.95) 12%,
+      rgb(250 196 66 / 0.55) 22%, rgb(250 196 66 / 0.18) 40%, transparent 64%);
+}
+.hero-sun__disc {
+  position: absolute;
+  inset: 41%;
+  border-radius: 9999px;
+  background: radial-gradient(circle at 45% 40%, #ffffff 0%, #fffbe8 45%, #ffe9a6 100%);
+  box-shadow: 0 0 60px 30px rgb(255 240 190 / 0.9), 0 0 160px 80px rgb(250 200 80 / 0.45);
+}
+/* Warm light pouring from the sun's corner across the whole hero. */
+.hero-light {
+  position: absolute;
+  inset: 0;
+  z-index: -10;
+  pointer-events: none;
+  background:
+    radial-gradient(120% 90% at 100% 0%, rgb(255 214 110 / 0.55), rgb(255 214 110 / 0.18) 40%, transparent 70%),
+    linear-gradient(200deg, rgb(255 244 214 / 0.35), transparent 55%);
+  mix-blend-mode: soft-light;
+}
+[dir="rtl"] .hero-light {
+  background:
+    radial-gradient(120% 90% at 0% 0%, rgb(255 214 110 / 0.55), rgb(255 214 110 / 0.18) 40%, transparent 70%),
+    linear-gradient(160deg, rgb(255 244 214 / 0.35), transparent 55%);
+}
+/* A slow band of light sweeping over the panels. */
+.hero-sweep {
+  position: absolute;
+  inset: 0;
+  z-index: -10;
+  pointer-events: none;
+  overflow: hidden;
+}
+.hero-sweep::before {
+  content: "";
+  position: absolute;
+  inset-block: -20%;
+  width: 30%;
+  left: -40%;
+  background: linear-gradient(100deg, transparent, rgb(255 248 220 / 0.38), transparent);
+  transform: skewX(-18deg);
+}
+
+/* Sunlight that follows the pointer (--mx / --my set by <Interactions/>). */
+.sun-glow { position: relative; isolation: isolate; }
+.sun-glow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 300ms ease;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgb(250 196 66 / 0.22), transparent 60%);
+}
+.sun-glow:hover::after { opacity: 1; }
+.hero-glow::after {
+  z-index: -10;
+  opacity: 1;
+  background: radial-gradient(520px circle at var(--mx, 80%) var(--my, 20%), rgb(255 226 140 / 0.32), transparent 60%);
+}
+
+/* Cards: lift and catch the sun on hover. */
+.card-sun { transition: transform 300ms cubic-bezier(.2,.7,.2,1), box-shadow 300ms ease, border-color 300ms ease; }
+.card-sun:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 50px -24px rgb(220 156 14 / 0.45), 0 2px 6px rgb(19 38 27 / 0.05);
+}
+.card-sun:hover .card-sun__icon {
+  background: var(--color-sun-400);
+  color: var(--color-ink);
+  box-shadow: 0 0 0 6px rgb(240 180 41 / 0.2), 0 0 24px rgb(240 180 41 / 0.55);
+}
+.card-sun__icon { transition: background 300ms ease, color 300ms ease, box-shadow 300ms ease; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-sun__rays { animation: sun-spin 90s linear infinite; }
+  .hero-sun__corona { animation: sun-breathe 7s ease-in-out infinite; }
+  .hero-sweep::before { animation: hero-sweep 9s ease-in-out infinite 1.5s; }
+
+  /* Scroll reveal — only once JS has confirmed motion is welcome. */
+  .motion [data-reveal] {
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity 700ms ease, transform 800ms cubic-bezier(.2,.7,.2,1);
+    transition-delay: calc(var(--d, 0) * 90ms);
+  }
+  .motion [data-reveal][data-shown] { opacity: 1; transform: none; }
+
+  /* Hero entrance */
+  .hero-in > * { animation: rise 900ms cubic-bezier(.2,.7,.2,1) both; }
+  .hero-in > *:nth-child(2) { animation-delay: 120ms; }
+  .hero-in > *:nth-child(3) { animation-delay: 240ms; }
+  .hero-in > *:nth-child(4) { animation-delay: 360ms; }
+  .hero-in > *:nth-child(5) { animation-delay: 480ms; }
+}
+@keyframes sun-spin { to { transform: rotate(360deg); } }
+@keyframes sun-breathe {
+  0%, 100% { transform: scale(1); opacity: 0.95; }
+  50% { transform: scale(1.05); opacity: 1; }
+}
+@keyframes hero-sweep {
+  0% { left: -40%; }
+  55%, 100% { left: 130%; }
+}
+@keyframes rise {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: none; }
+}
+@media (max-width: 1023px) {
+  .hero-sun { width: 34rem; inset-block-start: -13rem; inset-inline-end: -12rem; opacity: 0.85; }
+}

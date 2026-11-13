@@ -107,7 +107,7 @@ export function SiteHeader({ lang, phone, nav, t, brandTagline }: Props) {
             <Phone aria-hidden className="size-4 text-leaf-600" strokeWidth={1.5} />
             <span dir="ltr">{phone.display}</span>
           </a>
-          <ButtonLink href={quoteHref} variant="dark" size="sm" className="px-4 lg:h-12 lg:px-6">
+          <ButtonLink href={quoteHref} variant="primary" size="sm" className="px-4 lg:h-12 lg:px-6">
             <span className="min-[400px]:hidden">{t.quoteShort}</span>
             <span className="hidden min-[400px]:inline">{t.requestQuote}</span>
           </ButtonLink>

@@ -14,9 +14,9 @@ export async function Hero() {
   return (
     <section aria-labelledby="hero-title" className="sun-glow hero-glow relative isolate overflow-hidden">
       <div className="absolute inset-0 -z-20">
-        <Image src={images.hero} alt={t.imageAlt} fill priority sizes="100vw" className="object-cover object-[center_65%] brightness-[1.08] saturate-[1.15]" />
+        <Image src={images.hero} alt={t.imageAlt} fill priority sizes="100vw" className="object-cover object-[center_65%] brightness-[1.06] saturate-[1.35] contrast-[1.05]" />
       </div>
-      <div aria-hidden className="absolute inset-0 -z-10 bg-[#ffffff]/80 lg:bg-transparent lg:bg-gradient-to-r lg:from-[#ffffff] lg:via-[#ffffff]/85 lg:to-[#ffffff]/0 rtl:lg:bg-gradient-to-l" />
+      <div aria-hidden className="absolute inset-0 -z-10 bg-[#ffffff]/70 lg:bg-transparent lg:bg-gradient-to-r lg:from-[#ffffff]/95 lg:via-[#ffffff]/65 lg:to-[#ffffff]/0 rtl:lg:bg-gradient-to-l" />
       <div aria-hidden className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-t from-[#ffffff] to-transparent" />
       <div aria-hidden className="hero-light" />
       <div aria-hidden className="hero-sweep" />

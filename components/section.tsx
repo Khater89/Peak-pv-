@@ -20,7 +20,7 @@ export function Section({
       aria-labelledby={labelledBy}
       className={cn(
         "py-20 sm:py-24 lg:py-32",
-        tone === "surface" && "bg-surface/60",
+        tone === "surface" && "bg-surface",
         tone === "dark" && "bg-sky-50",
         className,
       )}

@@ -8,31 +8,31 @@
   --font-mono: var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
 
   --color-ink: #1b2416;
-  --color-navy-950: #1c2614;
-  --color-navy-900: #2f3d24;
-  --color-navy-800: #3b4c2d;
-  --color-navy-700: #4d6239;
+  --color-navy-950: #13260f;
+  --color-navy-900: #1f3a1c;
+  --color-navy-800: #2a4d24;
+  --color-navy-700: #376330;
   --color-navy-200: #c9dccd;
 
   /* Brand accent #f5b942. Use as a fill with ink text; for amber text on light use amber-700. */
-  --color-leaf-50: #f4f7ef;
-  --color-leaf-100: #e7eedd;
-  --color-leaf-600: #4a6530;
-  --color-leaf-700: #3b4f27;
-  --color-sky-50: #f4f7ef;
-  --color-sky-100: #e7eedd;
+  --color-leaf-50: #f0f8e6;
+  --color-leaf-100: #dcefc8;
+  --color-leaf-600: #3b7d27;
+  --color-leaf-700: #2c621d;
+  --color-sky-50: #eef7e3;
+  --color-sky-100: #dcefc8;
   --color-sky-300: #bfd0a8;
-  --color-sun-50: #fff9e6;
-  --color-sun-100: #feefc3;
-  --color-sun-300: #f7cf6a;
-  --color-sun-400: #f0b429;
-  --color-sun-500: #dc9c0e;
+  --color-sun-50: #fff6d6;
+  --color-sun-100: #ffeaa8;
+  --color-sun-300: #ffd04d;
+  --color-sun-400: #ffb81c;
+  --color-sun-500: #e99b00;
   --color-sun-700: #835800;
 
-  --color-surface: #f0f4ea;
-  --color-surface-2: #e2e9d6;
-  --color-line: #d9e2cc;
-  --color-muted: #56604c;
+  --color-surface: #edf6e1;
+  --color-surface-2: #d9eac4;
+  --color-line: #d2e2bd;
+  --color-muted: #46523c;
 
   /* Semantic states — kept separate from the brand accent. */
   --color-success: #11734b;

@@ -2,7 +2,7 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 /** The Sanam PV mark supplied by the company: a camel whose hump is a solar array, under the sun. */
-const MARK = { src: "/images/sanam-pv-mark.png", width: 640, height: 335 };
+const MARK = { src: "/images/sanam-pv-mark.svg", width: 1091, height: 575 };
 
 /**
  * tone="dark" sits on light backgrounds; tone="light" puts the mark on a white tile so its greens
@@ -16,6 +16,8 @@ export function LogoMark({ className, tone = "dark" }: { className?: string; ton
       height={MARK.height}
       alt=""
       aria-hidden
+      unoptimized
+      priority
       className={cn("h-10 w-auto object-contain sm:h-12", tone !== "light" && className)}
     />
   );

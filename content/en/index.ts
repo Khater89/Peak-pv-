@@ -3,18 +3,18 @@ import type { Locale } from "@/lib/locales";
 
 /**
  * English content and UI strings. content/ar/index.ts mirrors this shape exactly.
- * VERIFY: anything set to null / [] is intentionally empty until Peak PV supplies verified facts.
+ * VERIFY: anything set to null / [] is intentionally empty until Sanam PV supplies verified facts.
  */
 export const en = {
   lang: "en" as Locale,
   languageName: "English",
 
   company: {
-    brandName: "Peak PV",
+    brandName: "Sanam PV",
     brandTagline: "Solar Energy",
     tagline: "Solar PV systems — supplied, designed and installed.",
     about:
-      "Peak PV is a solar photovoltaic company. We supply PV equipment, design systems around each site, and install them — so homeowners and businesses work with one team from first conversation to switch-on.",
+      "Sanam PV is a solar photovoltaic company. We supply PV equipment, design systems around each site, and install them — so homeowners and businesses work with one team from first conversation to switch-on.",
     mission:
       "Make the move to solar clear and dependable: honest advice, engineering that fits the site, and installation done right the first time.",
     /** Inferred from the Jordanian phone numbers and projects — confirm exact cities. */
@@ -25,31 +25,31 @@ export const en = {
   },
 
   meta: {
-    siteTitle: "Peak PV — Solar PV Supply, Design & Installation",
+    siteTitle: "Sanam PV — Solar PV Supply, Design & Installation",
     siteDescription:
-      "Peak PV supplies, designs and installs photovoltaic solar systems and EV charging points for homes and businesses in Jordan. Request a quote.",
+      "Sanam PV supplies, designs and installs photovoltaic solar systems and EV charging points for homes and businesses in Jordan. Request a quote.",
     services: {
       title: "Solar PV Services — Supply, Design & Installation",
       description:
-        "Solar PV equipment supply, system design, professional installation and EV charging points for residential and commercial properties from Peak PV.",
+        "Solar PV equipment supply, system design, professional installation and EV charging points for residential and commercial properties from Sanam PV.",
     },
     projects: {
       title: "Solar Projects — Residential & Commercial PV",
-      description: "Residential and commercial solar PV projects supplied, designed and installed by Peak PV.",
+      description: "Residential and commercial solar PV projects supplied, designed and installed by Sanam PV.",
     },
     about: {
-      title: "About Peak PV — Solar PV Specialists",
-      description: "Peak PV is a solar photovoltaic company supplying, designing and installing PV systems for homes and businesses.",
+      title: "About Sanam PV — Solar PV Specialists",
+      description: "Sanam PV is a solar photovoltaic company supplying, designing and installing PV systems for homes and businesses.",
     },
     contact: {
       title: "Request a Solar PV Quote",
-      description: "Request a quote or consultation for a residential or commercial solar PV system from Peak PV.",
+      description: "Request a quote or consultation for a residential or commercial solar PV system from Sanam PV.",
     },
     projectSuffix: "Solar Project",
   },
 
-  whatsappMessage: "Hello Peak PV, I'd like to ask about a solar PV system.",
-  whatsappProjectMessage: (title: string) => `Hello Peak PV, I saw the "${title}" project and would like a similar system.`,
+  whatsappMessage: "Hello Sanam PV, I'd like to ask about a solar PV system.",
+  whatsappProjectMessage: (title: string) => `Hello Sanam PV, I saw the "${title}" project and would like a similar system.`,
 
   nav: {
     home: "Home",
@@ -60,7 +60,7 @@ export const en = {
   },
 
   header: {
-    homeAria: "Peak PV — home",
+    homeAria: "Sanam PV — home",
     skip: "Skip to content",
     mainNav: "Main",
     mobileNav: "Mobile",
@@ -89,7 +89,7 @@ export const en = {
   },
 
   hero: {
-    eyebrow: "Peak PV · Solar Energy",
+    eyebrow: "Sanam PV · Solar Energy",
     coords: "Jordan",
     titleBefore: "Solar power,",
     titleEm: "engineered",
@@ -101,7 +101,7 @@ export const en = {
     imageAlt: "Long row of solar panels under a blue sky with clouds",
   },
 
-  pillarsAria: "Why Peak PV",
+  pillarsAria: "Why Sanam PV",
   /** Statements of scope, not performance claims. */
   pillars: [
     { title: "One team, end to end", body: "Supply, design and installation handled together — one point of contact." },
@@ -238,7 +238,7 @@ export const en = {
     intro: "We install electric-vehicle charging points for homes, charging stations and car parks — and can power them from your solar system.",
     requestCharger: "Request a charger quote",
   },
-  /** Photos are Unsplash stock (illustrative, not Peak PV installations). */
+  /** Photos are Unsplash stock (illustrative, not Sanam PV installations). */
   evSettings: [
     {
       title: "Homes & Villas",
@@ -307,7 +307,7 @@ export const en = {
   projectsSection: {
     eyebrow: "Projects",
     title: "Featured Work",
-    intro: "Real systems engineered by Peak PV, with full specifications.",
+    intro: "Real systems engineered by Sanam PV, with full specifications.",
     viewAll: "View all projects",
   },
 
@@ -330,7 +330,7 @@ export const en = {
     about: "About the project",
     specs: "Technical specifications",
     scope: "Our scope",
-    contactAria: "Contact Peak PV about this project",
+    contactAria: "Contact Sanam PV about this project",
     ctaTitle: "Want a system like this?",
     ctaBody: "Tell us about your site and loads — we'll design a system around them.",
   },
@@ -349,7 +349,7 @@ export const en = {
   },
   faqs: [
     {
-      q: "What does Peak PV do?",
+      q: "What does Sanam PV do?",
       a: "We supply, design and install photovoltaic (PV) solar systems and EV charging points for homes and businesses. You can come to us for the full project or for a specific part of it.",
     },
     {
@@ -393,7 +393,7 @@ export const en = {
   },
 
   agent: {
-    team: "Peak PV engineering team",
+    team: "Sanam PV engineering team",
     sub: "Solar PV supply · design · installation",
     chat: "Chat on WhatsApp",
     request: "Request a quote",
@@ -440,7 +440,7 @@ export const en = {
     },
   ],
 
-  /** Generic PV system categories. VERIFY which ones Peak PV offers. */
+  /** Generic PV system categories. VERIFY which ones Sanam PV offers. */
   systemTypes: [
     { title: "On-grid", body: "Connected to the utility grid. Solar power is used first; the grid covers the rest." },
     { title: "Hybrid", body: "Grid-connected with battery storage, so solar energy can be used later or during outages." },
@@ -448,7 +448,7 @@ export const en = {
     { title: "Solar water pumping", body: "PV-powered pumps for agriculture and water supply in remote locations." },
   ],
 
-  /** Standard PV engineering scope. VERIFY against Peak PV's actual capabilities. */
+  /** Standard PV engineering scope. VERIFY against Sanam PV's actual capabilities. */
   capabilities: [
     "Site survey and roof / ground assessment",
     "Shading and orientation analysis",
@@ -474,7 +474,7 @@ export const en = {
   projectsPage: {
     eyebrow: "Projects",
     title: "Solar installations",
-    intro: "Real systems designed and delivered by Peak PV — with specifications, renders and site photos.",
+    intro: "Real systems designed and delivered by Sanam PV — with specifications, renders and site photos.",
     imageAlt: "Rows of ground-mounted solar panels",
     ctaTitle: "Have a similar project in mind?",
     ctaBody: "Share a few details about your site and we'll take it from there.",
@@ -485,9 +485,9 @@ export const en = {
     title: "Solar specialists, start to finish",
     imageAlt: "Solar array under a clear sky",
     storyEyebrow: "Our story",
-    storyTitle: "Why Peak PV",
+    storyTitle: "Why Sanam PV",
     storyP1:
-      "Going solar involves many decisions — which equipment, what size, how it is mounted and connected. We set up Peak PV so property owners could get all of that from one specialist team.",
+      "Going solar involves many decisions — which equipment, what size, how it is mounted and connected. We set up Sanam PV so property owners could get all of that from one specialist team. The name is the goal: sanam (سنام) is the camel's hump, the highest point of the desert's most enduring traveller, and every system we build is sized to reach the highest output a roof can give.",
     storyP2:
       "We focus on photovoltaic systems: supplying the right components, designing around each site and installing to a high standard — and the EV charging points that go with them.",
     storyImageAlt: "Installer placing a solar panel on a house roof",
@@ -564,7 +564,7 @@ export const en = {
     placeholders: { phone: "079 000 0000", email: "name@company.com" },
     selectType: "Select property type",
     selectService: "Select a service",
-    consentText: "I agree that Peak PV may contact me about this request.",
+    consentText: "I agree that Sanam PV may contact me about this request.",
     submit: "Send quote request",
     sending: "Sending…",
     sendingSr: "Sending your request…",
@@ -614,7 +614,7 @@ export const en = {
       summary:
         "A fully off-grid PV and battery system sized to carry Madama's daytime and evening loads without a grid connection.",
       description: [
-        "Peak PV carried out the full load study and system design for Madama: every appliance was listed with its rating, load factor and operating hours to build a month-by-month consumption profile.",
+        "Sanam PV carried out the full load study and system design for Madama: every appliance was listed with its rating, load factor and operating hours to build a month-by-month consumption profile.",
         "The design pairs a 68.4 kWp array with a 50 kW hybrid inverter and 184 kWh of battery storage, so evening loads are carried from solar energy stored during the day. The system was checked against a 30-year simulation that includes cloudy days.",
       ],
       capacityKwp: 68.4,

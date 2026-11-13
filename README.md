@@ -1,6 +1,6 @@
-# Peak PV — company website
+# Sanam PV — company website
 
-Marketing and lead-generation site for **Peak PV**, a solar PV company (supply · design · installation).
+Marketing and lead-generation site for **Sanam PV**, a solar PV company (supply · design · installation).
 Built with Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4 and shadcn-style UI primitives.
 
 ## Pages
@@ -45,7 +45,7 @@ Set `INQUIRY_STORE` in the environment:
   `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` (server-only; never prefix with `NEXT_PUBLIC_`).
   RLS is enabled with no public policies, so browsers cannot read the table.
 
-The form shows success only after the store confirms the write (HTTP 201 + reference such as `PK-7K3QX9`).
+The form shows success only after the store confirms the write (HTTP 201 + reference such as `SN-7K3QX9`).
 If storage is missing or fails, the API returns 503 and the form keeps what the visitor typed.
 
 There is no email notification yet; staff read inquiries from the file or the Supabase table.
@@ -86,8 +86,8 @@ and is set via `heroImage` in `content/site.ts`.
 ## Photography
 
 `public/images/` holds general solar photos from Unsplash (Unsplash License: free for commercial use, no
-attribution required). They illustrate the kind of work only and are not Peak PV projects. Replace them with
-Peak PV's own photos under the same file names. Project pages never use stock photos: until a project's own
+attribution required). They illustrate the kind of work only and are not Sanam PV projects. Replace them with
+Sanam PV's own photos under the same file names. Project pages never use stock photos: until a project's own
 renders/photos are added, it shows a neutral "renders coming soon" panel.
 
 ## Languages (English / Arabic)
@@ -95,7 +95,7 @@ renders/photos are added, it shows a neutral "renders coming soon" panel.
 - Every page exists at `/en/...` and `/ar/...` (`app/[lang]/`). `proxy.ts` redirects paths without a locale:
   `/` goes to `/ar` for browsers that prefer Arabic, otherwise `/en`.
 - `<html lang dir>` is set per locale; Arabic pages are right-to-left with IBM Plex Sans Arabic and no
-  letter-spacing (see the end of `app/[lang]/globals.css`). The PEAK PV wordmark stays Latin in both.
+  letter-spacing (see the end of `app/[lang]/globals.css`). The SANAM PV wordmark stays Latin in both.
 - All text lives in `content/en/index.ts` and `content/ar/index.ts` (same shape, type-checked). Facts that do not
   change with language (phones, email, images, option values) are in `content/shared.ts`.
 - Server components read the current language with `getLang()` / `getContent()` (`lib/i18n.ts`).

@@ -14,7 +14,7 @@ export const whatsappHref = (text: string) => `https://wa.me/${whatsappIntl}?tex
 
 /**
  * Photography: general solar / EV photos from Unsplash (Unsplash License: free for commercial use, no
- * attribution required). They illustrate the type of work only — they are NOT Peak PV projects.
+ * attribution required). They illustrate the type of work only — they are NOT Sanam PV projects.
  */
 export const images = {
   hero: "/images/hero-solar-array.jpg",
@@ -49,7 +49,7 @@ export type Service = {
   icon: ServiceIcon;
   audience: string;
   benefits: string[];
-  /** VERIFY: set to true only once the offering is confirmed by Peak PV. */
+  /** VERIFY: set to true only once the offering is confirmed by Sanam PV. */
   enabled: boolean;
 };
 

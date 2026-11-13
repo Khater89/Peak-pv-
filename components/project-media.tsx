@@ -29,7 +29,7 @@ export function ProjectMedia({
     return (
       <div className={cn("relative flex h-full w-full flex-col items-center justify-center gap-3 overflow-hidden bg-gradient-to-br from-sky-100 via-sky-50 to-sun-100 p-6 text-center", className)}>
         <div aria-hidden className="bg-grid absolute inset-0 opacity-60" />
-        <LogoMark className="relative size-14 lg:size-16" />
+        <LogoMark className="relative h-16 w-auto sm:h-16 lg:h-20" />
         <p className="relative text-lg font-bold text-ink">
           <span dir="ltr">{project.capacityKwp} kWp</span> · {project.systemType}
         </p>

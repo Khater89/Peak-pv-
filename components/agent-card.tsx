@@ -13,7 +13,7 @@ export async function AgentCard({ context }: { context?: string }) {
   return (
     <div className="border border-line bg-white p-7 shadow-lift">
       <div className="flex items-center gap-3">
-        <LogoMark tone="badge" className="size-12" />
+        <LogoMark tone="badge" className="h-10 w-auto sm:h-10" />
         <div>
           <p className="font-bold">{c.agent.team}</p>
           <p className="text-sm text-muted">{c.agent.sub}</p>

@@ -19,25 +19,25 @@ export async function Hero() {
     <section aria-labelledby="hero-title" className="on-dark sun-glow hero-glow relative isolate overflow-hidden bg-navy-950 text-white">
       {/* The picture fills the hero: panels bottom-left, the peak in the middle, the rider on the right.
           A deep-green wash sits behind the text and thins out towards the bottom so the panels show. */}
-      <div className="absolute inset-x-0 top-0 bottom-0 -z-20 lg:bottom-28">
+      <div className="absolute inset-x-0 top-0 bottom-28 -z-20 hidden lg:block">
         <Image
           src={images.hero}
           alt={t.imageAlt}
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[80%_center] saturate-[1.1] rtl:-scale-x-100 lg:object-[center_bottom]"
+          className="object-cover object-[center_bottom] saturate-[1.1] rtl:-scale-x-100"
         />
         {/* the picture ends above the feature cards; fade its bottom edge into the hero's green */}
-        <div aria-hidden className="absolute inset-x-0 bottom-0 hidden h-16 bg-gradient-to-t from-navy-950 to-transparent lg:block" />
+        <div aria-hidden className="absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-navy-950 to-transparent" />
       </div>
       <div
         aria-hidden
-        className="absolute inset-0 -z-10 bg-navy-950/70 [mask-image:linear-gradient(to_bottom,black_50%,rgb(0_0_0/0.3)_100%)] lg:bg-transparent lg:bg-gradient-to-r lg:from-navy-950 lg:from-20% lg:via-navy-950/75 lg:via-42% lg:to-transparent lg:to-62% rtl:lg:bg-gradient-to-l"
+        className="absolute inset-0 -z-10 hidden bg-gradient-to-r from-navy-950 from-15% via-navy-950/70 via-38% to-transparent to-58% [mask-image:linear-gradient(to_bottom,black_40%,transparent_80%)] rtl:bg-gradient-to-l lg:block"
       />
 
       <div className="container-x pb-40 pt-16 sm:pt-24 lg:pb-48 lg:pt-28">
-        <div className="hero-in max-w-2xl">
+        <div className="hero-in max-w-2xl [text-shadow:0_1px_12px_rgb(10_22_8/0.85)]">
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
             <p className="eyebrow">{t.eyebrow}</p>
             <p className="font-mono text-[0.6875rem] uppercase tracking-[0.16em] text-white/60">
@@ -75,6 +75,10 @@ export async function Hero() {
               <MessageCircle aria-hidden className="size-4" strokeWidth={1.75} /> {t.whatsapp}
             </a>
           </div>
+        </div>
+        <div className="relative -mx-4 mt-10 aspect-[996/761] overflow-hidden sm:-mx-6 lg:hidden">
+          {/* right of the banner's diagonal edge: panels, peak, caravan and rider, nothing painted */}
+          <Image src={images.hero} alt="" aria-hidden fill sizes="100vw" className="object-cover object-right saturate-[1.1] rtl:-scale-x-100" />
         </div>
       </div>
     </section>

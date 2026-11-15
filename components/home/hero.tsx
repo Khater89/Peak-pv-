@@ -17,21 +17,24 @@ export async function Hero() {
   const t = c.hero;
   return (
     <section aria-labelledby="hero-title" className="on-dark sun-glow hero-glow relative isolate overflow-hidden bg-navy-950 text-white">
-      {/* Mobile: the picture fills the hero under a dark wash. Desktop: it fills the image side at its
-          own proportions (so the peak and the rider both show) and fades into the text side. */}
-      <div className="absolute inset-y-0 end-0 -z-20 w-full lg:w-[64%]">
+      {/* The picture fills the hero: panels bottom-left, the peak in the middle, the rider on the right.
+          A deep-green wash sits behind the text and thins out towards the bottom so the panels show. */}
+      <div className="absolute inset-x-0 top-0 bottom-0 -z-20 lg:bottom-28">
         <Image
           src={images.hero}
           alt={t.imageAlt}
           fill
           priority
-          sizes="(min-width: 1024px) 64vw, 100vw"
-          className="object-cover object-[72%_center] saturate-[1.1] rtl:-scale-x-100 lg:object-center"
+          sizes="100vw"
+          className="object-cover object-[80%_center] saturate-[1.1] rtl:-scale-x-100 lg:object-[center_bottom]"
         />
-        <div aria-hidden className="absolute inset-y-0 start-0 hidden w-[38%] bg-gradient-to-r from-navy-950 to-transparent rtl:bg-gradient-to-l lg:block" />
+        {/* the picture ends above the feature cards; fade its bottom edge into the hero's green */}
+        <div aria-hidden className="absolute inset-x-0 bottom-0 hidden h-16 bg-gradient-to-t from-navy-950 to-transparent lg:block" />
       </div>
-      <div aria-hidden className="absolute inset-0 -z-10 bg-navy-950/70 lg:hidden" />
-      <div aria-hidden className="absolute inset-x-0 bottom-0 -z-10 h-32 bg-gradient-to-t from-navy-950/70 to-transparent" />
+      <div
+        aria-hidden
+        className="absolute inset-0 -z-10 bg-navy-950/70 [mask-image:linear-gradient(to_bottom,black_50%,rgb(0_0_0/0.3)_100%)] lg:bg-transparent lg:bg-gradient-to-r lg:from-navy-950 lg:from-20% lg:via-navy-950/75 lg:via-42% lg:to-transparent lg:to-62% rtl:lg:bg-gradient-to-l"
+      />
 
       <div className="container-x pb-40 pt-16 sm:pt-24 lg:pb-48 lg:pt-28">
         <div className="hero-in max-w-2xl">

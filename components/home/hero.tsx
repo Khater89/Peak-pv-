@@ -6,41 +6,31 @@ import { getContent, getLang } from "@/lib/i18n";
 import { lp } from "@/lib/locales";
 import { cn } from "@/lib/utils";
 
-/**
- * Full-bleed hero on the Sanam artwork: a rider on a camel facing the peak at sunrise.
- * The text sits on a deep-green wash that fades into the picture; in Arabic the picture is
- * mirrored so the rider still faces the text.
- */
+/** Full-bleed photo hero with a soft light wash on the text side, so the page stays light. */
 export async function Hero() {
   const c = await getContent();
   const lang = await getLang();
   const t = c.hero;
   return (
-    <section aria-labelledby="hero-title" className="on-dark sun-glow hero-glow relative isolate overflow-hidden bg-navy-950 text-white">
-      {/* The picture fills the hero: panels bottom-left, the peak in the middle, the rider on the right.
-          A deep-green wash sits behind the text and thins out towards the bottom so the panels show. */}
-      <div className="absolute inset-x-0 top-0 bottom-28 -z-20 hidden lg:block">
-        <Image
-          src={images.hero}
-          alt={t.imageAlt}
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-[center_bottom] saturate-[1.1] rtl:-scale-x-100"
-        />
-        {/* the picture ends above the feature cards; fade its bottom edge into the hero's green */}
-        <div aria-hidden className="absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-navy-950 to-transparent" />
+    <section aria-labelledby="hero-title" className="sun-glow hero-glow relative isolate overflow-hidden">
+      <div className="absolute inset-0 -z-20">
+        <Image src={images.hero} alt={t.imageAlt} fill priority sizes="100vw" className="object-cover object-[center_65%] brightness-[1.06] saturate-[1.35] contrast-[1.05]" />
       </div>
-      <div
-        aria-hidden
-        className="absolute inset-0 -z-10 hidden bg-gradient-to-r from-navy-950 from-15% via-navy-950/70 via-38% to-transparent to-58% [mask-image:linear-gradient(to_bottom,black_40%,transparent_80%)] rtl:bg-gradient-to-l lg:block"
-      />
+      <div aria-hidden className="absolute inset-0 -z-10 bg-[#ffffff]/70 lg:bg-transparent lg:bg-gradient-to-r lg:from-[#ffffff]/95 lg:via-[#ffffff]/65 lg:to-[#ffffff]/0 rtl:lg:bg-gradient-to-l" />
+      <div aria-hidden className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-t from-[#ffffff] to-transparent" />
+      <div aria-hidden className="hero-light" />
+      <div aria-hidden className="hero-sweep" />
+      <div aria-hidden className="hero-sun">
+        <div className="hero-sun__corona" />
+        <div className="hero-sun__rays" />
+        <div className="hero-sun__disc" />
+      </div>
 
       <div className="container-x pb-40 pt-16 sm:pt-24 lg:pb-48 lg:pt-28">
-        <div className="hero-in max-w-2xl [text-shadow:0_1px_12px_rgb(10_22_8/0.85)]">
+        <div className="hero-in max-w-2xl">
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
             <p className="eyebrow">{t.eyebrow}</p>
-            <p className="font-mono text-[0.6875rem] uppercase tracking-[0.16em] text-white/60">
+            <p className="font-mono text-[0.6875rem] uppercase tracking-[0.16em] text-muted">
               {t.coords} · <span dir="ltr">31.95°N 35.91°E</span>
             </p>
           </div>
@@ -51,13 +41,13 @@ export async function Hero() {
               lang === "ar" ? "text-[2.75rem] leading-[1.2] sm:text-6xl lg:text-[4.75rem]" : "text-[3.25rem] leading-[0.95] sm:text-7xl lg:text-[6.5rem]",
             )}
           >
-            {t.titleBefore} <em className="not-italic text-sun-400">{t.titleEm}</em> {t.titleAfter}
+            {t.titleBefore} <em className="not-italic text-leaf-600">{t.titleEm}</em> {t.titleAfter}
           </h1>
-          <p className="mt-7 max-w-lg text-lg leading-relaxed text-white/80">{t.lead}</p>
-          <ul className="mt-8 flex flex-col gap-2.5 border-y border-white/15 py-4 sm:flex-row sm:flex-wrap sm:gap-x-8">
+          <p className="mt-7 max-w-lg text-lg leading-relaxed text-ink/70">{t.lead}</p>
+          <ul className="mt-8 flex flex-col gap-2.5 border-y border-ink/10 py-4 sm:flex-row sm:flex-wrap sm:gap-x-8">
             {t.highlights.map((h) => (
-              <li key={h} className="inline-flex items-center gap-2.5 text-[0.8125rem] font-medium uppercase tracking-[0.12em] text-white/85">
-                <Check aria-hidden className="size-4 text-sun-400" strokeWidth={2} />
+              <li key={h} className="inline-flex items-center gap-2.5 text-[0.8125rem] font-medium uppercase tracking-[0.12em] text-ink/80">
+                <Check aria-hidden className="size-4 text-leaf-600" strokeWidth={2} />
                 {h}
               </li>
             ))}
@@ -70,15 +60,11 @@ export async function Hero() {
               href={whatsappHref(c.whatsappMessage)}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex h-14 items-center justify-center gap-2.5 rounded-[2px] border border-white/40 bg-white/10 px-9 text-[0.8125rem] font-semibold uppercase tracking-[0.16em] text-white backdrop-blur transition-colors hover:border-white hover:bg-white hover:text-ink"
+              className="inline-flex h-14 items-center justify-center gap-2.5 rounded-[2px] border border-ink/25 bg-[#ffffff]/70 px-9 text-[0.8125rem] font-semibold uppercase tracking-[0.16em] text-ink backdrop-blur transition-colors hover:border-ink hover:bg-ink hover:text-[#ffffff]"
             >
               <MessageCircle aria-hidden className="size-4" strokeWidth={1.75} /> {t.whatsapp}
             </a>
           </div>
-        </div>
-        <div className="relative -mx-4 mt-10 aspect-[996/761] overflow-hidden sm:-mx-6 lg:hidden">
-          {/* right of the banner's diagonal edge: panels, peak, caravan and rider, nothing painted */}
-          <Image src={images.hero} alt="" aria-hidden fill sizes="100vw" className="object-cover object-right saturate-[1.1] rtl:-scale-x-100" />
         </div>
       </div>
     </section>

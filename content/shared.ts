@@ -17,7 +17,7 @@ export const whatsappHref = (text: string) => `https://wa.me/${whatsappIntl}?tex
  * attribution required). They illustrate the type of work only — they are NOT Sanam PV projects.
  */
 export const images = {
-  hero: "/images/hero-sanam-rider.jpg",
+  hero: "/images/hero-solar-array.jpg",
   pageServices: "/images/page-services.jpg",
   pageProjects: "/images/page-projects.jpg",
   pageAbout: "/images/page-about.jpg",

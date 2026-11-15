@@ -98,7 +98,7 @@ export const en = {
     highlights: ["Supply, design & installation", "On-grid, hybrid & off-grid", "EV charging points", "Serving Jordan"],
     requestQuote: "Request a Quote",
     whatsapp: "WhatsApp",
-    imageAlt: "A rider on a camel looking towards a mountain peak with the sun rising behind it, a caravan and solar panels below",
+    imageAlt: "Long row of solar panels under a blue sky with clouds",
   },
 
   pillarsAria: "Why Sanam PV",
